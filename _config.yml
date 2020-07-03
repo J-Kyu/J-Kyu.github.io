@@ -1,7 +1,11 @@
+title:   Kyu Tech Blog
+
 collections:
   authors:
     output: true
 
+logo:             images/logo.png # logo visible in the topbar
+url: http://localhost:4000
 defaults:
   - scope:
       path: ""

@@ -3,12 +3,14 @@
 	"file": "styles.css",
 	"sources": [
 		"styles.scss",
-		"_sass/main.scss"
+		"_sass/main.scss",
+		"_sass/header.scss"
 	],
 	"sourcesContent": [
-		"@import \"main\";",
-		".current {\n    color: green;\n  }"
+		"@import \"main\";\n@import \"header\";",
+		".current {\n    color: green;\n  }",
+		".header-item-container{\n\tcolor: red;\n\theight: 120%;\n}\n.header-item-title{\n\tfloat: left;\n\tborder-top-width: 15px;\n\theight: 100%;\n}"
 	],
 	"names": [],
-	"mappings": "ACAA,AAAA,QAAQ,CAAC,EACL,KAAK,EAAE,KAAK,GACb"
+	"mappings": "ACAA,AAAA,QAAQ,CAAC,EACL,KAAK,EAAE,KAAK,GACb;;ACFH,AAAA,sBAAsB,CAAA,EACrB,KAAK,EAAE,GAAG,EACV,MAAM,EAAE,IAAI,GACZ;;AACD,AAAA,kBAAkB,CAAA,EACjB,KAAK,EAAE,IAAI,EACX,gBAAgB,EAAE,IAAI,EACtB,MAAM,EAAE,IAAI,GACZ"
 }
