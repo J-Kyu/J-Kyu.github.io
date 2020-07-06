@@ -1,9 +1,25 @@
-.header-item-container{
-	color: red;
-	height: 120%;
-}
-.header-item-title{
-	float: left;
-	border-top-width: 15px;
-	height: 100%;
+%width_auto{ width: 1000px; margin: 0 auto; overflow: hidden;}
+$main_color: #ff9400;
+$sub_color: #ffc045;
+
+ //#: html에서 id로 가져올 때
+ //.: html에서 class로 가져올 때
+.header-menu{
+	background: $main_color; 
+
+
+	.header-menu-container{
+		@extend %width_auto;
+		background: $sub_color; 
+
+		.logo{
+			// float: left;
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+
+		.header-item{
+			float: right;
+		}
+	}
 }

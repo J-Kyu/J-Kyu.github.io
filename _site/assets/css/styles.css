@@ -1,7 +1,13 @@
 .current { color: green; }
 
-.header-item-container { color: red; height: 120%; }
+.header-menu .header-menu-container { width: 1000px; margin: 0 auto; overflow: hidden; }
 
-.header-item-title { float: left; border-top-width: 15px; height: 100%; }
+.header-menu { background: #ff9400; }
+
+.header-menu .header-menu-container { background: #ffc045; }
+
+.header-menu .header-menu-container .logo { margin-top: auto; margin-bottom: auto; }
+
+.header-menu .header-menu-container .header-item { float: right; }
 
 /*# sourceMappingURL=styles.css.map */

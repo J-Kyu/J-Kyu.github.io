@@ -1,20 +1,30 @@
-<div class="header-menu header-menu-top">
-  <!-- logo + title -->
-    <ul class="header-item-container">
-        <li class="header-item-title">
+<div class = "header-menu">
+
+    <div class="header-menu-container">
+        <a class="header-item-title">
             <a href="{{site.url}}/">
                 {% if site.logo %}
-                    <img class="logo" src="{{site.url}}/{{ site.logo }}" alt="{{ site.title }}">
+                    <img class="logo" src="{{site.url}}/{{ site.logo }}" width = "50px" alt="{{ site.title }}">
                 {% endif %}  
-            <a href="{{site.url}}/" class="title"> {{ site.title }}</a>
             </a>
-        </li>
-    <!-- logo + title -->
+            <a href="{{site.url}}/" class="title"> 
+                {{ site.title }}
+            </a>
+        </a>
+        
 
 
-    {% for item in site.data.navigation %}
-        <li class="header-item"><a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}><h3>{{ item.name }}</h3></a></li>
-    {% endfor %} 
-          
-    </ul>
+        <a class="header-menu-item">
+            {% for item in site.data.navigation %}
+                <ul class="header-item">
+                    <a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>
+                        <h3>
+                            {{ item.name }}
+                        </h3>
+                    </a>
+                </ul>
+            {% endfor %} 
+        </a>
+           
+    </div>
 </div>
