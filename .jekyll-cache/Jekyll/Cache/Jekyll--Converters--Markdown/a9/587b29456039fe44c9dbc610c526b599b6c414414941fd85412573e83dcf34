@@ -1,0 +1,297 @@
+I"�&<h1 id="computer-graphic_1-2">Computer Graphic_1-2</h1>
+
+<blockquote>
+  <h3 id="opengl-introduction">OpenGL-Introduction</h3>
+
+  <ul>
+    <li>Rendering</li>
+    <li>Shaders</li>
+    <li>OpenGL’s Rendering Pipeline</li>
+    <li>OpenGL Syntax</li>
+    <li>OpenGL Shading Language (GLSL)</li>
+    <li>First OpenGL Program</li>
+  </ul>
+</blockquote>
+
+<h2 id="rendering">Rendering</h2>
+
+<h3 id="definition">Definition</h3>
+
+<ul>
+  <li>Automatic process of <strong>generating a photorealistic or non-photorealistic Image</strong> from 2D or 3D models using computer programs.</li>
+  <li>Render을 하기 위해서는 당연히(synthesize image), 다음과 같은 정보들이 필요하다.
+    <ul>
+      <li>Material properties</li>
+      <li>Light Souces</li>
+      <li>Cameras</li>
+      <li>Motion</li>
+      <li>Texture</li>
+      <li>Shape of Object</li>
+      <li>etc</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="shaders">Shaders</h2>
+
+<blockquote>
+  <p>Recent Tech</p>
+</blockquote>
+
+<h3 id="definition-1">Definition</h3>
+
+<ul>
+  <li>오늘 날,  CG software에서는 shader를 많이 사용한다.</li>
+  <li>Shader는 <strong>user-defined program</strong>으로 <strong>rendering work를 control/modify</strong>하는 기능을 한다.</li>
+  <li>run-time efficiency를 위해서 GPU에서 병렬로(excuted in parallel)처리 된다.</li>
+</ul>
+
+<h2 id="opengls-rendering-pipeline">OpenGL’s Rendering Pipeline</h2>
+
+<blockquote>
+  <ul>
+    <li>A sequence of stage for converting graphics data into a final image</li>
+    <li>Two required Shader for OpenGL
+      <ul>
+        <li>Vertex Shader</li>
+        <li>Fragment Shader</li>
+      </ul>
+    </li>
+    <li>이 두개의 shader는 OpenGL을 다루는 programmer가 구현해야 한다.</li>
+    <li>이 외의 stage는 이미  OpenGL에서 제공해준다.</li>
+  </ul>
+</blockquote>
+
+<pre><code class="language-mermaid">graph LR
+	s(("Vertex Data"))--&gt; A["Vertex Shader"] --&gt; B["Primitive Assembly"] --&gt; C["Projection &amp; Clipping"] --&gt;D["Rasterization"] --&gt; E["Fragment Shader"] --&gt; F["Pre-fragment Operations"]--&gt; G["Framebuffer"];
+	Y(("Pixel Data"))--&gt;Z["Texture Memory"]--&gt;E
+</code></pre>
+
+<h3 id="vertex-shader-basic-shader">Vertex Shader (Basic Shader)</h3>
+
+<ul>
+  <li>Vertex Data를 통해 기본 geometry를 얻는다.</li>
+  <li>여기서는 Vertex Data를 가공하는 단계이다.</li>
+  <li>GLSL을 통해서 진행</li>
+  <li><strong>점</strong></li>
+</ul>
+
+<h3 id="primitive-assembly">Primitive Assembly</h3>
+
+<ul>
+  <li>Vertex를 asseble하여 triangle을 만든다.</li>
+  <li><strong>면</strong></li>
+</ul>
+
+<h3 id="projection--clipping--rasterization">Projection &amp; Clipping + Rasterization</h3>
+
+<ul>
+  <li>Projection &amp; Clipping
+    <ul>
+      <li>전 lecture에서,  Synthetic Camear Model을 사용한다고 하였다.</li>
+      <li>이 단계에서는 사물이 Projection Plane에 비춰지는 작업을 담당한다.</li>
+    </ul>
+  </li>
+  <li>Rasterization
+    <ul>
+      <li>Projection Plane에 그려진 사물을 pixel grid로 가공하는 단계이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="texture-memory--fragment-shaderbasic-shader">Texture Memory + Fragment Shader(Basic Shader)</h3>
+
+<ul>
+  <li>Texture Memory
+    <ul>
+      <li>사물의 surface imag를 설정할 수 있다.</li>
+    </ul>
+  </li>
+  <li>Fragment Shader
+    <ul>
+      <li>color를 설정한다</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="per-fragment-operation--framebuffer">Per-Fragment Operation + Framebuffer</h3>
+
+<ul>
+  <li>Per-Fragment Operation
+    <ul>
+      <li>Fragment Shader 단계까지 계산된  data를 framebuffer로 옮기는 작업을 한다.</li>
+      <li>교수님꼐서 예는 다음과 같다.
+        <ul>
+          <li>두개의 서로 다른  object가 존재한다.</li>
+          <li>한  buffer에 겹치는 경우, 겹치는 것을 표현해야한다.(겹치는 일정 부분은 가려진다는 의미)</li>
+          <li>이러한 계산을 여기서 하는 것 같다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Framebuffer
+    <ul>
+      <li>마지막 image는 framebuffer에 그려진다.</li>
+      <li>물론, 이 frame buffer가 device에 그려지는 것이 최종 단계이겠지만……</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="opengl-syntax">OpenGL Syntax</h2>
+
+<h3 id="basic-syntax">Basic Syntax</h3>
+
+<ul>
+  <li><strong>Constant</strong>
+    <ul>
+      <li>Begin with “GL”</li>
+      <li>Ex) GL_COLOR_BUFFER_BIT</li>
+    </ul>
+  </li>
+  <li><strong>Functions</strong>
+    <ul>
+      <li>Begin with “gl”</li>
+      <li>Ex) glBindVertexArray()</li>
+    </ul>
+  </li>
+  <li><em>OpenGL has no overloaded functions</em></li>
+</ul>
+
+<h3 id="data-types">Data Types</h3>
+
+<ul>
+  <li>선언 하기 위한 Type이 정해져 있다</li>
+  <li>For more details and types, see https://www.khronos.org/opengl/wiki/OpenGL_Type.</li>
+</ul>
+
+<h3 id="function-suffix">Function Suffix</h3>
+
+<ul>
+  <li>FunctionName{&lt;\the # of parameters&gt;}{&lt;\Data Type&gt;}{&lt;\Vector&gt;}</li>
+  <li><a href="https://monochromelux.github.io/opengl/">OpenGL 함수 한글 설명서</a></li>
+  <li>Note: there are 24 versions of glUniform*(). For more details, see the following link: https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glUniform.xhtml.</li>
+</ul>
+
+<h2 id="opengl-shading-language-glsl">OpenGL Shading Language (GLSL)</h2>
+
+<ul>
+  <li>Shader를 programming하기 위한 언어</li>
+  <li><a href="https://www.opentutorials.org/module/3659">GLSL/Shader Tutorial 강의</a></li>
+</ul>
+
+<h3 id="glutopengl-utility-toolkit">GLUT(OpenGL Utility Toolkit)</h3>
+
+<blockquote>
+  <p>Support Window Interfaces</p>
+</blockquote>
+
+<ul>
+  <li>Provides a simple window API for OpenGL</li>
+  <li>Old and limited</li>
+</ul>
+
+<h3 id="freeglut">FreeGLUT</h3>
+
+<blockquote>
+  <p>Support Window Interfaces</p>
+</blockquote>
+
+<ul>
+  <li>X-Consortium에서 만듬</li>
+</ul>
+
+<h3 id="glewopengl-extension-wrangler">GLEW(OpenGL Extension Wrangler)</h3>
+
+<blockquote>
+  <p>To Load OpenGL Extension</p>
+</blockquote>
+
+<ul>
+  <li>Cross Platform OpenSource OpenGL Extension Loading Library</li>
+  <li>Provides efficient run-time mechanisms for determining which OpenGL extensions are supported on the target platform.</li>
+</ul>
+
+<h2 id="first-opengl-program">First OpenGL Program</h2>
+
+<blockquote>
+  <font color="black">**Assignment_1_Review**를 보는 것이 어쩌면 더 이해가 잘 갈 것이다.</font>
+</blockquote>
+
+<h3 id="sending-vertex-data-to-opengl">Sending Vertex Data to OpenGL</h3>
+
+<ul>
+  <li>Buffer allocation &amp; Initialization
+    <ul>
+      <li>모든 data <strong>buffer object</strong>에 저장된다.</li>
+      <li><strong>buffer object</strong>는 OpenGL에서 관리가 된다.</li>
+      <li><strong>getBufferData()</strong>를 통해서 <strong>buffer object</strong>의 메모리 공간을 확보한다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>예시</p>
+
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">GLunit</span> <span class="n">Bufers</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Buffers</span><span class="p">);</span>	<span class="c1">//buffer object 생성</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span><span class="n">BUFFERS</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>	<span class="c1">//openGL에서 Binding Target 0번째 GL_ARRAY_BUFFER와 연결</span>
+<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">vertices</span><span class="p">),</span><span class="n">vertices</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span> <span class="c1">//vetice data를 GL_ARRAY_BUFFER를 통해서 할당된 Buffer Object에 추가한다.</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <font color="red">GL_ARRAY_BUFFER를 따로 관리하는 이유? 왜 직접 Buffer Object List에 추가하지 않는가?</font>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Request for Rendering</p>
+  </li>
+  <li>vertice data가 buffer에 옮겨진 것을 알 수 있다.</li>
+  <li>그렇다면 이제, OpenGL에서 그리는 명령어를 통해서 그려보자.
+    <ul>
+      <li>glDrawArray(); accessing buffer elemnents in a <strong>sequencial</strong></li>
+      <li>glDrawElements();  accessing buffer elemnents in an <strong>indexed order</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pass-through-vertex-shader">Pass-through Vertex Shader</h3>
+
+<ul>
+  <li>Vertex Shader
+    <ul>
+      <li>Drawing Command가 호출되었을 때, 실행되는 단계</li>
+      <li><strong>Pass-through Vertex Shader</strong>는 Vertex Data를 <strong>복사</strong>하여 보내는 작업 중 간단한 작업이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="fragment-shader-for-coloring">Fragment Shader for coloring</h3>
+
+<ul>
+  <li>Rasterization에서 만들어진 frame에 대하여 색을 부여하는 단계
+    <ul>
+      <li>Rasterization: Projection Plane에 그려진 사물을 pixel grid로 가공하는 단계이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="예시">예시</h2>
+
+<ul>
+  <li>./triangle.cpp</li>
+</ul>
+
+<h3 id="환경-구축">환경 구축</h3>
+
+<div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#glut 설치</span>
+brew <span class="nb">install </span>glut
+<span class="c"># 만약 xquarz 관련 error 가 뜨면 아래 cmd 실행</span>
+brew cask <span class="nb">install </span>xquartz
+
+<span class="c">#glew 설치</span>
+brew <span class="nb">install </span>glew
+
+</code></pre></div></div>
+
+:ET

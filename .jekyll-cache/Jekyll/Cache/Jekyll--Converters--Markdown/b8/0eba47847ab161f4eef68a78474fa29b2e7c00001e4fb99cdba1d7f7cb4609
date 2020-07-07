@@ -1,0 +1,191 @@
+I"�<blockquote>
+  <p>Week 1 0302</p>
+</blockquote>
+
+<h1 id="21-inverse-of-a-matrix">2.1 Inverse of a Matrix</h1>
+
+<blockquote>
+  <ul>
+    <li>Matrix Operation</li>
+  </ul>
+</blockquote>
+
+<h2 id="matrix-operation">Matrix Operation</h2>
+
+<h3 id="invertible_가역행렬--inverse_역행렬">Invertible\(_{가역행렬}\) &amp; Inverse\(_{역행렬}\)</h3>
+
+<ul>
+  <li>
+    <p><strong>Invertible</strong></p>
+
+    <ul>
+      <li>2 개의  동일한 크기의 정사각 행렬 \(A\)와 \(C\)가 존재한다. 이 때,  \(I = I_n, n\times n\)의 단위 행렬일 때,
+\(CA = I \text{ and } AC=I\)</li>
+    </ul>
+  </li>
+  <li>를 만족하면,  Matrix \(A\)는 <strong>Invertible</strong>이라고 한다.
+    <ul>
+      <li>\(C\)는 <strong>A의  Inverse</strong>라고 한다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Inverse</strong></p>
+
+    <ul>
+      <li>
+        <p>용어를 조금 적용해서 이야기하면…..</p>
+
+        <ul>
+          <li>가역행렬인  \(A\)의 역행렬 C는  A에 의해 <strong>unique</strong>하게 정해진다.</li>
+        </ul>
+
+\[B=BI=B(AC)=(BA)C=IC=C\]
+
+        <ul>
+          <li>즉, 가역행렬 \(A\)를 기준으로 만들어지는 역행렬  \(C\)는  <strong>unique</strong>(<font color="red">하나로만 정의된다?</font>)하다.</li>
+        </ul>
+      </li>
+      <li>
+        <p>역행렬 C는 \(A^{-1}\)로 표현이 된다.</p>
+      </li>
+    </ul>
+
+\[A^{-1}A=I \text{ and } AA^{-1}=I\]
+  </li>
+</ul>
+
+<h3 id="theorem-4">Theorem 4</h3>
+
+<blockquote>
+  <p>\(n\times n\)크기의 행렬 A에 대하여  invertible이 존재하면(determinant \(\ne\) 0), Inverse를 구할 수 있다.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>Invertible 판단 및  Inverse 구하기</strong>
+\(A = \begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}
+\text{일 때,}\)</p>
+  </li>
+  <li>
+    <p>\(ad-bc \ne 0\)이면, <strong>행렬 \(A\)는  Invertible</strong>이며, <strong>Inverse</strong>는 
+  \(A^{-1}=\frac{1}{ad-bc}\begin{bmatrix}
+  b &amp; -d\\
+  -c &amp; a
+  \end{bmatrix}
+  \text{ 성립된다}\)</p>
+  </li>
+  <li>
+    <p>만약, \(ad-bc=0\), <strong>행렬 \(A\)는 Invertible이 아니다.</strong></p>
+  </li>
+  <li>
+    <p><strong>Determinant\(_{행렬식}\)</strong></p>
+
+    <ul>
+      <li>A의 행렬식은  \(ad-bc\)이다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>결론</strong></p>
+
+    <ul>
+      <li>즉, \(2\times 2\) 행렬에서 determinant가 0이 아닌 경우에만,  해당 행렬이 Invertible이라고 할 수 있다.</li>
+      <li>또한,  Inverse는 Invertible 행렬에만 성립한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="theorem-5">Theorem 5</h3>
+
+<blockquote>
+  <ul>
+    <li>만약, \(n\times n\)크기의  Invertible 행렬 A이라고 하면, \(\R^n\)인 \(b\)의 각  entries대해서 equation \(Ax=b\) 는  \(x=A^{-1}b\)라는 unqiue solution을 갖는다.</li>
+    <li><strong>scalar \(x\)를 구하기 위한 방법……</strong></li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li><strong>Proof</strong>
+    <ul>
+      <li>Solution이 존재하는 이유는 \(A^{-1}b=x\)이면, \(Ax=A(A^{-1}b)=(AA^{-1})b=Ib=b\)이다.</li>
+      <li>고로, \(A^{-1}b\)가 \(x\)를 구하는 unique Solution이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="theorem-6">Theorem 6</h3>
+
+<blockquote>
+  <p>a. \((A^{-1})^{-1} =A\)</p>
+
+  <ul>
+    <li>Matrix \(A\)가 Invertible이라면\(_{\text{Invertible이니  theorem 4 덕 Inverse는 당연히 존재하고}}\), \(A^{-1}\)도  Invertible이다.</li>
+    <li>고로, \(A^{-1}\) 도   Inverse가 존재한다.</li>
+  </ul>
+
+  <p>b. \((AB)^{-1} =B^{-1}A^{-1}\)</p>
+
+  <ul>
+    <li>\(A\)와 \(B\)가 \(n\times n\)의 크기의  Invertible Matrix라면, \(AB\)도 동일한 크기의 Invertible Matrix이다.\(_{\text{thorem 1}}\).</li>
+    <li>Matrix \(AB\)의 Inverse는 <code class="language-plaintext highlighter-rouge">b 예시</code>와 같다.</li>
+  </ul>
+
+  <p>c. \((A^{T})^{-1}=(A^{-1})^{T}\)</p>
+
+  <ul>
+    <li>Matrix \(A\)가 Invertible이라면, \(A^{T}\)도 Invertible이다.</li>
+    <li>\(A^{T}\)의  Inverse는 \(A^{-1}\)의 Transpose이다.</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>Proof</strong></p>
+
+    <ul>
+      <li>
+        <p>a 증명
+\(\text{ Matrix C such that}
+\\
+A^{-1}C=I,\text{ and } CA^{-1}=I\)</p>
+
+        <ul>
+          <li>Matrix \(C\)를 Matrix \(A\)로 대체 한다면, 성립이된다.\(_{\text{theorem 1:교환 법칙?}}\)</li>
+          <li>이것을 통해서, <strong>Inverse도 Invertible이며,  a가 성립이 된다.</strong></li>
+        </ul>
+      </li>
+      <li>
+        <p>b 증명
+\((AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=AIA^{-1}=AA^{-1}=I\)</p>
+
+        <ul>
+          <li>
+            <font color="red">Matrix곱에는 순서가 상관 없다?</font>
+          </li>
+          <li>\(n\times n\) 크기의 Invertible Matrix간의 곱은 Invertible을 갖는다.</li>
+          <li>\(AB\)와 \((A^{-1}B^{-1})\)의 곱이 \(I\) 결과를 갖기에 Inverse가 성립이 된다.</li>
+        </ul>
+      </li>
+      <li>
+        <p>c 증명</p>
+
+        <ul>
+          <li>
+            <p><strong>Theorem 3(d)</strong> 사용:  \((AB)^T=B^TA^T\)
+\((A^{-1})^{T}A^{T}=(AA^{-1})^{T}=I^{T}=I\)</p>
+          </li>
+          <li>
+            <p>비슷한 방법으로, 
+\(A^{T}(A^{-1})^{T}=I^{T}=I\)</p>
+          </li>
+          <li>
+            <p>고로, \(A^{T}\)는  Invertible이며,  <strong>Theorem 4</strong>  덕에,  Inverse를 갖을 수 있다.</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+:ET

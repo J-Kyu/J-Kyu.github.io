@@ -1,0 +1,430 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <div class = "header-menu">
+
+    <div class="header-menu-container">
+        <a class="header-item-title">
+            <a href="http://localhost:4000/">
+                
+                    <img class="logo" src="http://localhost:4000/images/logo.png" width = "50px" alt="Kyu Tech Blog">
+                  
+            </a>
+            <a href="http://localhost:4000/" class="title"> 
+                Kyu Tech Blog
+            </a>
+        </a>
+        
+
+
+        <a class="header-menu-item">
+            
+                <ul class="header-item">
+                    <a href="/about.html" >
+                        <h3>
+                            About
+                        </h3>
+                    </a>
+                </ul>
+            
+                <ul class="header-item">
+                    <a href="/articles.html" >
+                        <h3>
+                            Article
+                        </h3>
+                    </a>
+                </ul>
+            
+                <ul class="header-item">
+                    <a href="/projects.html" >
+                        <h3>
+                            Project
+                        </h3>
+                    </a>
+                </ul>
+             
+        </a>
+           
+    </div>
+</div>
+    <title>Computer Graphic_1-1</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <div class = "body-container">
+  <body>
+    <h1>Computer Graphic_1-1</h1>
+
+<p>
+  07 Jul 2020
+  
+  
+</p>
+
+<h1 id="computer-graphic_1-1">Computer Graphic_1-1</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<h3 id="objectives">Objectives</h3>
+
+<ul>
+  <li>To Understand the <strong>fundamental basics</strong> on computer graphics</li>
+  <li>To have practical understanding on <strong>rendering pipeline</strong> using <strong>OpenGL</strong></li>
+  <li>To develop implementation skills to make <strong>interactive skills</strong></li>
+</ul>
+
+<h3 id="grading-policy">Grading Policy</h3>
+
+<ul>
+  <li>Attendance: 10%</li>
+  <li>Midterm Exam: 25%</li>
+  <li>Quizzes: 10%</li>
+  <li>Team Project: 25%</li>
+  <li>Homework: 30%</li>
+</ul>
+
+<h3 id="book">Book</h3>
+
+<ul>
+  <li>“Interactive Computer Graphics:  A Top-Down Approach with shared-based OpenGL (6th edition)”</li>
+</ul>
+
+<h3 id="schedule">Schedule</h3>
+
+<ul>
+  <li>Introudction to Computer Graphics (1 week)</li>
+  <li>Coordinate System &amp; Transformations ( 2 week)</li>
+  <li>3D Viewing &amp; Clipping (2~3 weeks )</li>
+  <li>3D Modeling &amp; Texturing ( 3 weeks )</li>
+  <li>Lighting &amp; Shading ( 1-2 weeks )</li>
+  <li>2D Imaging &amp; Vibility Determination (1-2 weeks)</li>
+  <li>Advanced Graphics Programming (1-2 weeks)</li>
+  <li>Advanced Redering (1 week)</li>
+</ul>
+
+<h2 id="general-concept">General Concept</h2>
+
+<blockquote>
+  <ul>
+    <li>
+      <p>Computer Graphic: <strong>Synthesizing</strong> images from models</p>
+    </li>
+    <li>
+      <p>Computer Vision/Image Processing: Understanding/Analyzing Image</p>
+    </li>
+  </ul>
+</blockquote>
+
+<h3 id="computer-graphic">Computer Graphic</h3>
+
+<p><img src="./../src/cgip.png" alt="cgip" /></p>
+
+<blockquote>
+  <ul>
+    <li>아무래도, Comptuer Graphic과 Image Processing은 전부 하나의 tool 내부라고 생각하자! (예를 들어, Unity)</li>
+    <li>Maya를 통해서 만들어진 3-D model Binary 파일을 Unity로 불러와서 Model을 Rendering 해주는 것을 Computer Graphic이 되는 것 이라고 생각이 된다.</li>
+    <li>Unity 내부에서 redering된 model에 대하여 더 훌룡한 효과(빛 반사, 그림자)를 만들기 위해서 Model 자체에 대해서 분석하는 것이 Image Processing이라고 생각이 된다.</li>
+    <li>Unity가 빌드가 되어 하나의 Scene으로 만들어지는 것은  Picture Processing으로 생각이 된다.</li>
+  </ul>
+</blockquote>
+
+<pre><code class="language-mermaid">graph LR
+	Input["Formal Description(Model)"] -.-&gt; CGComputer Graphic --&gt; Output["Visual Presentation(Images)"];
+	
+
+</code></pre>
+
+<ul>
+  <li><strong>Object</strong>
+    <ul>
+      <li>Lines, Pixels, regions, volumes, texts or sets</li>
+    </ul>
+  </li>
+  <li><strong>Purpose</strong>
+    <ul>
+      <li>Picture Generation</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <font color="red">Input Model이 무엇을 뜻하는가? 설계도 같은 것을 의미하는 건가?</font>
+</blockquote>
+
+<h3 id="image-processing">Image Processing</h3>
+
+<pre><code class="language-mermaid">graph LR
+	Input["Visual Presentation(Images)"] -.-&gt; CGImage Processing --&gt; Output["Formal Description(Models)"];
+</code></pre>
+
+<ul>
+  <li><strong>Object</strong>
+    <ul>
+      <li>Generated or Scanned Pictures</li>
+    </ul>
+  </li>
+  <li><strong>Purpose</strong>
+    <ul>
+      <li>Pattern Recognition, Object Recognition, Scene Analysis</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <font color="red">Output Model이 무엇을 뜻하는가? </font>
+</blockquote>
+
+<h3 id="picture-processing">Picture Processing</h3>
+
+<pre><code class="language-mermaid">graph LR
+	Input["Visual Presentation(Images)"] -.-&gt; CGPicture Processing --&gt; Output["Visual Presentation(Images)"];
+</code></pre>
+
+<ul>
+  <li><strong>Objects</strong>
+    <ul>
+      <li>generated or scanned pictures</li>
+    </ul>
+  </li>
+  <li><strong>Purpose</strong>
+    <ul>
+      <li>picture enhancement</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="pinhole-camera-model">Pinhole Camera Model</h2>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>[What is a pinhole camera?</td>
+        <td>Virtual Cameras</td>
+        <td>Computer animation</td>
+        <td>Khan Academy](https://www.youtube.com/watch?v=jhBC39xZVnw)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ul>
+    <li>Pinehole Camera를 배우는 이유는 Synthetic Camera를 이해하기 위해서이다!</li>
+  </ul>
+</blockquote>
+
+<h3 id="definition">Definition</h3>
+
+<ul>
+  <li>
+    <p><strong>“사물을 명확하게 인식하기 위해서는 Pinehole을 통해 보며, 이때 Pinehole을 통해 그려지는 사물은 거꾸로 보여진다.”</strong></p>
+  </li>
+  <li>
+    <p>우리가 보는 세상은 빛이 물체에 반사되어 만들어지는 반사체(?)를 보는 것이다.</p>
+
+    <ul>
+      <li>즉, 빛이 없을 때 아무 것도 보지 못하고, 빛이 있을 때, 빛이 물체에 반사가 되어 마치 Projector 처럼 우리 눈에 그려주는 것이다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>하지만, 빛은 사방에서 반사가 된다.(그렇기에 우리가 물체를 밝고 명확하게 보는 것) 하지만, 만약 이 반사되어 그려지는 빛을 아주 조그만하게  <strong>Pinhole</strong> 의 크기에 맞게 줄이고 정 중앙에 두고 쏜다면 굉장히 신기한 일이 발생한다~!</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th><img src="./../src/pinhole_1.png" alt="what we see" /></th>
+          <th><img src="./../src/pinhole_3.png" alt="what we see" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>- 빛이 사방에서 온다면 물체는 다음과 같이 그려진다.</td>
+          <td>- 하지만, 만약 정중앙에 pinhole 을 통해서 빛을 받는 다면, 위 사진과 같이 반대로 그려질 것이다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>결론적으로 사물을 완벽하게 빛을 통해 인식하기 위해서는 <strong>Pinhole</strong> 을 통해서 보는 것이고, 이 방법은 사물을 거꾸로 보게 한다.</p>
+  </li>
+</ul>
+
+<h3 id="원리">원리</h3>
+
+<blockquote>
+  <p>“사물을 명확하게 인식하기 위해서는 Pinehole을 통해 보며, 이때 Pinehole을 통해 그려지는 사물은 거꾸로 보여진다.”</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>Position을 통한  위치 설정</strong></p>
+
+    <p><img src="./../src/pinhole_principle.png" width="70%" /></p>
+
+    <ul>
+      <li>\((x,y,z)\) 에 위치한 물체를 Pinehole을 통해서 Image Plane에 그려지는 위치는 \((x_p,y_p,z_p)\)가 되면, length \(d\) 를 통해 다음과 같이 위치를 나타낼 수 있다.</li>
+    </ul>
+
+\[x_p = -\frac{dx}{z}\\y_p=-\frac{dy}{z}\\z_p=-d\]
+  </li>
+  <li>
+    <p><strong>사물을 담는 View Angle(View Field) 구하기</strong></p>
+
+    <p><img src="./../src/angle_view.png" width="70%" /></p>
+
+    <ul>
+      <li>위 사진과 Image Plane의 \(h\) 와 pinehole과 image plane의 거리 \(d\) 알고 있을때, 사물을 담는 view의 angle에 대해서도 구할 수 있다.
+\(\theta = 2\tan^{-1}\frac{h}{2d}\)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="etc">etc</h3>
+
+<ul>
+  <li><strong>Distacantages</strong>
+    <ol>
+      <li>Too Little light gets in = “<font color="red">적은 빛의 양이니 detail한 것을 놓처, 원근법이 사라진다?</font>”</li>
+      <li>The angle of view cannot be adjusted = “광각처럼 더 많은 사물 or 배경을 담기에 제한이 된다.”</li>
+    </ol>
+  </li>
+  <li><strong>Pine hole Camera</strong> vs <strong>Lens Camera</strong>
+    <ul>
+      <li>Lens Camera에서는 조리개를 통해서 빛의 양을 조절할 수 있다. 그렇기 떄문에 사진의 심도를 표한할 수 있다.</li>
+      <li>반대로, Pinehole Camera의. Pinehole의 크기가 고정이기 때문에(빛의 양도 고정?), 모든 사물이 focus되어있다.(Depth 표현이 힘들다.)</li>
+    </ul>
+
+    <p>&lt;img src=”./../src/depth.png” width = 70%&gt;</p>
+  </li>
+</ul>
+
+<h2 id="synthetic-camear-model">Synthetic Camear Model</h2>
+
+<blockquote>
+  <p>Computer Graphic에서 사용되는 Camera Model</p>
+</blockquote>
+
+<h3 id="definition-1">Definition</h3>
+
+<p>&lt;img src = “./../src/synthetic_camera.png” width = 70%&gt;</p>
+
+<ul>
+  <li>위에서 배웠던, Pinehole Camera를 COP(Center of Projection)라고 하자.</li>
+  <li>Camera에 실제 담기는 View와 COP사이에 한 영역을 Projection Plane으로 하자.</li>
+  <li>이때,  Computer Graphic에서는 이 Projection Plance을 기준으로 사물을 담는 Camera Synthetic Camera라고 할 수 있다.</li>
+</ul>
+
+<h3 id="property">Property</h3>
+
+<ul>
+  <li>Synthetic Camera를 사용하는 이유는 다음과 같다.
+    <ul>
+      <li>Pinehole에서는 image plane의 높이와 pinehole까지의 거리에 의해 angle이 제약 생겼었다. 이것을 없애기 위해서, Synthetic Camera는 Projection Plane의 크기를 조절하며 어떤  사물을 담을 지 정할 수 있는 장점이 있다.</li>
+      <li>즉, 제약이 많은 pinehole과 다르게, 더 자유롭게 사물을 image에 담을 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="basic-computer-graphic-system">Basic Computer Graphic System</h2>
+
+<h3 id="the-programmers-model-of-interactive-graphics">The Programmer’s Model Of Interactive Graphics</h3>
+
+<blockquote>
+  <p>가장 밑단에서 User까지 오게 되는 간단한 diagram이다.</p>
+</blockquote>
+
+<pre><code class="language-mermaid">graph LR
+	a["Application Data Structure"] --&gt; b["Application Programs"] --&gt; c["Gpraphic System"] --&gt; d["Graphic Devices &amp; User"];
+	c --&gt; b --&gt; a;
+	
+</code></pre>
+
+<ul>
+  <li>Client Programs이 Application Program이다.</li>
+  <li>OpenGL이 Graphic System을 담당한다</li>
+</ul>
+
+<h3 id="graphic-syste-opengl">Graphic Syste: OpenGL</h3>
+
+<ul>
+  <li>OpenGL은  API로 사용이 된다.
+    <ul>
+      <li>A software Library for accessing features in graphic Hardware</li>
+    </ul>
+  </li>
+  <li>Hardware Independence: Cross-Platform Portability
+    <ul>
+      <li>여러 Platform에서 실행이 가능하다.</li>
+    </ul>
+  </li>
+  <li>A Client-Server Model이다.
+    <ul>
+      <li>OpenGL에 API로 요청을 하면.  response하는 개념으로 실행된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="opengl-related-libraries">OpenGL-Related Libraries</h3>
+
+<ul>
+  <li>다음 부분에 대해서는 OpenGL에서 command를 제공하지 않는다.(제어하기 위해서는 third-party를 사용)
+    <ul>
+      <li>Window Tasks</li>
+      <li>Input Devices</li>
+      <li>Complicated Shapes</li>
+      <li>Complex Image Format</li>
+    </ul>
+  </li>
+  <li>Window System Support Libraries에도 다음과 같은 Graphic Systeme도 있다.
+    <ul>
+      <li>GLX/WGL/AGL/….</li>
+    </ul>
+  </li>
+  <li>하지만, 보통.  OpenGL을 사용하기 위해서 다음 2가지를 많이 사용한다.
+    <ul>
+      <li>OpenGL Utility Toolkit ( GLUT )</li>
+      <li>OpenGL Extension Wrangler ( GLEW )</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="opengl-pipeline">OpenGL Pipeline</h3>
+
+<p><img src="./../src/pipeline.png" /></p>
+
+<ul>
+  <li>Vertex Shader
+    <ul>
+      <li>Vertex Data는 Vertex Shader(GLSL\(_{\text{OpenGL Shader Language}}\))를 지난다.</li>
+      <li>그러면 기본적인  Vertex Geometry를 갖는다. (점)</li>
+    </ul>
+  </li>
+  <li>Primitive Assenbly
+    <ul>
+      <li>Vertex Data의 점들을 Aseemble을 통해 삼각형을 구성한다. (면)</li>
+    </ul>
+  </li>
+  <li>Rasterization
+    <ul>
+      <li>2-D pixel grid로 변형 시킨다. (pixel)</li>
+    </ul>
+  </li>
+  <li>Fragment Shader
+    <ul>
+      <li>알고리즘을 통해 각  pixel에 대하여 coloring을 한다. (Color)</li>
+    </ul>
+  </li>
+  <li>Per-Fragment Operation
+    <ul>
+      <li>각 pixel에 대하여 추가적인 pixel 색 작업으 한 뒤 frame buffer를 완성한다. (Frame Buffer )</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-mermaid">graph LR
+	aVertex Data --&gt; b["Points"] --&gt; c["Phase"] --&gt; d["Pixel"] --&gt;e["Color"]--&gt;fFrame Buffer;
+	
+</code></pre>
+
+  </body>
+</div>
+</html>

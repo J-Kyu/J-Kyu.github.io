@@ -1,17 +1,14 @@
 title:   Kyu Tech Blog
 
 collections:
+  projects:
+    output: true
   authors:
     output: true
 
 logo:             images/logo.png # logo visible in the topbar
 url: http://localhost:4000
 defaults:
-  - scope:
-      path: ""
-      type: "authors"
-    values:
-      layout: "author"
   - scope:
       path: ""
       type: "posts"
@@ -21,3 +18,8 @@ defaults:
       path: ""
     values:
       layout: "default"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"

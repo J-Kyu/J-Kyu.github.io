@@ -1,0 +1,317 @@
+I"�<blockquote>
+  <p>Week 1 0302</p>
+</blockquote>
+
+<h1 id="21-matrix-operation">2.1 Matrix Operation</h1>
+
+<blockquote>
+  <ul>
+    <li>Matrix Operation</li>
+    <li>Sums and Scalar Multiplies</li>
+    <li>Matrix Multiplication</li>
+    <li>Properties of Matrix Multiplication</li>
+    <li>Powers of Matrix</li>
+    <li>The Transpose of a Matrix</li>
+  </ul>
+</blockquote>
+
+<h2 id="번외_vector-vs-scalar-vs-matrix">번외_Vector vs Scalar vs Matrix</h2>
+
+<h2 id="matrix-operation">Matrix Operation</h2>
+
+<h3 id="matrix">Matrix</h3>
+
+<p>
+  <img src="./src/matrix.png" />
+</p>
+
+<ul>
+  <li>
+    <p>\(A = (a_{ij})\) 는 \(m,n\) 크기의 Matrix에서 \(i\)번째 row에 \(j\)번째 coloum을 의미한다.</p>
+  </li>
+  <li>
+    <p>A의 각 \(m\) column이 대해서 해당 column들은 \(\text{vector }R^{m}\)에 속해있다고 할 수 있다.</p>
+  </li>
+  <li>
+    <p>\(\text{vector }R^{m}\)의 개념을 활용하여 \(A\)는 다음과 같이 표현된다.</p>
+  </li>
+  <li>
+\[A = (a_1,a_2 ... a_n)\]
+  </li>
+</ul>
+
+<blockquote>
+  <p>사실상 \(A_j=(a_{1j},a_{2j}...a_{nj})\)</p>
+</blockquote>
+
+<ul>
+  <li>
+    <font color="red">왜 Vector의 기준은 coloum으로 하나요?</font>
+  </li>
+</ul>
+
+<h3 id="diagonal-matrix_대각행렬">Diagonal Matrix\(_{대각행렬}\)</h3>
+
+<blockquote>
+  <ul>
+    <li><a href="https://simple.wikipedia.org/wiki/Matrix_(mathematics)">Wiki</a></li>
+  </ul>
+
+  <p>The places in the matrix where the numbers are is called <strong><em>entries</em></strong>. The entry of a matrix <em>A</em> that lies in the row number <em>i</em> and column number <em>j</em> is called the <em>i,j</em> entry of <em>A</em>. This is written as <em>A</em>[<em>i,j</em>] or <em>a**i,j</em>.</p>
+
+  <p>We write {\displaystyle A:=(a_{ij})_{m\times n}}<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/1c060b9f1a25509bad791a55fa8d82f8564a5d40" alt="{\displaystyle A:=(a_{ij})_{m\times n}}" /> to define an <em>m</em> × <em>n</em> matrix <em>A</em> with each entry in the matrix called <em>a**i,j</em> for all 1 ≤ <em>i</em> ≤ <em>m</em> and 1 ≤ <em>j</em> ≤ <em>n</em>.</p>
+</blockquote>
+
+<ul>
+  <li>Diagonal Entry \(A = (a_{ij})\)이는  \(a_{11},a_{22},a_{33}...\)으로 행렬의 대각선에 위치한 element이다.</li>
+  <li>이때,  Diagonal Matrix는  \(\text{square } n \times n\) 행렬을  의미한다.</li>
+  <li>
+    <font color="red">대각 행렬로 무엇을 하나요?뭐가 특별한가요?</font>
+  </li>
+</ul>
+
+<h2 id="sums-and-scalar-multiples">Sums and Scalar Multiples</h2>
+
+<h3 id="zero-matrix">Zero Matrix</h3>
+
+<ul>
+  <li>\(m \times n\)의 행렬의 entries가 전부 0인 경우  <strong>Zero Matrix</strong>라고 표현하며, 0으로 표시한다.</li>
+</ul>
+
+<h3 id="same-size-matrix">Same Size Matrix</h3>
+
+<ul>
+  <li>2개의 Matrix의 column과 row의 크기가 동일하면  <strong>equal</strong>이라고 한다.</li>
+  <li>
+    <font color="red">행렬 크기가 같으면 equal이라고 했는데, 그럼  value 까지 같고 size까지 같은 것도  equal이라고하면 용어가 해깔리지 않나요?</font>
+  </li>
+</ul>
+
+<h3 id="sum-of-matrix">Sum of Matrix</h3>
+
+<ul>
+  <li>Matrix A와 B가 동일하게  \(m \times n\)인 경우, 두 matrix의 합도 \(m \times n\)이다.</li>
+  <li>단, 두 행렬의 크기가 다를 경우(서로 다른 행렬), 합은 성립되지 않는다.</li>
+</ul>
+
+<h3 id="scalar-matrix">Scalar Matrix</h3>
+
+<ul>
+  <li>\(r\)이  scalar이고  \(A\)가 행렬일 경우, 둘의 곱은 (scalar와 matrix의 곱은) \(A\) 행렬의 column에 \(r\)을 곱한  \(rA\) matrix가 만들어진다.</li>
+</ul>
+
+<h3 id="theorem-1">Theorem 1</h3>
+
+<ul>
+  <li>Let A,B and C be Matrices of the same size, and let r and s be scalar.
+    <ul>
+      <li>
+\[A+B=B+A\]
+      </li>
+      <li>
+\[(A+B)+C=A+(B+C)\]
+      </li>
+      <li>
+\[A+0=A\]
+      </li>
+      <li>
+\[r(A+B)=rA+rB\]
+      </li>
+      <li>
+\[(r+s)A = rA+sA\]
+      </li>
+      <li>
+\[r(sA)=(rs)A\]
+      </li>
+    </ul>
+  </li>
+  <li>좌우의  matrix size가 동일하다.</li>
+</ul>
+
+<h2 id="matrix-multiplication">Matrix Multiplication</h2>
+
+<h3 id="definition">Definition</h3>
+
+<ul>
+  <li>
+    <p>\(m \times n\)의 크기인 Matrix \(A\)와 \(n \times p\)의 크기인 \(B\) Matrix간의 곱을 예를 들어보자.</p>
+  </li>
+  <li>
+    <p>\(\text{product } AB\)는 \(m \times p\) 크기의  matrix가 만들어진다. Entries는 다음과 같이 만들어진다.</p>
+
+    <ul>
+      <li>
+\[(AB)_{i,j}=a_{i1}b{1j}+a_{i2}b_{2j}+...+a_{in}b_{nj}\]
+      </li>
+      <li>
+\[\begin{bmatrix}
+a &amp; b &amp; c\\
+d &amp; e &amp; f \\
+g &amp; h &amp; i
+\end{bmatrix}
+\begin{bmatrix}
+ㄱ &amp; ㄴ\\
+ㄷ &amp; ㄹ \\
+ㅁ &amp; ㅂ
+\end{bmatrix}
+=
+\begin{bmatrix}
+{aㄱ+bㄷ+cㅁ} &amp; {aㄴ+bㄹ+cㅂ} \\
+{dㄱ+eㄷ+fㅁ} &amp; {dㄴ+eㄹ+fㅂ}\\
+{gㄱ+hㄷ+iㅁ} &amp; {gㄴ+hㄹ+iㅂ}
+\end{bmatrix}\]
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="properies-of-matrix-muliplication">Properies of Matrix Muliplication</h2>
+
+<h3 id="commute">Commute</h3>
+
+<ul>
+  <li>만약 \(AB=BA\) 라면, \(A\)와 \(B\)는 <strong>commute</strong>라고 한다.</li>
+</ul>
+
+<h3 id="warnings">Warnings</h3>
+
+<ol>
+  <li>
+    <p>In general, \(AB\ne BA\)</p>
+  </li>
+  <li>
+    <p>The cancellation laws do not hold for matrix multiplication. That is, if \(AB=AC\), then it is not true in generasl that \(B=C\)</p>
+  </li>
+  <li>
+    <p>If product AB is the zero Matrix, you cannot conclude in general that either \(A=0 \text{ or } B=0\).</p>
+
+    <blockquote>
+      <font color="red">증명?...아마 cancellation law가 matrix에서 성립이 되지 않아서 이지 않을까?</font>
+    </blockquote>
+  </li>
+</ol>
+
+<h2 id="matrix-multiplication-1">Matrix Multiplication</h2>
+
+<ul>
+  <li>Marix 곱을 할시, coloum이 기준이니,  column을 기준으로 쪼개서 접근하자</li>
+</ul>
+
+\[A = \begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}
+B = \begin{bmatrix}
+ㄱ &amp; ㄴ &amp; ㄷ\\
+ㄹ &amp; ㅁ &amp; ㅂ
+\end{bmatrix}\]
+
+<ul>
+  <li>일때,  \(AB\)는 다음과 같이 풀어서 곱하자.
+\(AB = A(b_1...b_p)=(Ab_1...Ab_p)
+\\
+Ab_1 =  \begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}
+ \begin{bmatrix}
+ㄱ \\ ㄹ
+\end{bmatrix}
+=  \begin{bmatrix}
+aㄱ+bㄹ \\
+cㄱ + dㄹ
+\end{bmatrix}
+\\
+Ab_2 =  \begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}
+ \begin{bmatrix}
+ㄴ \\ ㅁ
+\end{bmatrix}
+=  \begin{bmatrix}
+aㄴ+bㅁ \\
+cㄴ + dㅁ
+\end{bmatrix}
+\\
+Ab_3 =  \begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}
+ \begin{bmatrix}
+ㄷ \\ ㅂ
+\end{bmatrix}
+=  \begin{bmatrix}
+aㄷ+bㅂ \\
+cㄷ + dㅂ
+\end{bmatrix}
+\\ 
+AB = \begin{bmatrix}
+aㄱ+bㄹ &amp; aㄴ+bㅁ &amp; aㄷ+bㅂ \\
+cㄱ+dㄹ &amp; cㄴ+dㅁ &amp; cㄷ+dㅂ
+\end{bmatrix}\)</li>
+</ul>
+
+<h2 id="powers-of-matrix">Powers of Matrix</h2>
+
+\[A^k =A \dotsm A\]
+
+<ul>
+  <li>
+    <p>\(A^k\)는 matrix \(A\)를 \(k\)번 곱한 것을 의미한다.</p>
+  </li>
+  <li>
+    <p>\(n \times n\)크기의 matrix \(A\)와 \(R^n\)인 \(x\)가  있다고 하자.  이때, \(A^kx\)는 \(A^k\)를 먼저 계산하고, x는  left-multiplying으로 곱한다.</p>
+
+    <blockquote>
+      <font color="red">$&lt;$..?</font>
+    </blockquote>
+  </li>
+  <li>
+    <p>만약, \(k =0\), \(A^0x=x\)이며, \(A^0 =I\)이다.</p>
+  </li>
+</ul>
+
+<h3 id="the-transpose-of-matrix">The Transpose of Matrix</h3>
+
+<h3 id="transpose_전치행렬">Transpose\(_{전치행렬}\)</h3>
+
+<ul>
+  <li>
+    <p>Matrix \(A\)의 Transpose Matrix는\(A^T\)로 표현한다.
+\(A = \begin{bmatrix}
+a &amp; b \\
+c &amp; d \\
+e &amp; f
+\end{bmatrix}
+\\
+A^T = \begin{bmatrix}
+a &amp; c &amp; e\\
+b &amp; d &amp; f
+\end{bmatrix}\)</p>
+  </li>
+  <li>
+    <p>만약,  \(A=(a_{ij}),A^T=(b_{ij})\)이면, \(b_{ij}=a_{ji}\)이다.</p>
+  </li>
+</ul>
+
+<h3 id="theorem-3">Theorem 3</h3>
+
+<blockquote>
+  <p>Transpose에 대하여</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Matrix \(A,B\)에 대하여 다음 합과 곱의 예에 대한 크기가 적당하고 가정하자.</p>
+
+    <p>a. \((A^T)^T=A\)</p>
+
+    <p>b. \((A+B)^T=A^T+B^T\)</p>
+
+    <p>c. For any scalar \(r\), \((rA)^T=rA^T\)</p>
+
+    <p>d. \((AB)^T=B^TA^T\)</p>
+  </li>
+</ul>
+:ET
