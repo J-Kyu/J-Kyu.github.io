@@ -8,9 +8,9 @@
 	],
 	"sourcesContent": [
 		"@import \"main\";\n@import \"header\";",
-		".current {\n    color: green;\n  }",
+		"%width_auto{ width: 1000px; margin: 0 auto; overflow: hidden;}\n\n.body-container{\n  @extend %width_auto;\n}\n\n.current {\n    color: green;\n  }",
 		"%width_auto{ width: 1000px; margin: 0 auto; overflow: hidden;}\n$main_color: #ff9400;\n$sub_color: #ffc045;\n\n //#: html에서 id로 가져올 때\n //.: html에서 class로 가져올 때\n.header-menu{\n\tbackground: $main_color; \n\n\n\t.header-menu-container{\n\t\t@extend %width_auto;\n\t\tbackground: $sub_color; \n\n\t\t.logo{\n\t\t\t// float: left;\n\t\t\tmargin-top: auto;\n\t\t\tmargin-bottom: auto;\n\t\t}\n\n\t\t.header-item{\n\t\t\tfloat: right;\n\t\t}\n\t}\n}"
 	],
 	"names": [],
-	"mappings": "ACAA,AAAA,QAAQ,CAAC,EACL,KAAK,EAAE,KAAK,GACb;;ACIH,AANA,YAMY,CAIX,sBAAsB,CAVZ,EAAE,KAAK,EAAE,MAAM,EAAE,MAAM,EAAE,MAAM,EAAE,QAAQ,EAAE,MAAM,GAAG;;AAM/D,AAAA,YAAY,CAAA,EACX,UAAU,EANE,OAAO,GAuBnB;;AAlBD,AAIC,YAJW,CAIX,sBAAsB,CAAA,EAErB,UAAU,EAVA,OAAO,GAqBjB;;AAjBF,AAQE,YARU,CAIX,sBAAsB,CAIrB,KAAK,CAAA,EAEJ,UAAU,EAAE,IAAI,EAChB,aAAa,EAAE,IAAI,GACnB;;AAZH,AAcE,YAdU,CAIX,sBAAsB,CAUrB,YAAY,CAAA,EACX,KAAK,EAAE,KAAK,GACZ"
+	"mappings": "AEMA,ADNA,YCMY,CAIX,sBAAsB,EDRvB,eAAe,CAFJ,EAAE,KAAK,EAAE,MAAM,EAAE,MAAM,EAAE,MAAM,EAAE,QAAQ,EAAE,MAAM,GAAG;;AAM/D,AAAA,QAAQ,CAAC,EACL,KAAK,EAAE,KAAK,GACb;;ACFH,AANA,YAMY,CAIX,sBAAsB,EDRvB,eAAe,CCFJ,EAAE,KAAK,EAAE,MAAM,EAAE,MAAM,EAAE,MAAM,EAAE,QAAQ,EAAE,MAAM,GAAG;;AAM/D,AAAA,YAAY,CAAA,EACX,UAAU,EANE,OAAO,GAuBnB;;AAlBD,AAIC,YAJW,CAIX,sBAAsB,CAAA,EAErB,UAAU,EAVA,OAAO,GAqBjB;;AAjBF,AAQE,YARU,CAIX,sBAAsB,CAIrB,KAAK,CAAA,EAEJ,UAAU,EAAE,IAAI,EAChB,aAAa,EAAE,IAAI,GACnB;;AAZH,AAcE,YAdU,CAIX,sBAAsB,CAUrB,YAAY,CAAA,EACX,KAAK,EAAE,KAAK,GACZ"
 }

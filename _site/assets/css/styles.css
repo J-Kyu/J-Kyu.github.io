@@ -1,6 +1,8 @@
+.header-menu .header-menu-container, .body-container { width: 1000px; margin: 0 auto; overflow: hidden; }
+
 .current { color: green; }
 
-.header-menu .header-menu-container { width: 1000px; margin: 0 auto; overflow: hidden; }
+.header-menu .header-menu-container, .body-container { width: 1000px; margin: 0 auto; overflow: hidden; }
 
 .header-menu { background: #ff9400; }
 

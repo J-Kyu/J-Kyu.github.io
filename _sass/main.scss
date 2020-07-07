@@ -1,3 +1,9 @@
+%width_auto{ width: 1000px; margin: 0 auto; overflow: hidden;}
+
+.body-container{
+  @extend %width_auto;
+}
+
 .current {
     color: green;
   }
