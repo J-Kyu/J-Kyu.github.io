@@ -30,4 +30,6 @@
 
 .img-thumb { object-fit: cover; height: 240px; width: 100%; object-position: top; }
 
+.post-date { float: right; }
+
 /*# sourceMappingURL=styles.css.map */

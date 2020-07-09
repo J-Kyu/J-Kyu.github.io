@@ -1,6 +1,7 @@
 ---
 short_name: LA
 name: Linear Algebra
+date: 2020-07-08
 ---
 
 

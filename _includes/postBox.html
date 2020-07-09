@@ -24,9 +24,11 @@
                     {{ project.title }}
                 </a>
             </h2>
-            <h4 class="card-text">{{ post.excerpt | strip_html | truncatewords:30 }}</h4>
+            <h4 class="card-text">{{ project.excerpt | strip_html | truncatewords:30 }}</h4>
         </div>
-
+        <div class="item-footer">
+            <span class="post-date">{{ project.date | date_to_string }}</span>
+        </div>
     
 </div>
 <!-- end post -->
