@@ -1,0 +1,26 @@
+.project-item-body {
+
+  }
+
+.project-item-thumb{
+    background-color: rebeccapurple;
+}
+.project-item-title {
+    // margin-bottom: $card-spacer-y;
+}
+  
+.card-subtitle {
+// margin-top: -$card-spacer-y / 2;
+margin-bottom: 0;
+}
+
+.card-text:last-child {
+margin-bottom: 0;
+}
+
+.img-thumb {
+    object-fit:cover;
+    height:240px;
+    width:240px;
+    object-position:top;
+}

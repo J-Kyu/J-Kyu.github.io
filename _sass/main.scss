@@ -3,7 +3,14 @@
 .body-container{
   @extend %width_auto;
 }
-
+.project-container{
+  width: auto;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 30px;
+}
 .thumbnail-container{
   margin: 10px auto;
   position: relative;

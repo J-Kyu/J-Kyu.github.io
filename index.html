@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Home
-project: Project
 ---
 <div class = "thumbnail-container">
     <img class="thumbnail-image" src="{{ site.thumbnail}}" width = "1000px">
@@ -11,7 +10,7 @@ project: Project
 </div>
 
 <h1>Project</h1>
-<ul>
+<ul class  = "project-container">
     {% assign i = 0 %}
     {% for project in site.projects %}
         {%  if i >= 4%} 
@@ -19,10 +18,15 @@ project: Project
         {% endif %}
 
         {% assign i = i | plus:1 %}
-        <li>
-        <h2><a href="{{ project.url }}">{{ project.name }}</a></h2>
-        <!-- <p>{{ project.content | markdownify }}</p> -->
-        </li>
+        
+        {% include postbox.html %}
+        <!-- <li>
+            <h2>
+                <a href="{{ project.url }}">
+                    {{ project.name }}
+                </a>
+            </h2>
+        </li> -->
     {% endfor %}
 </ul>
 {% assign item  = site.data.navigation[2] %}
