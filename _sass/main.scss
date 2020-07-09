@@ -1,8 +1,17 @@
-%width_auto{ width: 1000px; margin: 0 auto; overflow: hidden;}
+%width_auto{ width: 1280px; margin: 0 auto; overflow: hidden;}
+
+
+*{
+  margin: 0;
+  padding:0;
+}
 
 .default{
-  margin: 0 auto;
   background-color: rosybrown;
+}
+
+.footer{
+  background-color: sienna;
 }
 
 .body-container{

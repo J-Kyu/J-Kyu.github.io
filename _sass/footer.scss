@@ -1,0 +1,6 @@
+%width_auto{ width: 1000px; margin: 0 auto; overflow: hidden;}
+
+.footer-container{
+    height: 100px;
+    @extend %width_auto;
+}
