@@ -1,5 +1,7 @@
 .header-menu .header-menu-container, .body-container { width: 1000px; margin: 0 auto; overflow: hidden; }
 
+.default { margin: 0 auto; background-color: rosybrown; }
+
 .project-container { width: auto; margin: 50px auto; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr; grid-gap: 30px; }
 
 .thumbnail-container { margin: 10px auto; position: relative; }
@@ -18,12 +20,14 @@
 
 .header-menu .header-menu-container .header-item { float: right; }
 
+.project-item { background-color: seashell; }
+
 .project-item-thumb { background-color: rebeccapurple; }
 
 .card-subtitle { margin-bottom: 0; }
 
 .card-text:last-child { margin-bottom: 0; }
 
-.img-thumb { object-fit: cover; height: 240px; width: 240px; object-position: top; }
+.img-thumb { object-fit: cover; height: 240px; width: 100%; object-position: top; }
 
 /*# sourceMappingURL=styles.css.map */

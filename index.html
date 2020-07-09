@@ -10,7 +10,8 @@ title: Home
 </div>
 
 <h1>Project</h1>
-<ul class  = "project-container">
+
+<li class  = "project-container">
     {% assign i = 0 %}
     {% for project in site.projects %}
         {%  if i >= 4%} 
@@ -20,15 +21,9 @@ title: Home
         {% assign i = i | plus:1 %}
         
         {% include postbox.html %}
-        <!-- <li>
-            <h2>
-                <a href="{{ project.url }}">
-                    {{ project.name }}
-                </a>
-            </h2>
-        </li> -->
     {% endfor %}
-</ul>
+</li>
+
 {% assign item  = site.data.navigation[2] %}
 <a href="{{ item.link }}">More</a>
 

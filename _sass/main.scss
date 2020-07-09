@@ -1,5 +1,10 @@
 %width_auto{ width: 1000px; margin: 0 auto; overflow: hidden;}
 
+.default{
+  margin: 0 auto;
+  background-color: rosybrown;
+}
+
 .body-container{
   @extend %width_auto;
 }

@@ -1,6 +1,7 @@
-.project-item-body {
+.project-item {
+    background-color: seashell;
 
-  }
+}
 
 .project-item-thumb{
     background-color: rebeccapurple;
@@ -21,6 +22,6 @@ margin-bottom: 0;
 .img-thumb {
     object-fit:cover;
     height:240px;
-    width:240px;
+    width:100%;
     object-position:top;
 }
