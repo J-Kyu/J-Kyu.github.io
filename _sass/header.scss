@@ -7,19 +7,30 @@ $sub_color: #ffc045;
 .header-menu{
 	background: $main_color; 
 
-
 	.header-menu-container{
 		@extend %width_auto;
 		background: $sub_color; 
+		// display: flex;
+		justify-content: space-between;
 
-		.logo{
-			// float: left;
-			margin-top: auto;
-			margin-bottom: auto;
+		.header-item-title{
+			display: inline-block;
+			.logo{
+				// float: left;
+				margin-top: auto;
+				margin-bottom: auto;
+				vertical-align: middle;
+			}
 		}
 
-		.header-item{
-			float: right;
+		.header-item-menu{
+			display: inline-block;
+			background-color: springgreen;
+			
+			.header-item{
+				display: inline-block;
+				margin-right: 23px;
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <div class = "header-menu">
 
     <div class="header-menu-container">
-        <a class="header-item-title">
+        <div class="header-item-title">
             <a href="{{site.url}}/">
                 {% if site.logo %}
                     <img class="logo" src="{{site.url}}/{{ site.logo }}" width = "50px" alt="{{ site.title }}">
@@ -10,21 +10,20 @@
             <a href="{{site.url}}/" class="title"> 
                 {{ site.title }}
             </a>
-        </a>
+        </div>
         
 
 
-        <a class="header-menu-item">
+        <div class="header-item-menu">
+            
             {% for item in site.data.navigation %}
                 <ul class="header-item">
                     <a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>
-                        <h3>
                             {{ item.name }}
-                        </h3>
                     </a>
                 </ul>
             {% endfor %} 
-        </a>
-           
+        
+        </div>
     </div>
 </div>
