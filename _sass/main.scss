@@ -1,25 +1,32 @@
 %width_auto{ width: 1280px; margin: 0 auto; overflow: hidden;}
 $minHeight: 2000px;
+$footerColor: #ECE6CC;
+$pillarColor: #D05C55;
+$windowColor: #86C1AC;
+
 
 *{
   margin: 0;
   padding:0;
 }
 body{
-  background-color: springgreen;
+  background-color: #000000;
 }
 .default-body{
-  background-color: rosybrown;
+  background-color: $pillarColor;
   min-height: $minHeight;
 
 }
 
 .footer{
-  background-color: sienna;
+  // background-color: sienna;
+  background-color: $footerColor;
 }
 
 .body-container{
   @extend %width_auto;
+  min-height: $minHeight;
+  background-color: $windowColor;
 }
 .project-container{
   width: auto;
