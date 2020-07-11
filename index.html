@@ -9,37 +9,44 @@ title: Home
     </div>
 </div>
 
-<h1>Project</h1>
 
-<li class  = "project-container">
-    {% assign i = 0 %}
-    {% for project in site.projects reversed %}
-        {%  if i >= 4%} 
-            {% break %}
-        {% endif %}
+<div class  = "project-container">
+    <h1>Project</h1>
 
-        {% assign i = i | plus:1 %}
-        
-        {% include postBox.html %}
-    {% endfor %}
-</li>
-
-{% assign item  = site.data.navigation[2] %}
-<a class = "more" href="{{ item.link }}">More</a>
-
-<h1>Articles</h1>
-    <ul>
+    <li class  = "project-index-item">
         {% assign i = 0 %}
-        {% for post in site.posts %}
-            {%  if i >= 4%} 
+        {% for project in site.projects reversed %}
+            {%  if i >= 6%} 
                 {% break %}
             {% endif %}
 
             {% assign i = i | plus:1 %}
-            <li>
-                {% include articleTitle.html %}
-            </li>
+            
+            {% include postBox.html %}
         {% endfor %}
-    </ul>
-{% assign item  = site.data.navigation[1] %}
-<a class = "more" href="{{ item.link }}">More</a>
+    </li>
+
+    {% assign item  = site.data.navigation[2] %}
+    <a class = "more" href="{{ item.link }}">More</a>
+
+</div>
+
+<div class  = "article-container">
+
+    <h1>Articles</h1>
+        <ul class  = "article-index-item">
+            {% assign i = 0 %}
+            {% for post in site.posts %}
+                {%  if i >= 4%} 
+                    {% break %}
+                {% endif %}
+
+                {% assign i = i | plus:1 %}
+                <li>
+                    {% include articleTitle.html %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% assign item  = site.data.navigation[1] %}
+    <a class = "more" href="{{ item.link }}">More</a>
+</div>

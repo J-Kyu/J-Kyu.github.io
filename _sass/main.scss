@@ -3,6 +3,8 @@ $minHeight: 2000px;
 $footerColor: #ECE6CC;
 $pillarColor: #D05C55;
 $windowColor: #86C1AC;
+$containerTopMargin: 50px;
+$containerSideMargin: 10px;
 
 
 *{
@@ -29,14 +31,8 @@ body{
   min-height: $minHeight;
   background-color: $windowColor;
 }
-.project-container{
-  width: auto;
-  margin: 50px auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 30px;
-}
+
+
 .thumbnail-container{
   margin: 10px auto;
   position: relative;
@@ -51,11 +47,40 @@ body{
   transform: translate(-50%, -50%);
 }
 
+.project-container{
+  margin-top: $containerTopMargin;
+  margin-left: $containerSideMargin;
+  margin-right: $containerSideMargin;
+
+  .project-index-item{
+    width: auto;
+    margin-top: 25px ;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 30px;
+  }
+
+}
+
+
+
+.article-container{
+  margin-top: $containerTopMargin;
+  margin-left: $containerSideMargin;
+  margin-right: $containerSideMargin;
+
+
+}
+
+
 .current {
     color: green;
   }
 
 .more{
   float:right;
-  margin-right: 20px;
+  font-size: 20px;
+  // margin-right: 20px;
 }
