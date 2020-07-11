@@ -6,7 +6,7 @@ collections:
 
 logo:             images/logo.png # logo visible in the topbar
 thumbnail:             images/bg.jpg # logo visible in the topbar
-url: http://localhost:4000
+url: http://https://j-kyu.github.io/
 defaults:
   - scope:
       path: ""
