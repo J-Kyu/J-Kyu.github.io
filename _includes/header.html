@@ -4,7 +4,7 @@
         <div class="header-item-title">
             <a href="{{site.url}}/">
                 {% if site.logo %}
-                    <img class="logo" src="{{site.url}}/{{ site.logo }}" width = "50px" alt="{{ site.title }}">
+                    <img class="logo" src="{{site.url}}/{{ site.logo }}"  alt="{{ site.title }}">
                 {% endif %}  
             </a>
             <a href="{{site.url}}/" class="title"> 
@@ -17,7 +17,7 @@
         <div class="header-item-menu">
             
             {% for item in site.data.navigation %}
-                <ul class="header-item">
+                <ul class="header-item"></ul>
                     <a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>
                             {{ item.name }}
                     </a>
