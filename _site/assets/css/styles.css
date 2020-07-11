@@ -2,7 +2,7 @@
 
 * { margin: 0; padding: 0; }
 
-.default { background-color: rosybrown; }
+.default { background-color: rosybrown; min-height: 2000px; }
 
 .footer { background-color: sienna; }
 
@@ -43,3 +43,5 @@
 .footer-container, .body-container, .header-menu .header-menu-container { width: 1000px; margin: 0 auto; overflow: hidden; }
 
 .footer-container { height: 100px; }
+
+/*# sourceMappingURL=styles.css.map */
