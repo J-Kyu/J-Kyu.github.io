@@ -2,6 +2,7 @@
 short_name: LA
 name: Linear Algebra
 date: 2020-07-08
+summary: This is Linear Algebra
 ---
 
 

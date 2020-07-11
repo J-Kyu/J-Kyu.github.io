@@ -5,15 +5,6 @@
     
         <div class="project-item-thumb">
             <a href="{{ site.baseurl }}{{ project.url }}">
-                {% if post.image %}
-
-                    <!-- {% if site.lazyimages == "enabled" %}
-                        <img class="img-thumb lazyimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if post.image contains "://" %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
-                    {% else %}
-                        <img class="img-thumb" src="{% if post.image contains "://" %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}"> 
-                    {% endif %} -->
-
-                {% endif %}
                 <img class="img-thumb" src="{{site.thumbnail}}" alt="{{ project.title }}">
             </a>
         </div>
@@ -24,7 +15,7 @@
                     {{ project.title }}
                 </a>
             </h2>
-            <h4 class="card-text">{{ project.excerpt | strip_html | truncatewords:30 }}</h4>
+            <h4 class="card-text">{{ project.summary | strip_html | truncatewords:30 }}</h4>
         </div>
         <div class="item-footer">
             <span class="post-date">{{ project.date | date_to_string }}</span>

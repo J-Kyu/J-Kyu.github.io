@@ -13,6 +13,7 @@ body{
   background-color: #000000;
 }
 .default-body{
+  margin-top: 100px;
   background-color: $pillarColor;
   min-height: $minHeight;
 
@@ -53,3 +54,8 @@ body{
 .current {
     color: green;
   }
+
+.more{
+  float:right;
+  margin-right: 20px;
+}
