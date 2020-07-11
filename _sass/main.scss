@@ -5,10 +5,13 @@ $minHeight: 2000px;
   margin: 0;
   padding:0;
 }
-
-.default{
+body{
+  background-color: springgreen;
+}
+.default-body{
   background-color: rosybrown;
   min-height: $minHeight;
+
 }
 
 .footer{

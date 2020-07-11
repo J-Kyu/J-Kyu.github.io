@@ -2,7 +2,9 @@
 
 * { margin: 0; padding: 0; }
 
-.default { background-color: rosybrown; min-height: 2000px; }
+body { background-color: springgreen; }
+
+.default-body { background-color: rosybrown; min-height: 2000px; }
 
 .footer { background-color: sienna; }
 
