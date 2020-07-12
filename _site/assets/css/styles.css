@@ -4,11 +4,11 @@
 
 body { background-color: #000000; }
 
-.default-body { margin-top: 100px; background-color: #D05C55; min-height: 2000px; }
+.default-body { margin-top: 100px; background-color: #ECE6CC; min-height: 2000px; }
 
-.footer { background-color: #ECE6CC; }
+.footer { background-color: #CFD8DC; }
 
-.body-container { min-height: 2000px; background-color: #86C1AC; }
+.body-container { min-height: 2000px; background-color: #ECE6CC; }
 
 .thumbnail-container { margin: 10px auto; position: relative; }
 
@@ -52,9 +52,9 @@ body { background-color: #000000; }
 
 .footer-container { height: 100px; }
 
-.article-title-container { margin-top: 10px; background-color: royalblue; }
+.article-title-container { margin-top: 10px; background-color: #005666; }
 
-.article-title-container .article-title { font-size: 25px; }
+.article-title-container .article-title { font-size: 25px; color: white; }
 
 .article-title-container .article-title-date { font-size: 15px; }
 
