@@ -1,4 +1,4 @@
-%width_auto{ width: 1280px; margin: 0 auto; overflow: hidden;}
+%width_auto{ width: 100%; margin: 0 auto; overflow: hidden;}
 $minHeight: 2000px;
 $footerColor:#CFD8DC ;
 $pillarColor:#ECE6CC;
@@ -8,27 +8,25 @@ $containerSideMargin: 10px;
 
 
 *{
+  font-family: 'Nanum Gothic';
   margin: 0;
   padding:0;
 }
 body{
   background-color: #000000;
+   max-width: 100%;
+  
 }
 .default-body{
   margin-top: 100px;
   background-color: $pillarColor;
-  min-height: $minHeight;
-
-}
-
-.footer{
-  // background-color: sienna;
-  background-color: $footerColor;
+  
+  
 }
 
 .body-container{
   @extend %width_auto;
-  min-height: $minHeight;
+  max-width: 1000px; //이거해야지 좁혀진다.;
   background-color: $windowColor;
 }
 
@@ -79,10 +77,16 @@ body{
   margin-top: $containerTopMargin;
   margin-left: $containerSideMargin;
   margin-right: $containerSideMargin;
-
+  margin-bottom: $containerTopMargin+100px;
 
 }
 
+
+.footer{
+  // background-color: sienna;
+  background-color: $footerColor;
+  
+}
 
 .current {
     color: green;

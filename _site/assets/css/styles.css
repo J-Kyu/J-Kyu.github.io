@@ -1,14 +1,12 @@
-.footer-container, .header-menu .header-menu-container, .body-container { width: 1280px; margin: 0 auto; overflow: hidden; }
+.footer-container, .header-menu .header-menu-container, .body-container { width: 100%; margin: 0 auto; overflow: hidden; }
 
-* { margin: 0; padding: 0; }
+* { font-family: 'Nanum Gothic'; margin: 0; padding: 0; }
 
-body { background-color: #000000; }
+body { background-color: #000000; max-width: 100%; }
 
-.default-body { margin-top: 100px; background-color: #ECE6CC; min-height: 2000px; }
+.default-body { margin-top: 100px; background-color: #ECE6CC; }
 
-.footer { background-color: #CFD8DC; }
-
-.body-container { min-height: 2000px; background-color: #ECE6CC; }
+.body-container { max-width: 1000px; background-color: #ECE6CC; }
 
 .thumbnail-container { margin: 10px auto; position: relative; }
 
@@ -20,21 +18,23 @@ body { background-color: #000000; }
 
 .project-container .project-index-item { width: auto; margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr; grid-gap: 30px; }
 
-.article-container { margin-top: 50px; margin-left: 10px; margin-right: 10px; }
+.article-container { margin-top: 50px; margin-left: 10px; margin-right: 10px; margin-bottom: 150px; }
+
+.footer { background-color: #CFD8DC; }
 
 .current { color: green; }
 
 .more { float: right; font-size: 20px; }
 
-.footer-container, .header-menu .header-menu-container, .body-container { width: 1280px; margin: 0 auto; overflow: hidden; }
+.footer-container, .header-menu .header-menu-container, .body-container { width: 100%; margin: 0 auto; overflow: hidden; }
 
 .header-menu { background: #000000; vertical-align: middle; line-height: 100px; position: fixed; top: 0; left: 0; right: 0; z-index: 99999; }
 
-.header-menu .header-menu-container .header-item-title { display: inline-block; }
+.header-menu .header-menu-container .header-item-title { display: inline-block; margin-left: 100px; }
 
 .header-menu .header-menu-container .header-item-title .logo { height: 100px; margin-top: auto; margin-bottom: auto; vertical-align: middle; }
 
-.header-menu .header-menu-container .header-item-menu { float: right; vertical-align: middle; line-height: 100px; }
+.header-menu .header-menu-container .header-item-menu { margin-right: 100px; float: right; vertical-align: middle; line-height: 100px; }
 
 .header-menu .header-menu-container .header-item-menu .header-item { color: white; display: inline-block; margin-right: 10px; }
 
@@ -52,7 +52,7 @@ body { background-color: #000000; }
 
 .post-date { float: right; }
 
-.footer-container, .body-container, .header-menu .header-menu-container { width: 1280px; margin: 0 auto; overflow: hidden; }
+.footer-container, .body-container, .header-menu .header-menu-container { width: 100%; margin: 0 auto; overflow: hidden; }
 
 .footer-container { height: 100px; }
 

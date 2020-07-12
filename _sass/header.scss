@@ -1,8 +1,9 @@
-%width_auto{ width: 1280px; margin: 0 auto; overflow: hidden;}
+%width_auto{ width: 100%; margin: 0 auto; overflow: hidden;}
 $main_color: #ff9400;
 $sub_color: #ffc045;
 $headerColor: #000000;
 $headeHeight: 100px;
+$headSide: 100px;
 
  //#: html에서 id로 가져올 때
  //.: html에서 class로 가져올 때
@@ -23,6 +24,7 @@ $headeHeight: 100px;
 
 		.header-item-title{
 			display: inline-block;
+			margin-left: $headSide;
 			.logo{
 				// float: left;
 				height: $headeHeight;
@@ -33,6 +35,7 @@ $headeHeight: 100px;
 		}
 
 		.header-item-menu{
+			margin-right: $headSide;
 			float: right;
 			vertical-align: middle;
 			line-height: $headeHeight;
