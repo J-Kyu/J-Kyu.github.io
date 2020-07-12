@@ -18,7 +18,7 @@
             
             {% for item in site.data.navigation %}
                 <ul class="header-item"></ul>
-                    <a href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>
+                    <a class = "title" href="{{ item.link }}" {% if page.url == item.link %}class="current"{% endif %}>
                             {{ item.name }}
                     </a>
                 </ul>

@@ -14,6 +14,8 @@ body { background-color: #000000; }
 
 .thumbnail-text { color: white; padding: 5px 10px; text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
+.thumbnail-image { display: block; margin-left: auto; margin-right: auto; }
+
 .project-container { margin-top: 50px; margin-left: 10px; margin-right: 10px; }
 
 .project-container .project-index-item { width: auto; margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr; grid-gap: 30px; }
@@ -24,7 +26,7 @@ body { background-color: #000000; }
 
 .more { float: right; font-size: 20px; }
 
-.footer-container, .header-menu .header-menu-container, .body-container { width: 1000px; margin: 0 auto; overflow: hidden; }
+.footer-container, .header-menu .header-menu-container, .body-container { width: 1280px; margin: 0 auto; overflow: hidden; }
 
 .header-menu { background: #000000; vertical-align: middle; line-height: 100px; position: fixed; top: 0; left: 0; right: 0; z-index: 99999; }
 
@@ -34,7 +36,9 @@ body { background-color: #000000; }
 
 .header-menu .header-menu-container .header-item-menu { float: right; vertical-align: middle; line-height: 100px; }
 
-.header-menu .header-menu-container .header-item-menu .header-item { display: inline-block; margin-right: 10px; }
+.header-menu .header-menu-container .header-item-menu .header-item { color: white; display: inline-block; margin-right: 10px; }
+
+.header-menu .title { color: white; font-size: 30px; }
 
 .project-item { background-color: seashell; }
 
@@ -48,7 +52,7 @@ body { background-color: #000000; }
 
 .post-date { float: right; }
 
-.footer-container, .body-container, .header-menu .header-menu-container { width: 1000px; margin: 0 auto; overflow: hidden; }
+.footer-container, .body-container, .header-menu .header-menu-container { width: 1280px; margin: 0 auto; overflow: hidden; }
 
 .footer-container { height: 100px; }
 

@@ -1,4 +1,4 @@
-%width_auto{ width: 1000px; margin: 0 auto; overflow: hidden;}
+%width_auto{ width: 1280px; margin: 0 auto; overflow: hidden;}
 $main_color: #ff9400;
 $sub_color: #ffc045;
 $headerColor: #000000;
@@ -11,7 +11,6 @@ $headeHeight: 100px;
 	background: $headerColor; 
 	vertical-align: middle;
 	line-height: $headeHeight;
-
 
 	position: fixed;
 	top: 0;
@@ -39,9 +38,14 @@ $headeHeight: 100px;
 			line-height: $headeHeight;
 
 			.header-item{
+				color: white;
 				display: inline-block;
 				margin-right: 10px;
 			}
 		}
+	}
+	.title{
+		color: white;
+		font-size: 30px;
 	}
 }
