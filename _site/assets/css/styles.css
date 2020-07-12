@@ -62,4 +62,10 @@ body { background-color: #000000; max-width: 100%; }
 
 .article-title-container .article-title-date { font-size: 15px; }
 
+.post-container { margin-top: 50px; margin-left: 10px; margin-right: 10px; margin-bottom: 100px; }
+
+.post-container .post-title { font-size: 30px; }
+
+.post-container .post-head-data { font-size: 20px; color: gray; margin-left: 10px; margin-bottom: 100px; }
+
 /*# sourceMappingURL=styles.css.map */

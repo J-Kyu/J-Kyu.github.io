@@ -3,6 +3,8 @@ title:   Kyu Tech Blog
 collections:
   projects:
     output: true
+    
+markdown: kramdown
 
 logo:             images/logo.png # logo visible in the topbar
 thumbnail:             images/bg.jpg # logo visible in the topbar
