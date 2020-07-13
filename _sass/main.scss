@@ -5,6 +5,7 @@ $pillarColor:#ECE6CC;
 $windowColor:#ECE6CC;
 $containerTopMargin: 50px;
 $containerSideMargin: 10px;
+$maxWidth: 1000px;
 
 
 *{
@@ -19,6 +20,7 @@ body{
 }
 .default-body{
   margin-top: 100px;
+  padding-bottom: 100px;
   background-color: $pillarColor;
   
   
@@ -26,7 +28,8 @@ body{
 
 .body-container{
   @extend %width_auto;
-  max-width: 1000px; //이거해야지 좁혀진다.;
+  max-width: $maxWidth; //이거해야지 좁혀진다.;
+
   background-color: $windowColor;
 }
 
@@ -78,7 +81,6 @@ body{
   margin-left: $containerSideMargin;
   margin-right: $containerSideMargin;
   margin-bottom: $containerTopMargin+100px;
-
 }
 
 

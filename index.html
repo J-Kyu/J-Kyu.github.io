@@ -42,9 +42,9 @@ title: Home
                 {% endif %}
 
                 {% assign i = i | plus:1 %}
-                <li>
+                <ul>
                     {% include articleTitle.html %}
-                </li>
+                </ul>
             {% endfor %}
         </ul>
     {% assign item  = site.data.navigation[1] %}

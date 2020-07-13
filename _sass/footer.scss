@@ -1,6 +1,17 @@
-%width_auto{ width: 100%; margin: 0 auto; overflow: hidden;}
+
 
 .footer-container{
     height: 100px;
     @extend %width_auto;
+    max-width: $maxWidth;
+    
+    text-align: center;
+    padding-top: 10px;
+    
+        
+    .github-svg{
+        vertical-align: middle;
+        width: 25px;
+    }
+    
 }

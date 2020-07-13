@@ -4,7 +4,7 @@
 
 body { background-color: #000000; max-width: 100%; }
 
-.default-body { margin-top: 100px; background-color: #ECE6CC; }
+.default-body { margin-top: 100px; padding-bottom: 100px; background-color: #ECE6CC; }
 
 .body-container { max-width: 1000px; background-color: #ECE6CC; }
 
@@ -52,11 +52,11 @@ body { background-color: #000000; max-width: 100%; }
 
 .post-date { float: right; }
 
-.footer-container, .body-container, .header-menu .header-menu-container { width: 100%; margin: 0 auto; overflow: hidden; }
+.footer-container { height: 100px; max-width: 1000px; text-align: center; padding-top: 10px; }
 
-.footer-container { height: 100px; }
+.footer-container .github-svg { vertical-align: middle; width: 25px; }
 
-.article-title-container { margin-top: 10px; background-color: #005666; }
+.article-title-container { margin-top: 10px; background-color: #005666; padding: 10px; }
 
 .article-title-container .article-title { font-size: 25px; color: white; }
 
@@ -68,84 +68,84 @@ body { background-color: #000000; max-width: 100%; }
 
 .post-container .post-head-data { font-size: 20px; color: gray; margin-left: 10px; margin-bottom: 100px; }
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; }
+.markdown html, .markdown body, .markdown div, .markdown span, .markdown applet, .markdown object, .markdown iframe, .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6, .markdown p, .markdown blockquote, .markdown pre, .markdown a, .markdown abbr, .markdown acronym, .markdown address, .markdown big, .markdown cite, .markdown code, .markdown del, .markdown dfn, .markdown em, .markdown img, .markdown ins, .markdown kbd, .markdown q, .markdown s, .markdown samp, .markdown small, .markdown strike, .markdown strong, .markdown sub, .markdown sup, .markdown tt, .markdown var, .markdown b, .markdown u, .markdown i, .markdown center, .markdown dl, .markdown dt, .markdown dd, .markdown ol, .markdown ul, .markdown li, .markdown fieldset, .markdown form, .markdown label, .markdown legend, .markdown table, .markdown caption, .markdown tbody, .markdown tfoot, .markdown thead, .markdown tr, .markdown th, .markdown td, .markdown article, .markdown aside, .markdown canvas, .markdown details, .markdown embed, .markdown figure, .markdown figcaption, .markdown footer, .markdown header, .markdown hgroup, .markdown menu, .markdown nav, .markdown output, .markdown ruby, .markdown section, .markdown summary, .markdown time, .markdown mark, .markdown audio, .markdown video { margin: 0; padding: 0; border: 0; }
 
-body { font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 14px; line-height: 1.6; color: #333; background-color: #fff; margin: 0 auto; }
+.markdown body { font-family: Helvetica, arial, freesans, clean, sans-serif; font-size: 14px; line-height: 1.6; color: #333; background-color: #fff; margin: 0 auto; }
 
-p, blockquote, ul, ol, dl, table, pre { margin: 15px 0; }
+.markdown p, .markdown blockquote, .markdown ul, .markdown ol, .markdown dl, .markdown table, .markdown pre { margin: 15px 0; }
 
-h1, h2, h3, h4, h5, h6 { margin: 20px 0 10px; padding: 0; font-weight: bold; -webkit-font-smoothing: antialiased; }
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 { margin: 20px 0 10px; padding: 0; font-weight: bold; -webkit-font-smoothing: antialiased; }
 
-h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code { font-size: inherit; }
+.markdown h1 tt, .markdown h1 code, .markdown h2 tt, .markdown h2 code, .markdown h3 tt, .markdown h3 code, .markdown h4 tt, .markdown h4 code, .markdown h5 tt, .markdown h5 code, .markdown h6 tt, .markdown h6 code { font-size: inherit; }
 
-h1 { font-size: 28px; color: #000; }
+.markdown h1 { font-size: 28px; color: #000; }
 
-h2 { font-size: 24px; border-bottom: 1px solid #ccc; color: #000; }
+.markdown h2 { font-size: 24px; border-bottom: 1px solid #ccc; color: #000; }
 
-h3 { font-size: 18px; }
+.markdown h3 { font-size: 18px; }
 
-h4 { font-size: 16px; }
+.markdown h4 { font-size: 16px; }
 
-h5 { font-size: 14px; }
+.markdown h5 { font-size: 14px; }
 
-h6 { color: #777; font-size: 14px; }
+.markdown h6 { color: #777; font-size: 14px; }
 
-body > h2:first-child, body > h1:first-child, body > h1:first-child + h2, body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child { margin-top: 0; padding-top: 0; }
+.markdown body > h2:first-child, .markdown body > h1:first-child, .markdown body > h1:first-child + h2, .markdown body > h3:first-child, .markdown body > h4:first-child, .markdown body > h5:first-child, .markdown body > h6:first-child { margin-top: 0; padding-top: 0; }
 
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 { margin-top: 0; padding-top: 0; }
+.markdown a:first-child h1, .markdown a:first-child h2, .markdown a:first-child h3, .markdown a:first-child h4, .markdown a:first-child h5, .markdown a:first-child h6 { margin-top: 0; padding-top: 0; }
 
-h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p { margin-top: 10px; }
+.markdown h1 + p, .markdown h2 + p, .markdown h3 + p, .markdown h4 + p, .markdown h5 + p, .markdown h6 + p { margin-top: 10px; }
 
-ul, ol { padding-left: 30px; }
+.markdown ul, .markdown ol { padding-left: 30px; }
 
-ul li > :first-child, ol li > :first-child, ul li ul:first-of-type, ol li ol:first-of-type, ul li ol:first-of-type, ol li ul:first-of-type { margin-top: 0px; }
+.markdown ul li > :first-child, .markdown ol li > :first-child, .markdown ul li ul:first-of-type, .markdown ol li ol:first-of-type, .markdown ul li ol:first-of-type, .markdown ol li ul:first-of-type { margin-top: 0px; }
 
-ul ul, ul ol, ol ol, ol ul { margin-bottom: 0; }
+.markdown ul ul, .markdown ul ol, .markdown ol ol, .markdown ol ul { margin-bottom: 0; }
 
-dl { padding: 0; }
+.markdown dl { padding: 0; }
 
-dl dt { font-size: 14px; font-weight: bold; font-style: italic; padding: 0; margin: 15px 0 5px; }
+.markdown dl dt { font-size: 14px; font-weight: bold; font-style: italic; padding: 0; margin: 15px 0 5px; }
 
-dl dt:first-child { padding: 0; }
+.markdown dl dt:first-child { padding: 0; }
 
-dl dt > :first-child { margin-top: 0px; }
+.markdown dl dt > :first-child { margin-top: 0px; }
 
-dl dt > :last-child { margin-bottom: 0px; }
+.markdown dl dt > :last-child { margin-bottom: 0px; }
 
-dl dd { margin: 0 0 15px; padding: 0 15px; }
+.markdown dl dd { margin: 0 0 15px; padding: 0 15px; }
 
-dl dd > :first-child { margin-top: 0px; }
+.markdown dl dd > :first-child { margin-top: 0px; }
 
-dl dd > :last-child { margin-bottom: 0px; }
+.markdown dl dd > :last-child { margin-bottom: 0px; }
 
-pre, code, tt { font-size: 12px; font-family: Consolas, "Liberation Mono", Courier, monospace; }
+.markdown pre, .markdown code, .markdown tt { font-size: 12px; font-family: Consolas, "Liberation Mono", Courier, monospace; }
 
-code, tt { margin: 0 0px; padding: 0px 0px; white-space: nowrap; border: 1px solid #eaeaea; background-color: #f8f8f8; border-radius: 3px; }
+.markdown code, .markdown tt { margin: 0 0px; padding: 0px 0px; white-space: nowrap; border: 1px solid #eaeaea; background-color: #f8f8f8; border-radius: 3px; }
 
-pre > code { margin: 0; padding: 0; white-space: pre; border: none; background: transparent; }
+.markdown pre > code { margin: 0; padding: 0; white-space: pre; border: none; background: transparent; }
 
-pre { background-color: #f8f8f8; border: 1px solid #ccc; font-size: 13px; line-height: 19px; overflow: auto; padding: 6px 10px; border-radius: 3px; }
+.markdown pre { background-color: #f8f8f8; border: 1px solid #ccc; font-size: 13px; line-height: 19px; overflow: auto; padding: 6px 10px; border-radius: 3px; }
 
-pre code, pre tt { background-color: transparent; border: none; }
+.markdown pre code, .markdown pre tt { background-color: transparent; border: none; }
 
-kbd { -moz-border-bottom-colors: none; -moz-border-left-colors: none; -moz-border-right-colors: none; -moz-border-top-colors: none; background-color: #DDDDDD; background-image: linear-gradient(#F1F1F1, #DDDDDD); background-repeat: repeat-x; border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD; border-image: none; border-radius: 2px 2px 2px 2px; border-style: solid; border-width: 1px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; line-height: 10px; padding: 1px 4px; }
+.markdown kbd { -moz-border-bottom-colors: none; -moz-border-left-colors: none; -moz-border-right-colors: none; -moz-border-top-colors: none; background-color: #DDDDDD; background-image: linear-gradient(#F1F1F1, #DDDDDD); background-repeat: repeat-x; border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD; border-image: none; border-radius: 2px 2px 2px 2px; border-style: solid; border-width: 1px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; line-height: 10px; padding: 1px 4px; }
 
-blockquote { border-left: 4px solid #DDD; padding: 0 15px; color: #777; }
+.markdown blockquote { border-left: 4px solid #DDD; padding: 0 15px; color: #777; }
 
-blockquote > :first-child { margin-top: 0px; }
+.markdown blockquote > :first-child { margin-top: 0px; }
 
-blockquote > :last-child { margin-bottom: 0px; }
+.markdown blockquote > :last-child { margin-bottom: 0px; }
 
-hr { clear: both; margin: 8px 0px 15px 0px; height: 0px; overflow: hidden; border: none; background: transparent; border-bottom: 1px solid #ccc; padding: 0; }
+.markdown hr { clear: both; margin: 8px 0px 15px 0px; height: 0px; overflow: hidden; border: none; background: transparent; border-bottom: 1px solid #ccc; padding: 0; }
 
-table th { font-weight: bold; }
+.markdown table th { font-weight: bold; }
 
-table th, table td { border: 1px solid #ccc; padding: 6px 13px; }
+.markdown table th, .markdown table td { border: 1px solid #ccc; padding: 6px 13px; }
 
-table tr { border-top: 1px solid #ccc; background-color: #fff; }
+.markdown table tr { border-top: 1px solid #ccc; background-color: #fff; }
 
-table tr:nth-child(2n) { background-color: #f8f8f8; }
+.markdown table tr:nth-child(2n) { background-color: #f8f8f8; }
 
-img { max-width: 100%; }
+.markdown img { max-width: 100%; }
 
 /*# sourceMappingURL=styles.css.map */
