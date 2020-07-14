@@ -1,9 +1,6 @@
 ---
 layout: default
 ---
-
-<script src="/assets/js/youtube.js"></script>
-
 <div class = "post-container"> 
 
   <div class = "post-title">
@@ -26,7 +23,9 @@ layout: default
 
   <div class = "video-container">
     {% if page.youtubeID %}
-      {% youtube  page.youtubeID %} 
+      <!-- {% youtube  page.youtubeID %}  -->
+      {% assign youtubeLink = "http://www.youtube.com/embed/" | append: {{page.youtubeID}}  %}
+      <iframe width="1000" height="600" src= {{youtubeLink}} frameborder="0" allowfullscreen></iframe>
     {% endif  %} 
   </div>
 
