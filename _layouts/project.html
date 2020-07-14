@@ -24,7 +24,9 @@ layout: default
 
   <div class = "video-container">
     {% if page.youtubeID %}
-      {% youtube  page.youtubeID %} 
+      {% raw %}
+        {% youtube  page.youtubeID %} 
+      {% endraw %}
     {% endif  %} 
   </div>
 
