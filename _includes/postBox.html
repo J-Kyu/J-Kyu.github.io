@@ -1,25 +1,30 @@
-<!-- begin post -->
-<!-- {% assign author = site.authors[post.author] %} -->
-
-<div class="project-item">
+<div class="postBox-item">
     
-        <div class="project-item-thumb">
-            <a href="{{ site.baseurl }}{{ project.url }}">
-                <img class="img-thumb" src="{{site.thumbnail}}" alt="{{ project.title }}">
-            </a>
-        </div>
+    <div class="postBox-item-thumb">
+        <a href="{{ site.baseurl }}{{ project.url }}">
 
-        <div class="project-item-body">
-            <h2 class="project-item-title">
-                <a class="text-dark" href="{{ site.baseurl }}{{ project.url }}">
-                    {{ project.title }}
-                </a>
-            </h2>
-            <h4 class="card-text">{{ project.summary | strip_html | truncatewords:30 }}</h4>
+            {% if project.thumbnail %}
+                <img class="img-thumb" src="{{project.thumbnail}}" alt="{{ project.title }}">
+            {% else %}
+                <img class="img-thumb" src="{{site.thumbnail}}" alt="{{ project.title }}">
+            {% endif %}
+        </a>
+    </div>
+
+
+    <div class="postBox-item-body">
+        <h2 class="postBox-item-title">
+            <a  href="{{ site.baseurl }}{{ project.url }}">
+                {{ project.title }}
+            </a>
+        </h2>
+        <h4 class="card-text">
+            {{ project.summary  }}
+        </h4>
+        <div class="post-date">
+            {{ project.date | date_to_string }}
         </div>
-        <div class="item-footer">
-            <span class="post-date">{{ project.date | date_to_string }}</span>
-        </div>
+    </div>
+
     
 </div>
-<!-- end post -->

@@ -52,31 +52,31 @@ body{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  // width: 50%;
-
 }
 
 
-.project-container{
+.project-index-container{
   margin-top: $containerTopMargin;
   margin-left: $containerSideMargin;
   margin-right: $containerSideMargin;
 
   .project-index-item{
-    width: auto;
+    width: $maxWidth;
     margin-top: 25px ;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     grid-gap: 30px;
+
+
   }
 
 }
 
 
 
-.article-container{
+.article-index-container{
   margin-top: $containerTopMargin;
   margin-left: $containerSideMargin;
   margin-right: $containerSideMargin;

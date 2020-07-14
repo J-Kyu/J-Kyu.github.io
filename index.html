@@ -10,7 +10,7 @@ title: Home
 </div>
 
 
-<div class  = "project-container">
+<div class  = "project-index-container">
     <h1>Project</h1>
 
     <li class  = "project-index-item">
@@ -22,7 +22,9 @@ title: Home
 
             {% assign i = i | plus:1 %}
             
+        <div class = "postBox">
             {% include postBox.html %}
+        </div>
         {% endfor %}
     </li>
 
@@ -31,7 +33,7 @@ title: Home
 
 </div>
 
-<div class  = "article-container">
+<div class  = "article-index-container">
 
     <h1>Articles</h1>
         <ul class  = "article-index-item">

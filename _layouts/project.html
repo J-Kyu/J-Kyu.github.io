@@ -1,9 +1,32 @@
 ---
 layout: default
 ---
-<div class = "project-container">
-  <h1>{{ page.short_name }}</h1>
 
+<div class = "post-container"> 
+
+  <div class = "post-title">
+    <h1>
+      {{ page.title }}
+    </h1>
+  </div>
+
+  
+    <div class = "post-head-data">
+      <p>
+        {{page.summary}}
+      </p>
+      <p>
+        {{ page.date | date_to_string }}
+      </p>
+    </div>
+
+
+
+  <div class = "video-container">
+    {% if page.youtubeID %}
+      {% youtube  page.youtubeID %} 
+    {% endif  %} 
+  </div>
 
   <div class = "markdown">
     {{ content }}
@@ -28,5 +51,4 @@ layout: default
     {% endif %}
     {% endfor %}
 
-  </div>
 </div>

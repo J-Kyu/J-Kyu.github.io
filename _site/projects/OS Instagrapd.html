@@ -1,0 +1,363 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <div class = "header-menu">
+
+    <div class="header-menu-container">
+        <div class="header-item-title">
+            <a href="http://localhost:4000/">
+                
+                    <img class="logo" src="http://localhost:4000/images/logo.png"  alt="Kyu Tech Blog">
+                  
+            </a>
+            <a href="http://localhost:4000/" class="title"> 
+                Kyu Tech Blog
+            </a>
+        </div>
+        
+
+
+        <div class="header-item-menu">
+            
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/about.html" >
+                            About
+                    </a>
+                </ul>
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/articles.html" >
+                            Article
+                    </a>
+                </ul>
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/projects.html" >
+                            Project
+                    </a>
+                </ul>
+             
+        
+        </div>
+    </div>
+</div>
+    <title>Os instagrapd</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+
+  <div class = "default-body">
+    <div class = "body-container">
+      <body>
+        <div class = "post-container"> 
+
+  <div class = "post-title">
+    <h1>
+      Os instagrapd
+    </h1>
+  </div>
+
+  
+    <div class = "post-head-data">
+      <p>
+        Operating System Programming Assignment  Instagrapd
+      </p>
+      <p>
+        08 Jul 2020
+      </p>
+    </div>
+
+
+
+  <div class = "video-container">
+    
+      <iframe width="1000" height="680" src="http://www.youtube.com/embed/1QceiWtrsD4?color=white&theme=light"></iframe> 
+     
+  </div>
+
+  <div class = "markdown">
+    <h1 id="os-instagrapd">OS: Instagrapd</h1>
+
+<blockquote>
+  <ul>
+    <li>
+      <p>Handong Global Unversity: ITP30002</p>
+    </li>
+    <li>Operating System Programming Assignment</li>
+    <li>Team
+      <ul>
+        <li>YeJin Yang 21700431</li>
+        <li>SangKyu Jeon 21500629</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<ol>
+  <li>Problem Ananlysis</li>
+  <li>Work Flow</li>
+  <li>Funtionalities</li>
+  <li>Conclusion</li>
+</ol>
+
+<h2 id="1-problem-analysis">1. Problem Analysis</h2>
+
+<ol>
+  <li>
+    <p>We didn’t really understand what it meant to connect to the instagram properly. So we assumed that a single Socket would require multiple send and receives until the proper answer is sent.</p>
+
+    <p>​	-&gt; Revision : Submitter recreates the sockets several times and repeatedly connects with a instagrapd.</p>
+  </li>
+  <li>
+    <p>We thought that global variables are shared between child process and parent process, then id and pw would have accumulated data with global variables.</p>
+
+    <p>​	-&gt; Revision : Whenever a child process is created, the parent process creates a thread for storing user information to share information about users between two processes.</p>
+  </li>
+  <li>
+    <p>We also thought that 10 test cases were tested in worker with multithread.</p>
+
+    <p>​	-&gt; Revision : Worker builds a test file and tests only one test case at a time.</p>
+  </li>
+</ol>
+
+<h2 id="2-workflow">2. WorkFlow</h2>
+
+<center>
+	<img src="../images/OS_ Instagrapd_1.png" alt="OS_ Instagrapd_1" style="zoom:100%;" />
+</center>
+
+<ul>
+  <li>
+    <p>Submitter - &gt; instagramd</p>
+
+    <ol>
+      <li>Submitter continues to communicate with a instagrapd through socket until the result arrives.</li>
+      <li>The first time Submitter sends a request, it sends id, password, and file contents.</li>
+    </ol>
+  </li>
+  <li>
+    <p>Instagrapd</p>
+
+    <ol>
+      <li>
+        <p>If the request sent by the submitter is received, the submitter will communicate with the child process of instagrapd.</p>
+      </li>
+      <li>
+        <p>The parent process of Instagrapd creates a thread that stores the id and pw of the submitter and a thread that stores the result of the build.</p>
+      </li>
+      <li>
+        <p>Child process examines that id and password received from the user are on the table.</p>
+
+        <p>3-1) If the table does not contain the id and password,
+As the user requests for the first time, Instagrapd stores id and password to the user table. Instagrapd notifies the submitter that the result has not yet arrived, and executes the connectWorker function. Save the results of the 10 test cases from connectWorker function to the table</p>
+
+        <p>​	3-2) If id and password are registered on the table</p>
+
+        <p>​		3-2-1)and ‘build result’ is not NULL,</p>
+
+        <p>​		 Send the ‘build result’ to submillimeter.</p>
+
+        <p>​		3-2-2) and ‘build result’ is NULL,
+ Instagrapd notifies the submitter by sending the message “none” that the result has not yet arrived from the worker.</p>
+      </li>
+      <li>
+        <p>The connectWorker function communicates with the worker through a socket.
+Make 10 sockets in total and send test case and testfile to each connection by pair.</p>
+
+        <p>​	 4-1) Compare results from the worker and n.out to count the number of correct answers.
+​	 4-2) If the result from the worker is “time out” or “build fail”, returns the result.</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Worker -&gt; instagramd</p>
+
+    <ol>
+      <li>Build the Testfile to the given test case, and send the result to instagrapd.</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="3-functionaliy">3. Functionaliy</h2>
+
+<h3 id="submitter">submitter</h3>
+
+<blockquote>
+  <p>In submitter code section, its main duty is to submit a code to instagrapd. In oderto to send code to instagrapd server, we have to connect through TCP/IP, which is socket programming.</p>
+</blockquote>
+
+<ul>
+  <li>TCP</li>
+</ul>
+
+<p>​	TCP(Transmission Control Protocol) is a protocol where Internet Protocol defines how computer send packet of data to each other.  In TCP, there is no sustaining connection. One send and one receive. Not only submitter also in Instagrapd and worker, all the connection between isolated programs are linked with TCP/IP.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sock_fd</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span> <span class="cm">/*IPv4*/</span><span class="p">,</span> <span class="n">SOCK_STREAM</span> <span class="cm">/*TCP*/</span><span class="p">,</span> <span class="mi">0</span> <span class="cm">/*IP*/</span><span class="p">)</span> <span class="p">;</span>
+</code></pre></div></div>
+
+<p>​	When we declare a socket variable, we use socket function to generate new socket. For the  parameter, second parameter, we give “SOCK_STREAM” value in order to set TCP socket. Once we created sock_fd, we are ready to connect with instagrapd.</p>
+
+<p>​	The next step is to call connect function to connect with server socket. Before we call connect function, we have to create certain values for finding server socket.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">;</span>
+<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="sc">'0'</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span> 
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span> 
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span> 
+</code></pre></div></div>
+
+<p>​	In this code, we created serv_add variable where its type is sockaddr_in. We use memset to clear all the existing unnecessary values with 0 from serv_addr, and give certain conditions such as address type and ports number.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">inet_pton</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//127.0.0.1</span>
+        <span class="n">perror</span><span class="p">(</span><span class="s">"inet_pton failed : "</span><span class="p">)</span> <span class="p">;</span> 
+        <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">)</span> <span class="p">;</span>
+    <span class="p">}</span> 
+</code></pre></div></div>
+
+<p>​	Then we use inet_pton function to convert  IP address and serv_addr variable which are human-readable text in to binary term.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect</span><span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>​	Finally we call connect function to connect with the server that we added IP number and socket number. At this point, connection is done, now we can send and receive to and from the server socket which is instagrapd.</p>
+
+<p>​	Some interesting point in submitter is that, even though we use TCP/IP connection, we cannot disconnect from instagrapd just after the end of connection from server, if submitter did not receive promising return values. Therefore, we designed to connect n times of connection with Instagrapd.</p>
+
+<p>​	In the first connection to Instragrapd, without any chances, submitter will receive “none” string from Instagrapd, because in Instagrapd user table, there is no information of the submitter because it is the first connection. Therefore Instargrapd will return “none”, and register the information to the table, then in Instargrapd, it will connect to Worker for compiling and to get actual return value of the given code from submitter.</p>
+
+<p>​	After the registration on tables, submitter will infinitely nock to Instragrapd door until Instagrapd return a value which are not “none” string. Once worker return all the outputs of given inputs, Instagrapd will compare with given outputs with output from Instagrapd and will return the result to submitter.</p>
+
+<p>​	Finally, once submitter successfully received the return value from Instagrapd, submitter will break from while loop and print out the return value.</p>
+
+<h3 id="worker">Worker</h3>
+
+<ul>
+  <li>Build and Pipe</li>
+</ul>
+
+<center>
+	<img src="../images/OS_ Instagrapd_2.png" alt="OS_ Instagrapd_2" style="zoom:100%;" />
+</center>
+
+<p>​	Store the test case in the variable and the file array in target.c. Create a child process A using fork() that performs the request from the instagrpd. In the child process A, creates a child process B using fork() for executing execution file. A process communicates with the B process through the pipe.B process changes file descriptor of an executable file and builds the executable file. </p>
+
+<p>​	First of all, replace the Pipes [0] with stdin. Since scanf in C file is received data through stdin, scanf can received a data by writing a data using pipes[1]. In order to print out the results of Target.c in stdout, open the target.out file in write and create mode and replace the file descriptor with stdout.</p>
+
+<p>​	 Likewise, to obtain the Build fail message, replace the file descriptor with stderr.Using the Execl() function, execute the executable file of target.c. The process B is replaced by the process in which the executable file is executed.</p>
+
+<p>​	The process A gives the input to the process B and sends the results to the instagrapd.If the input value is passed through Pipes[1] using a Write() function, then it is transferred to stdin. Parent process waits for the child process to finish.When the Child process is finished, read target.out files and sends the result to instagrapd.</p>
+
+<ul>
+  <li>Singal Handling</li>
+</ul>
+
+<p>​	Stop the execution if the target program takes more than 3 second. Set the signal handler for SIGALRM to the time_handler. Set the interval of the Itimerval to 3 seconds. Set the timer with the Setimer just before the excutable file is executed, and it counts down the time.  After 3 seconds, the time_handler is invoked and the processB ends.If process A verifies that nothing is written in target.out, it  sends “Time Out” message to instagram.</p>
+
+<h3 id="intsagrapd">Intsagrapd</h3>
+
+<blockquote>
+  <p>In Instagrapd code section main functionality was TCP socket programming with submitter and worker, forking of child process for submitter, and Multi threading for register information on user table and updating user table when worker return actual values. However, in this report section I will only explain about fork and thread because TCP socket programming is already handled in submitter part.</p>
+</blockquote>
+
+<ul>
+  <li>Fork</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t_pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>	<span class="c1">//Forking new process</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">t_pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>    					<span class="n">child_proc</span><span class="p">(</span><span class="n">new_socket</span><span class="p">,</span><span class="n">workerPort</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">regPipes</span><span class="p">[</span><span class="n">userRecord</span><span class="p">],</span><span class="n">worPipes</span><span class="p">[</span><span class="n">userRecord</span><span class="p">]);</span>	<span class="c1">//child process duty</span>
+            <span class="n">close</span><span class="p">(</span><span class="n">new_socket</span><span class="p">);</span> <span class="c1">//once chold_proc function is done, close socket and exit the process</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+</code></pre></div></div>
+
+<p>​	Forking is for creating new process. What is very interesting is that, once I call fork(), there are another process running on the computer where the cloned process starts from next line of fork function. Thus, we handle new process by branch statement.</p>
+
+<p>​	In Instagrapd code, we fork a new process for dealing with different submitter from different socket. Let’s say there are A and B clients are trying to submit sample.c for testing and compiling. B has submitted just after A’s  submission. For Instagrapd point of view, it is kind of burdensome for dealing two client in concurrently. Therefore, instagrapd clone its child process to deal with A and B clients. What if there are more than 2 clients? Well, same procedures can be done. Instagrapd keep generating new process for each clients.</p>
+
+<p>​	In here what we should not forget is that, submitter does not wait until the worker return its value. Instagrapd intentionally disconnect, or I say close the socket when worker has not returned its value. In other word, for dealing with one client, instagrapd may have to create several fork process for going obtaining promising return value from worker.</p>
+
+<p>​	There are some points we may easily miss while we are forking. As I mentioned, forking is cloning from its parent process, and it is usually handle with branch statements. In other other word, once branch for child process is done, it will leave the branch statement and execute next line of codes which we did not intended. In order to prevent from such crisis, we have exit() once child process is done in the branch bracket.</p>
+
+<p>​	One more thing that we have to keep in mind when we do fork is that, although child process copy all the information from parent process, they do not share same memory section. Which means they are isolated process but can be connected with pipes. These pipe concept, where child process temper parents process memory (in our example modifying user table that exists in instagrapd) is done by multi threading with pipe.</p>
+
+<ul>
+  <li>Multi-threading and pipe</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//this branch bracket is where parent process creates threads </span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">thread_reg</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
+                <span class="n">thread_reg</span> <span class="o">=</span> <span class="p">(</span><span class="n">pthread_t</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">pthread_t</span><span class="p">));</span>
+				<span class="n">thread_upd</span> <span class="o">=</span> <span class="p">(</span><span class="n">pthread_t</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">pthread_t</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="n">thread_reg</span> <span class="o">=</span> <span class="p">(</span><span class="n">pthread_t</span><span class="o">*</span><span class="p">)</span><span class="n">realloc</span><span class="p">(</span><span class="n">thread_reg</span> <span class="p">(</span><span class="n">threadCount</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="n">pthread_t</span><span class="p">));</span>
+				<span class="n">thread_upd</span> <span class="o">=</span> <span class="p">(</span><span class="n">pthread_t</span><span class="o">*</span><span class="p">)</span><span class="n">realloc</span><span class="p">(</span><span class="n">thread_upd</span><span class="p">,(</span><span class="n">threadCount</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="n">pthread_t</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="n">threadCount</span><span class="o">++</span><span class="p">;</span>
+
+			<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thread_reg</span><span class="p">[</span><span class="n">threadCount</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="nb">NULL</span><span class="p">,</span><span class="n">pipe_subRegister</span><span class="p">,(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">regPipes</span><span class="p">[</span><span class="n">userRecord</span><span class="p">]);</span>
+			<span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thread_upd</span><span class="p">[</span><span class="n">threadCount</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="nb">NULL</span><span class="p">,</span><span class="n">pipe_worUpload</span><span class="p">,(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">worPipes</span><span class="p">[</span><span class="n">userRecord</span><span class="p">]);</span>
+          
+			<span class="n">pthread_join</span><span class="p">(</span><span class="n">thread_upd</span><span class="p">[</span><span class="n">threadCount</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+			<span class="n">pthread_join</span><span class="p">(</span><span class="n">thread_reg</span><span class="p">[</span><span class="n">threadCount</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="err">'''</span>
+</code></pre></div></div>
+
+<p>​	When submitter is connected to instagrapd, and when instagrapd is ready to connect with worker through socket programming, instragrapd creates 2 threading for each procedure. These threads are created from parent process from instagrapd. The purposes of each threads are one, to register new submitter’s information to user table and two, to update the user table once worker has returned its output value to instagrapd.</p>
+
+<p>​	Two threads are both linked with child process when submitter has connected to instargrapd. They communicate with pipes. The flows of these procedure goes like this. Once submitter has connected to instagrapd, parent process instragrapd will fork new process for submitter and then creates two threads for communicating with child process.</p>
+
+ 	Through socket programming, the child process receive datas from submitter then they check the user table (this procedure is not done through pipe, because once child process is fork from parent process the child process will hold the most recent data, so checking the use table is valid). If none of ID and password exist on the user table, they write on file descriptor where it’s been linked through pipes. Then register thread will receive the data, parse it and register on table with return value “NULL” because worker has not been executed yet. Once its been registered on table, the register threads finish its jobs, and the child process will return string “none” to submitter and connect to worker. 
+
+<p>​	After worker finish its job, it will send back the return value through socket to the child process. When the child process receive the return value, they write the return value with submitter’s id and password on the different file descriptor which are already determined from parent process. Then, the other thread. the update thread will receive the data from the pipe and parse the id, password and return value to search on the table and update the return value.</p>
+
+<p>​	In instragrapd code, threads are dynamically allocated. Therefore, for every submitter there are at least two threads are alway with the child process. If there are more submitters, then there will be more threads which we call multi threads.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>​	After all, what has left on us is knowledge of socket programming, fork for new processes, pipe, concept of file descriptor, siganl handling and more and more things. However, there are so many spots on code that we want to fix. Since this programming assignment were based on socket programming transferring datum occurs very reqeuntly. Allocating and free the variable of char pointer was sort of diffucilities in PA2. We have encountered so many segments fault and back trace error messages. From this view, we learned handling data size should be done wisely.</p>
+
+<p>​	Moreover, our debuging skill has improved so much. When we see segments fault error, it made us easily lethargic. Since segments faults does not show us which lines are error codes. Therefore,  we have to find step by step. We learned that segments fault are usually occured with lack of memory and when accessing to none permitted memory. According to these experience we could overcome segments fault and back trace error messages.</p>
+
+<p>​	However, out of all the experience, socket programming and making new process and creating multi threads was very new and gave us new view points on programming. In the past, when we program with only one thread and one process it feels more like only vertical or top down flow. However, after PA2, programming came to us more like vertical and horizontal view. By creating multiple processes, certain procedures become simpler and faster. Threads can be added to support process and they could be communicated with pipeps. In conclusion, such concept gave us impression of programming can be tunned better and should be desinged more specific in order to make program meaningful and bigger. To sum up, through this programming assignment 2,  when programming becomes  bigger and wider communication and details becomes also crucial for its completion.</p>
+
+
+
+    <ul>
+      
+      
+    </ul>
+
+
+    
+    
+    
+    
+    
+
+</div>
+
+      </body>
+    </div>
+  </div>
+
+  <div class = "footer">
+    <div class = "footer-container">
+
+    <a href = https://github.com/J-Kyu>
+        <svg class="github-svg" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+        </svg>
+        Github
+    </a>
+
+    <p>
+        J-Kyu
+    </p>
+</div>
+  </div>
+
+</html>
