@@ -24,7 +24,6 @@ layout: default
   <div class = "video-container">
     {% if page.youtubeID %}
       {% assign youtubeLink = "http://www.youtube.com/embed/" | append: page.youtubeID  %}
-      <iframe width="1000" height="600" src= {{youtubeLink}} frameborder="0" allowfullscreen>unwantedtext</iframe>
       <iframe width="560" height="315" src={{youtubeLink}} frameborder="0" allowfullscreen="allowfullscreen">unwantedtext</iframe>
     {% endif  %} 
   </div>
