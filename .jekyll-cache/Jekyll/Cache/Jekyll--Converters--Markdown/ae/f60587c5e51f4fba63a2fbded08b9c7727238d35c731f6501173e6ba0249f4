@@ -1,0 +1,892 @@
+I"0x<h1 id="multi-layer-perceptron">Multi-layer Perceptron</h1>
+
+<h2 id="objective">Objective</h2>
+
+<ul>
+  <li>본 과제에서는 Multi-Layer Perceptron을 구현하여 Two Moon Dataset 과 Iris Dataset 들을 학습하고 결과를 산출한다. 이를 통해 C++의 다양한 Class 기법을 연습한다</li>
+</ul>
+
+<h2 id="background">Background</h2>
+
+<blockquote>
+  <p>Perceptron, Gradient Descent, Multi-Layer Perceptron Error, backpropagation</p>
+</blockquote>
+
+<h3 id="perceptron">Perceptron</h3>
+
+<ul>
+  <li>
+    <p>Percetron은 Neural Network의 가장 기본 단위이다.</p>
+  </li>
+  <li>
+    <p>수상돌기를 통해 들어온 다수의 신호(\(x\))를 입력으로 받아 <em>변조(\(\text{activation } \sigma\))</em>하여 일정 threshold를 넘기는 경우, 신호를 출력(\(\hat{y}\))하는 구조를 갖는다.</p>
+  </li>
+  <li>
+    <p>Perceptron: <strong>\(\hat{y} = \sigma(\Sigma{w_ix_i+b}) = \sigma(WX+b)\)</strong></p>
+
+    <blockquote>
+      <ul>
+        <li>
+          <p>입력(feature): \(X=(x_1,x_2,...,x_n)\)</p>
+        </li>
+        <li>
+          <p>출력 : \(\hat{y}\)</p>
+        </li>
+        <li>
+          <p>Model Parameter</p>
+          <ul>
+            <li>가중치: \(W = (w_1,w_2,...,w_n)^T\)</li>
+            <li>bias: \(b\)</li>
+          </ul>
+        </li>
+      </ul>
+
+    </blockquote>
+  </li>
+  <li>
+\[\sigma(x) = \frac{1}{1+e^{-x}}\]
+
+    <blockquote>
+      <p>sigmoid function의 값은 0에서 0.5, 그리고 음수와 양수일 때 각각 0.5보다 작고
+0.5보다 큰 값을 가지므로 0.5를 기준으로 True와 False로 나누는 activation에 적합한 함수이다.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="gradient-descent">Gradient Descent</h3>
+
+<blockquote>
+  <p>Perceptron을 학습하는 방법은 Gradient Descent 방법을 사용해야한다.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Loss Function 목적 함수</p>
+
+    <ul>
+      <li>
+        <p>Perception의 결과값과 우리가 원하는 정답과의 차이를 설명해주는 함수.</p>
+      </li>
+      <li>
+        <p>정답과 거리가 멀면 큰 값을, 가까우면 작은 값을 출력하여주는 함수이다.</p>
+      </li>
+      <li>
+        <p>가장 간단한 함수가 Mean Square Error이다</p>
+
+        <blockquote>
+          <p><strong>\(\text{loss function}: L(y,\hat{y}) = \frac{(\hat{y}-y^2)}{2}\)</strong></p>
+        </blockquote>
+
+        <ul>
+          <li><strong>y는 Data 실제 레이블(정답</strong>). 즉, 목적 함수의 값이 0에 가까워질수록 정답에 가까워진다.</li>
+        </ul>
+      </li>
+      <li>
+        <p>이때, 손실 함수(Loss Function)의 값을 최소로 하는 <em>최적의 해</em>를 구하기 위해서는 손실 함수의 <strong>Gradient</strong>를 살펴볼 필요가 있다.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Gradient Descent</p>
+
+    <blockquote>
+      <p>그림 참고</p>
+    </blockquote>
+
+    <ul>
+      <li>그림을 보면, Gradient는 특정 지점(그림의 initial weight)의 tangential slope을 나타낸다</li>
+      <li>이때 Model Parameter를 Gradient Negative 방향으로 업데이트를 한다면, 이것을  loss function 값을 최소로 갖게 하는 방법이라는 것을 짐작할 수 있다.</li>
+      <li>이런 과정을 <strong>“학습”</strong>이라고 한다
+        <ul>
+          <li>Model Parameter을 Gradient가 Descent하게 Update하여 loss function의 값이 최소로 갖게 하는 것</li>
+        </ul>
+      </li>
+      <li>자 그럼 이제, gradient descent를 하기 위해 모델의 parameter를 줄일 수 있는 방법을 구하자</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="model-parameter">Model Parameter</h3>
+
+<blockquote>
+  <p>Model Parameter</p>
+
+  <ul>
+    <li>가중치: \(W = (w_1,w_2,...,w_n)^T\)</li>
+    <li>bias: \(b\)</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Chain Rule을 통해서 각 Parameter에 대한 손실함수의 미분 값을 구한다</p>
+  </li>
+  <li>
+    <p>\(a =\Sigma_iw_ix_i+b\)라고 정의 할때, <strong>Gradient</strong>는 다음 방법으로 구한다</p>
+
+    <blockquote>
+      <ul>
+        <li>
+\[a =\Sigma_iw_ix_i+b\]
+        </li>
+        <li>L: loss function \(\text{loss function}: L(y,\hat{y}) = \frac{\hat{y}-y^2}{2}\)</li>
+        <li>
+\[\sigma(a) = \frac{1}{1+e^{-a}}\]
+        </li>
+        <li>\(\hat{y}\)=\(\sigma(XW+b)\)</li>
+      </ul>
+    </blockquote>
+  </li>
+</ul>
+
+\[\frac{𝜕L}{𝜕\hat{y}}=\hat{y}-y\]
+
+\[\frac{𝜕L}{𝜕a}=\sigma(a)(1-\sigma(a))\]
+
+\[\frac{𝜕a}{𝜕w_i}=x_i,\frac{𝜕a}{𝜕b}=1\]
+
+\[∴\frac{𝜕L}{𝜕w_i}=\frac{𝜕a}{𝜕\hat{y}}\times \frac{𝜕a}{𝜕w_i}=(\hat{y}-y)\sigma(1-\sigma(a))x_i\]
+
+\[∴\frac{𝜕L}{𝜕b}=\frac{𝜕L}{𝜕\hat{y}}\times \frac{𝜕\hat{y}}{𝜕a}\times \frac{𝜕a}{𝜕b}=(\hat{y}-y)\sigma(1-\sigma(a))\]
+
+<ul>
+  <li>
+    <p>위에서 결과적으로 나온 <strong>Gradient</strong> 식의 값이 최소값을 갖도록하는 <strong>Model Parameter</strong>을 구해야 한다.</p>
+  </li>
+  <li>
+    <p>문제는, 이대로 Gradient 식을 그대로 사용하면, 수렴하지 않고 <strong>진동</strong>을 한다</p>
+
+    <blockquote>
+      <p>고로, Learning Rate \(\eta\) 라는 <strong>hyper-parameter</strong>을 설정한다</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="hyper-parameter">Hyper-Parameter</h3>
+
+<ul>
+  <li>
+    <p>\(\eta\) 값이 너무 작으면 수렴하는데 오랜사간이 걸리고, 너무 크면 발산하기 때문에 적당한 값을 가져야 한다</p>
+
+    <blockquote>
+      <p>Parameter가  update하기 위해서  Old Value에서 value의 Gradient을 Hyper-Parameter와 곱해서 뺀 값으로 설정한다</p>
+    </blockquote>
+  </li>
+</ul>
+
+\[w_i^{new} = w_i^{old}-\eta\frac{𝜕L}{𝜕w_i^{old}}\]
+
+\[b^{new} = b^{old} - \eta\frac{𝜕L}{𝜕b^{old}}\]
+
+<blockquote>
+  <p>사실 paramter을 구하기 위해 Gradient 함수를 Chain Rule이 아닌 더 쉬운 방법으로 구할 수 있다. 다만, 뒤에 나올 <strong>Error Backpropagation</strong> 때문이다</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>더 편한 계산<sub>(Multi-Layer을 사용하기 위함도 있음)</sub> 을 위해 <strong>Vector</strong>을 사용하여 축약된 Gradient식을 사용 할 것이다.(\(\nabla\)는 편미분 기호를 대시 사용한다)</p>
+
+    <blockquote>
+      <p>편미분??</p>
+    </blockquote>
+  </li>
+</ul>
+
+\[\nabla_{\hat{y}}L = \hat{y}-y\]
+
+\[\nabla_{\hat{y}}L =\sigma(a)(1-\sigma(a))\]
+
+\[\nabla_{w}a=X^T, \nabla_ba = 1\]
+
+\[∴\nabla_wL=\nabla_{\hat{y}}L\times\nabla_a\hat{y}\times\nabla_wa=(\hat{y}-y)\sigma(a)(1-\sigma(a))X^T\]
+
+\[∴\nabla_bL=\nabla_{\hat{y}}L\times\nabla_a\hat{y}\times\nabla_ba=(\hat{y}-y)\sigma(a)(1-\sigma(a))\]
+
+<blockquote>
+  <p>T는 Matrix의 transpose이다….가로를 새로로, 세로를 가로로</p>
+</blockquote>
+
+<ul>
+  <li>다음 식은 \(\nabla\)를 적용한 hyper-paramter이다</li>
+</ul>
+
+\[w^{new} = w^{old}-\eta\nabla_{w^{old}}L\]
+
+\[b^{new} = b^{old} - \eta\nabla_{b^{old}}L\]
+
+<blockquote>
+  <p>여기까지는 올바른 Hyper Parameter을 구하기 위하여 Gradient을 구하는 이야기를 하였다. 이제 Perceptron의 개념이 확장된 <strong>Multi-Layer Perceptron</strong>의 개념에 대해 이야기 하자</p>
+</blockquote>
+
+<h3 id="multi-layer-perceptron-1">Multi-Layer Perceptron</h3>
+
+<blockquote>
+  <ul>
+    <li>간단하게, Multi-Layer을 사용하는 이유와 그 구성에 대해서 이야기를 하자</li>
+    <li>Muli-Layer Perception은 여러개의 Perception을 stacking한 것을 말한다.  Stacking을 하기 때문에 출력값이 Scalar가 아닌 Vector 형태로 나와야 하는 것이다.</li>
+    <li>또한, Perception은 linear function이기 떄문에, nonlinear한 정보를 classify하여서 Multi-Layer Perception을 사용하는 것이 유리하다.</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>
+    <p>그림 참조</p>
+
+    <blockquote>
+      <p>각 원은 하나의  perception을 의미한다.</p>
+
+      <ul>
+        <li>W와 b는 parameter가 된고, Hiddent Layer는 계층적인 관점에서 Perception의 집합이라고 할 수 있다</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>Hidden Layer 1</strong>의 수식이다</p>
+
+    <ul>
+      <li>
+        <p>\(m\)은 hidden layer의 perceptron 개수이다</p>
+
+\[h_{1i}=\sigma(XW_{1i}+b_{1i}), i = \{1,....m\}\]
+
+\[h_1=(h_{11},h_{_12},...h_{1m})\]
+      </li>
+    </ul>
+
+    <blockquote>
+      <p>\(h_n\)은 hidden layer n을 나타낸다</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Hidden Layer 1의 출력은 Hidden Layer 2의 입력으로 들어간다. 다음식은, <strong>Hidden Layer 2</strong>의 수식이다</p>
+
+    <ul>
+      <li>
+        <p>\(m\)은 역식 hidden layer 2의 perceptron 개수이다</p>
+
+\[h_{2j}=\sigma(h_1W_{2j}+b_{2j}),j=\{1,...j\}\]
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Matrix Multiplication</strong>을 사용하여 표현하면 더 간결하게 표현이 가능하다</p>
+  </li>
+  <li>
+    <p><strong>Hidden Layer 1</strong></p>
+
+    <blockquote>
+      <ul>
+        <li>\(W_{1nm}\)이다, 즉, 가장 앞의 1은 \(W_1\)을 의미하는 것이다.\(b\)도 동일하다….Don’t Confuse</li>
+        <li>\(n\)은 input 값의 <strong>갯수이다</strong></li>
+      </ul>
+    </blockquote>
+  </li>
+</ul>
+
+\[W_1=\begin{bmatrix}
+  W_{111} &amp; \cdots &amp; W_{1n1}\\
+  \vdots &amp; \ddots &amp;\vdots \\
+  W_{11m} &amp; \cdots &amp; W_{1nm}\\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+  W_{11} &amp; \cdots &amp; W_{1m}
+  \end{bmatrix}\]
+
+\[b_1=\begin{bmatrix}
+b_{11} &amp; \cdots &amp; b_{1m}
+\end{bmatrix}\]
+
+\[h_1 =\begin{bmatrix}
+\sigma(XW_{11}+b_{11}) &amp; \cdots &amp; \sigma(XW_{1m}+b_{1m})
+\end{bmatrix}
+=\sigma(XW_{1}+b_{1})\]
+
+<ul>
+  <li><strong>Hidden Layer 2</strong>도 같은 방법으로 표현한다</li>
+</ul>
+
+\[\hat{y}=h_2=\sigma(h_1W_2+b_2)\]
+
+\[\hat{y}=(\hat{y_1},\hat{y_2},...\hat{y_l})\]
+
+<ul>
+  <li>
+    <p><strong>레이블 \(y\)</strong>의 표현 법</p>
+
+    <ul>
+      <li>앞에서 \(y\)는 data의 실제 레이블(정답)이라고 했다</li>
+      <li>이 \(y\)를 표현 할때, <em>one-hot encoding</em>으로 사용하여 표현이 가능하다.</li>
+      <li>\(y\)가 총 10의 길이를 가지고 있을 때, 3번 class의 lable을 가진다고 하면 \(y\)는 다음과 같은 형태를 갖는다</li>
+    </ul>
+
+\[y=(0,0,1,0,0,0,0,0,0,0)\]
+
+    <blockquote>
+      <p>해석을 하면, lable을 갖고 있을 수 있는 \(y\)의 3번째 class에 lable이 있다는 말이다??…그래서 비교 할 수 있다는 말??</p>
+    </blockquote>
+
+    <ul>
+      <li>최종 결과값인 \(\hat{y}\)에서 가장 높은 값을 추출하면 그 값과  lable을 비교 할 수 있다.</li>
+      <li>비교할때는, 가장 높은 값, argmax인 \(\hat{y}\)와 lable과 비교한다</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>lable \(y\)과 \(\hat{y}\)의 이해를 돕기 위해서</p>
+
+  <ul>
+    <li>그림 5를 참고하라. Input은 hidden layer을 통해서 output을 만들어 낸다.
+      <ul>
+        <li>hidden layer 안은 perceptron으로 구성이 되어 있고,  input 값과 output 값의 개수를 설정할 수 있기 떄문에, hidden layer 1에서는 다수의 output을 만드는데, 왜 hidden layer 2 는 하나의  output만 만드냐는 질문은 하지 말자</li>
+      </ul>
+    </li>
+    <li>이때, hidden layer을 통해서 만든 값, 즉, output이 \(\hat{y}\)이고, \(y\)는  lable로써 정답이다.(주어진 값인가??)</li>
+    <li>고로, \(\hat{y}\)와  \(y\)는 같은 성질(?)의  output이기 떄문에 비교가 가능하다</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li><strong>Classification</strong>
+    <ul>
+      <li>classification을 통해서 \(\hat{y}\)를 출력한다고 한다.</li>
+      <li>즉,  Hidden Layer들을 말하는 것이다??</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="error-backpropagation">Error Backpropagation</h3>
+
+<blockquote>
+  <ul>
+    <li>잠깐 정리를 해보자</li>
+    <li>지금 까지는 Parceptron의 개념과, 올바른 Parceptron, 즉, model paramter를 구하기 위해 multil-layer의 개념을 배웠다. Loss Functionr과 Percentron 식으로 부터 Model Parameter을 구하는 방법은 배웠으나, <strong>어떻게 하면 <em>좋은</em> Model parameter를 구하는지, 즉 Update를 하여 구하는 방법을 아직 안배웠다.</strong></li>
+    <li><em>좋은</em> Model Parameter을 구하는 방법을 <strong>학습 방법</strong>이라고 이야기 할 수 있다. <strong>Error Backpropagation</strong>을 통해서 학습 방법에 대한 solution에 대해 배울 것 이다.  (Gradient 함수를 Chai Rule로 푼 이유)</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Chain Rule을 사용하여 각 계층에 있는 parameter의 Gradient를 구하여 뒤에서 부터 <strong>순차적으로</strong> Update하는 방법이다.</p>
+
+    <ul>
+      <li>Chain Rule을 통해서 뒤에서 부터 순차적으로 구하는 이유는,  Multi-Layer Perception의 정의는 위에서 배운 것 같이 명확하게 내릴 수 있지만, 게층을 쌓게 되면 Loss Function에 대한 마땅한 학습을 할 수 없기 때문이다.</li>
+      <li>즉, 학습을 실행하기 위해서 이다</li>
+    </ul>
+
+    <blockquote>
+      <p>Parameter을 통해 Gradient를 구하는 것이다.</p>
+
+      <p>그림 5, 처럼 Hidden Layer는 2개 분아다.(마지막 Hidden Layer는 2번쨰 것 이다)</p>
+    </blockquote>
+
+\[\text{Given: }a_2 = h_2W_2+b_2\]
+
+\[L(y,\hat{y})=(\hat{y}-y)^2\]
+
+\[\nabla_{\hat{y}}L=\hat{y}-y\]
+
+\[\nabla_{a_2}\hat{y}=\sigma(a_2)(1-\sigma(a_2))\]
+
+\[\nabla_{w_2}a_2=h_1^T,\nabla_{b_2}a_2=1=(1,....,1)^T\]
+
+    <blockquote>
+      <p>여기서 1은 vector이다</p>
+    </blockquote>
+
+\[∴\nabla_{w_2}L=\nabla_{\hat{y}}L\odot\nabla_{a_2}\hat{y}\times\nabla_{w_1}a_2=(\hat{y}-y)\odot\{\sigma(a_2)(1-\sigma(a_2))\}\times h_{1}^T\]
+
+\[∴\nabla_{b_2}L=\nabla_{\hat{y}L}\times \nabla_{b}a_2=(\hat{y}-y)\odot\{\sigma(a_2)\{1-\sigma(a_2\}\}\times 1\]
+
+    <ul>
+      <li>
+        <p>위의 식사용하여, <strong>Hidden Layer 2의 Parameter을 Update</strong> 하였다
+\(W_2^{new}=W_{2}^{old}-\eta\nabla_{w_2^{old}}L\)</p>
+
+\[b_2^{new}=b_2^{old}-\eta\nabla_{b_2^{old}}L\]
+
+        <blockquote>
+          <ul>
+            <li>
+              <p>위 식에서는 주어진 parameter를 Hidden Layer 2에 기준에서 새로운 parameter로 업데이트를 하였다.</p>
+            </li>
+            <li>
+              <p>Hyper-Parameter를 구할때와 같은 방법이다. 하지만 여기서는 Hidden Layer 2에서 부터 거꾸로 가기 때문에, 이제 우리는 Hidden Layer 1에 대한 parameter을 구할 수 있다</p>
+            </li>
+          </ul>
+        </blockquote>
+      </li>
+      <li>
+        <p><strong>Hidden Layer 1의 Parameter을 Update</strong> 해주어야 한다.</p>
+
+        <ul>
+          <li>Parameter을 Update하기 위해서는 \(h_1\)에 대한 Gradient를 chain rule을 사용하여  \(\nabla_{w_1}{L}\)와 \(\nabla_{b_1}L\)를 구해야 한다.</li>
+          <li>\(a_2\)에 대한 Gradient까지 구한 부분에 적용 해야  \(\nabla_{w_1}{L}\)와 \(\nabla_{b_1}L\)을 구할 수 있는데, 그러기 위해서는  \(\nabla_{h_1}a_2\)을 알아야 한다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+\[\nabla_{h_1}a_2=W_{2}^T\]
+
+\[\nabla_{h_1}L = \nabla_{\hat{y}}L\odot\nabla_{a_2}{\hat{y}} \times \nabla_{h_1}a_2=(\hat{y}-y)\odot\{\sigma(a_2)\{1-\sigma(a_2)\}\}\times W_2^T\]
+
+<blockquote>
+  <p>\(\nabla_{h_1}a_2\)을 구했으니,  \(\nabla_{w_1}{L}\)와 \(\nabla_{b_1}L\) 구하여 Hidden Layer 1의 Parameter을 Update하자</p>
+</blockquote>
+
+\[\nabla_{a_1}h1=\sigma(a_1)(1-\sigma(a_1))\]
+
+\[\nabla_{w_1}a_1=X^T, \nabla_{b_1}a_1= 1=(1,....,1)^T\]
+
+\[\nabla_{W_1}L=\nabla_{h_1}L\odot\nabla_{a_1}h_1\times\nabla_{w_1}a_2\]
+
+\[\nabla_{b_1}L=\nabla_{h_1}L\odot\nabla_{a_1}h_1\times\nabla_{b_1}a_2\]
+
+\[W_{1}^{new}=W_{1}^{old}-\eta\nabla_{w_1^{old}}{L}\]
+
+\[b_1^{new}=b_1^{old}-\eta\nabla_{b_1^{old}}L\]
+
+<h3 id="multi-data">Multi-Data</h3>
+
+<ul>
+  <li>
+    <p>지금까지는 하나의 Data에 대해서만 설명을 하였었다. 만약 <strong>다수의 data</strong>에 대한 학습이라면, Gradient의 합 또는 평균을 사용하여 업데이트를 하면된다.  다수의 data를 표현하기 위해서 다음과 같이 데이터를 표기한다</p>
+
+    <ul>
+      <li>만약, 합을 사용한다면, 평균을 사용할때에 비해서 <strong>learning rate</strong>조정을 신경 써야 한다.</li>
+    </ul>
+
+\[X^i, i =\{1,2,....,N\}\]
+
+    <ul>
+      <li>이 표현에서 \(i\)는 super script라고 하는데, \(i\)번쨰 data를 뜻한다</li>
+    </ul>
+  </li>
+  <li>
+    <p>super script를 적용하여, <strong>손실 함수</strong>를 나타내면 다음과 같은 식을 얻는다</p>
+
+    <ul>
+      <li>출력과 레이블(정답)에도 같은 Notation을 적용한 것이다</li>
+    </ul>
+  </li>
+</ul>
+
+\[L(y,\hat{y})=\Sigma_{i=1}^N(\hat{y}^i-y^i)^2\]
+
+<h3 id="learning--data">Learning &amp; Data</h3>
+
+<ul>
+  <li>데이터 크기가 큰 이미지 데이터 등은 모든 데이터를 한번에 업데이트 하기가 힘들다.</li>
+  <li>고로 <strong>Mini Batch</strong>라는 개념을 적용한다.
+    <ul>
+      <li>데이터의 일부를 iterative하게 학습하는 것.</li>
+    </ul>
+  </li>
+  <li>모델을 학습할때,  <strong>epoch</strong>돌면서 한다
+    <ul>
+      <li>한 데이터 세을 전부 사용하여 학습하는 iteration을 뜻 한다</li>
+    </ul>
+  </li>
+  <li>학습 시, Data는 <strong>Train,validation, test</strong>로 나누어 사용한다
+    <ul>
+      <li><strong>Train Data</strong> 은 학습을 위해 사용된다.</li>
+      <li><strong>Validation Data</strong>은 학습 과정을 검증하는데, 사용되는데, 학습에 사용이 되지 않았기 때문에 가능하다.</li>
+      <li><strong>Test Data</strong> 모델을 평가하기 위한 데이터로 보통 레이블을 공개하지 않고 공정한 모델 평가에 사용된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="program-explaination">Program Explaination</h2>
+
+<h3 id="goal">Goal</h3>
+
+<ul>
+  <li>그림 6은, <strong>Two Moon Dataset</strong>이다.
+    <ul>
+      <li>이 그림에서는 non-linear한 2-feature(2개의 input), 2-class(2개의 output) dataset을 볼 수 있다.</li>
+    </ul>
+  </li>
+  <li>그림에 주어진 data를 학습시킬 수 있는 <strong>classifier</strong>를 학습시키고, <strong>verify</strong>하는 코드를 작성하여라.</li>
+</ul>
+
+<h3 id="given">Given</h3>
+
+<ul>
+  <li>
+    <p>아래 <strong>인자</strong>는 cmd를 통해서 직접 입력을 받게 되는 code이다</p>
+
+    <ul>
+      <li>dataset_type[str] -&gt; two moon 또는 iris <strong>데이터를 결정하는 인자</strong></li>
+      <li>feature_num[int] -&gt; 입력 데이터의 <strong>feature 개수</strong></li>
+      <li>class_num[int] -&gt; 분류하고자 하는 <strong>클래스 개수</strong></li>
+      <li>hidden_layer_num[int] -&gt; <strong>hidden layer의 개수</strong></li>
+      <li>hidden_layer_neurons[str] -&gt; 각 hidden layer의 <strong>뉴런의 개수</strong>. string으로 받아 int 형식의
+array로 변환하여 사용하여야 함 ex) “10 10 10”  -&gt;  [10, 10, 10]</li>
+      <li>epochs[int] -&gt; <strong>학습 횟</strong>수 (epoch)</li>
+      <li>learning_rate[float] -&gt; <strong>learning rate 수치</strong></li>
+      <li>train_data_dir[str] -&gt; <strong>학습 데이터 파일 위치</strong></li>
+      <li>train_data_num[int] -&gt; <strong>학습 데이터 개수</strong></li>
+      <li>validation_data_dir[str] -&gt; <strong>validation 데이터 파일 위치</strong></li>
+      <li>validation_data_num[int] -&gt; <strong>validation 데이터 개수</strong></li>
+      <li>test_data_dir[str] -&gt; <strong>test 데이터 파일 위치</strong></li>
+      <li>test_data_num[int] -&gt; <strong>test 데이터 개수</strong></li>
+      <li>test_output_dir[str] -&gt; test 데이터를 통해 얻은 결과 <strong>출력 경로</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>Class</p>
+
+    <ul>
+      <li>
+        <p>Layer</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>V or M</th>
+              <th>name</th>
+              <th>type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>V</td>
+              <td>in_dimentsion</td>
+              <td>int</td>
+              <td>입력 차원</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>out_dimension</td>
+              <td>int</td>
+              <td>출력 차원</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>weight</td>
+              <td>float[][]</td>
+              <td>파라미터</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>bias</td>
+              <td>float[]</td>
+              <td>파라미터</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>input</td>
+              <td>float[][]</td>
+              <td>forward 함수에서 받은 입력을 저장(Backward에서 사용)</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>output</td>
+              <td>float[][]</td>
+              <td>함수에서 받은 입력을 저장(Backward에서 사용)</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>forward(float[][])</td>
+              <td>float[][]</td>
+              <td>입력을 받아 출력 값을 return</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>backward(float[][],float)</td>
+              <td>float[][]</td>
+              <td>입력 값을 통해 얻은 값과 이전 gradient 값을 통해 weight와 전달할 Gradient를 출력한다</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>Loss</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>V or M</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Descroption</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>V</td>
+              <td>logit</td>
+              <td>float[][]</td>
+              <td>신경망의 최종 결과 값 (forward에서 입력 받아 저장)</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>label</td>
+              <td>float[][]</td>
+              <td>forward에서 입력 받아 저장</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>forward(float[][])</td>
+              <td>float[][]</td>
+              <td>logit과 label을 입력 받아 손실 함수 값을 출력</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>backward(void)</td>
+              <td>float[][]</td>
+              <td>다음 layer에 전달할 Gradient를 logit과 label을 사용하여 출력</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>Dataloader</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>V or M</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>V</td>
+              <td>file_dir</td>
+              <td>string</td>
+              <td>데이터 파일 경로</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>mode</td>
+              <td>string</td>
+              <td>train, validation,test 모드를 지정</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>feature_num</td>
+              <td>int</td>
+              <td>data의 feature 개수(차원)</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>class_num</td>
+              <td>int</td>
+              <td>분류할 클래수 개수</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>data_num</td>
+              <td>int</td>
+              <td>데이터 개수</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>data</td>
+              <td>float[][]</td>
+              <td>학습 data</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>lable</td>
+              <td>float[][]</td>
+              <td>test 모드에서는 사용하지 않음</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>read(void)</td>
+              <td>void</td>
+              <td>데이터를 읽어와서 data와 label에 각각 저장함 (test mode에서는 label에 데이터를 저장하지 않음)</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>Mlp (Multi-Layer Perceptron)</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>V or M</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>V</td>
+              <td>layer</td>
+              <td>Layer[]</td>
+              <td>Layer 오브젝트 array-hidden layer 개수에 따라 길이 변동</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>loss</td>
+              <td>Loss</td>
+              <td>Loss 오브젝트</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>train_dataset</td>
+              <td>Dataloade</td>
+              <td>train에 사용할 Dataloader 오브젝트</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>train_data</td>
+              <td>float[][]</td>
+              <td>train_dataset에서 얻은 데이터를 저장</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>train_label</td>
+              <td>float[][]</td>
+              <td>train_dataset에서 얻은 레이블 저장(one_hot)</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>validation_dataset</td>
+              <td>Dataloader</td>
+              <td>validation에 사용할 dataloader오브젝트</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>validation_data</td>
+              <td>float[][]</td>
+              <td>validation_dataset에서 얻은 데이터를 저장</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>validation_label</td>
+              <td>float[][]</td>
+              <td>validation_dataset에서 얻은 레이블 저장(one_hot)</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>epochs</td>
+              <td>int</td>
+              <td>epoch</td>
+            </tr>
+            <tr>
+              <td>v</td>
+              <td>learning_rate</td>
+              <td>float</td>
+              <td>learning rate</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>read_dataset(Dataloader)</td>
+              <td>void</td>
+              <td>데이터를 읽어와서 data와 label에 각각 저장 함</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>add_layer(layer)</td>
+              <td>void</td>
+              <td>layer에 Layer 오브젝트를 추가함</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>visulaize_layer(void)</td>
+              <td>void</td>
+              <td>layer 계층 구조를 출력</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>train(void)</td>
+              <td>void</td>
+              <td>각 epoch마다 loss와 정확도를 출력</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>validation(void)</td>
+              <td>void</td>
+              <td>validation set에 대해서 loss와 정확도를 출력</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>predict(Dataloader,str)</td>
+              <td>void</td>
+              <td>입력한 Dataloader(test임)의 출력 결과를 텍스트 파일에 저장</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="condition">Condition</h3>
+
+<ul>
+  <li>각 dataset에 대해서 학습이 잘되는 hyper-parameter(epochs,learning-rate, hidden layer 층수, neuron의 개수 등) 를 찾는 실험에 대한 과정 및 결과를 보고서에 제출해야 함. 필수 실험은 다음과 같다</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Epochs</th>
+      <th>Learning Rate (\(\eta\))</th>
+      <th>Hidden Layer 개수</th>
+      <th>Neuron 개수(Perceptron)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>100</td>
+      <td>0.01</td>
+      <td>1</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>0.05</td>
+      <td>2</td>
+      <td>10,10</td>
+    </tr>
+    <tr>
+      <td>1000</td>
+      <td>0.01</td>
+      <td>3</td>
+      <td>30,100,30</td>
+    </tr>
+    <tr>
+      <td>1000</td>
+      <td>0.03</td>
+      <td>2</td>
+      <td>100,100</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>위 조건에 따라 과정과 결과를 보고서에 기입하고 자신이 찾은 최적의 값을 찾는 과정과 결과를 보고서에 작성해 함</li>
+  <li>학습한 네트워크로 각 dataset에 존재하는 test dataset(정답 레이블이 없는)에 대해 [Test 결과 예시]와 같은 형식으로 출력한 텍스트 파일을 과제 제출 시 소스코드와 함꼐 제출해야 함</li>
+</ul>
+
+<hr />
+
+<h3 id="ref">Ref</h3>
+
+<ul>
+  <li><a href="[https://lovit.github.io/machine%20learning/2018/04/27/synthetic_dataset/](https://lovit.github.io/machine learning/2018/04/27/synthetic_dataset/)">LOVITxDATA SCIENCE</a>
+    <ul>
+      <li>soydaya, 복잡한 인공 데이터 생성을 위한 함수들…..<strong>Skit-Learn</strong></li>
+    </ul>
+  </li>
+  <li><a href="https://www.youtube.com/watch?v=bUNqn1G1O7E">편미분과 Gradient의 기하학적 의미</a></li>
+  <li><a href="https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/v/chain-rule-introduction">Khan: ChainRule</a></li>
+  <li><a href="http://researchhubs.com/post/maths/fundamentals/basic-of-matrix.html">Matrix의 기본 지식</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">하다마드 곱: \(\odot\)</a></li>
+  <li><a href="[https://ko.wikipedia.org/wiki/%ED%96%89%EB%A0%AC_%EA%B3%B1%EC%85%88](https://ko.wikipedia.org/wiki/행렬_곱셈)">Matrix의 곱</a></li>
+  <li>[1-07. Multi Layer Perceptron 총정리](</li>
+</ul>
+:ET
