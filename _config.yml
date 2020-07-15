@@ -25,3 +25,6 @@ defaults:
       type: "projects"
     values:
       layout: "project"
+
+
+plugins: [jekyll-youtube]
