@@ -25,7 +25,9 @@ layout: default
     {% if page.youtubeID %}
       {% assign youtubeLink = "http://www.youtube.com/embed/" | append: page.youtubeID  %}
       <!-- <iframe width="560" height="315" src={{youtubeLink}} frameborder="0" allowfullscreen="allowfullscreen">unwantedtext</iframe> -->
+      {% raw %}
       <iframe width="560" height="315" src="http://www.youtube.com/embed/1QceiWtrsD4" frameborder="0" allowfullscreen="allowfullscreen">unwantedtext</iframe>
+      {% endraw %}
     {% endif  %} 
   </div>
 
