@@ -4,7 +4,7 @@
 
 body { background-color: #000000; max-width: 100%; }
 
-.default-body { margin-top: 100px; padding-bottom: 100px; background-color: #ECE6CC; }
+.default-body { margin-top: 100px; margin-bottom: 100px; background-color: #ECE6CC; }
 
 .body-container { max-width: 1000px; background-color: #ECE6CC; }
 
