@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Project Armstrong
+title: Armstrong D+1
 categories: [Armstrong]
 tags: [Game, Project, Armstrong]
 ---
