@@ -34,7 +34,7 @@ tags: [Game, Project, Armstrong]
 
 | Oar Motion                                                   | Oar Description                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <img src="/images/project_images/Armstrong/armstrong_oarMotion.png" alt="armstrong_explaination" style="zoom:30%;" /> | <img src="/images/project_images/Armstrong/armstrong_oarDescription.png" alt="armstrong_explaination" style="zoom:50%;" /> |
+| <img src="/images/project_images/Armstrong/armstrong_OarMotion.png" alt="armstrong_explaination" style="zoom:30%;" /> | <img src="/images/project_images/Armstrong/armstrong_OarDescription.png" alt="armstrong_explaination" style="zoom:50%;" /> |
 
 
 
