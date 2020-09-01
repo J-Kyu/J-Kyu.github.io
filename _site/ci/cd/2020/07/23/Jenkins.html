@@ -43,7 +43,7 @@
         </div>
     </div>
 </div>
-    <title>Armstrong</title>
+    <title>Jenkins</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
   </head>
 
@@ -52,117 +52,76 @@
       <body>
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<div class = "post-container"> 
 
+
+<div class = "post-container"> 
+  
   <div class = "post-title">
     <h1>
-      Armstrong
+      Jenkins
     </h1>
   </div>
 
-  
-    <div class = "post-head-data">
-      <p>
-        Unity를 사용하여 조정 게임을 만들어보자
-      </p>
-      <p>
-        19 Jul 2020
-      </p>
-    </div>
-
-
-    <div class = "video-container">
-     
+  <div class = "post-head-data">
+    <p>
+      23 Jul 2020
+      
+      
+    </p>
   </div>
-
+  
   <div class = "markdown">
-    <h1 id="armstrong">Armstrong</h1>
+    <div class = "post-content">
+      <h1 id="jenkins">Jenkins</h1>
 
 <blockquote>
-  <p>In Progress</p>
+  <ul>
+    <li>“Armstrong” project를 완성하기 위하여 그래도 구동되는 CI/CD 환경을 구축하고 싶어서 시도한다.</li>
+    <li>TeamCity로 build하기에는 자료가 너무 없어서, Jenkins에서 구동해보기로 하였다.</li>
+  </ul>
 </blockquote>
 
-<h3 id="concept">Concept</h3>
-
-<center>
-	<img src="../images/project_images/Armstrong/armstrong_thumbnail.png" alt="armstrong_thumbnail" style="zoom:80%;" />
-</center>
+<h3 id="install"><a href="https://www.jenkins.io/download/lts/macos/">Install</a></h3>
 
 <ul>
-  <li>2번째 Project는 Unity를 사용하여 개발할 조정 게임이다.</li>
-  <li>조정의 Key point는 화합이다. 여러명의 선수가 Catch와 finish 그리고 recovery를 정확하고 동일한 pace로 가져가야 배가 올바르게 나아갈 수 있다.</li>
-  <li><strong>Timing을 동일하게 가져오는 것을 재미 point로(기술) 조정(관점)에서 재해석 할 수 있을 것 같다.</strong></li>
-</ul>
+  <li>
+    <p>Jenkins-LTS version을 install하였으며, <a href="https://www.jenkins.io/download/lts/macos/">공식 사이트</a> 참고 하였다.</p>
+  </li>
+  <li>
+    <p>실행 코드</p>
 
-<h3 id="env">Env</h3>
-
-<ul>
-  <li>Unity</li>
-</ul>
-
-
-
-
-    <h2>
-      Related Posts
-    </h2>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services start jenkins-lts
+</code></pre></div>    </div>
 
     <ul>
-      
-      
-        
-          
-        <li><a href="/ci/cd/2020/07/23/Jenkins.html">Jenkins</a></li>
-          
-        
-          
-        
-      
-        
-          
-        <li><a href="/ci/cd/2020/07/22/TeamCity.html">Team City</a></li>
-          
-        
-          
-        
-      
-        
-          
-        
-          
-        
-          
-        <li><a href="/armstrong/2020/07/21/Armstrong-D+1.html">Armstrong D+1</a></li>
-          
-        
-      
-        
-          
-        
-          
-        
-          
-        <li><a href="/armstrong/2020/07/19/Armstrong-Plan.html">Project Armstrong</a></li>
-          
-        
-      
-        
-          
-        
-          
-        
-      
-        
-          
-        
-          
-        
-      
+      <li>Localhost:8080에서 접속 할 수 있다.</li>
     </ul>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services stop jenkins-lts
+</code></pre></div>    </div>
+
+    <ul>
+      <li>종료</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="unity-3d">Unity 3D</h3>
+
+<ul>
+  <li>아래 blog 보면서 따라했지만, build error가 떴다. 일단 어떻게 되는지 잘 알지 못하기 때문에 조금더 연구가 필요해 보인다.
+    <ul>
+      <li><a href="https://blog.actin.kr/devlog/2018/09/04/unity3d-build-macos/">Jenkins Unity3D 빌드하기 on MacOS</a></li>
+      <li>너무 이해하기 어렵다면, Android 먼저 build하는 것을 목표로 해볼 필요도 있다….</li>
+    </ul>
+  </li>
+</ul>
+
+    </div>
+  </div>
 
 
 </div>
-
       </body>
     </div>
   </div>

@@ -1,0 +1,47 @@
+I"s
+<h1 id="team-city">Team City</h1>
+
+<blockquote>
+  <ul>
+    <li>“Armstrong” project를 완성하기 위하여 그래도 구동되는 CI/CD 환경을 구축하고 싶어서 시도한다.</li>
+    <li>아직 완벽하게 build가 되지 않았기에, 간단하게 설명한다.</li>
+  </ul>
+</blockquote>
+
+<h3 id="why-team-city">Why Team City?</h3>
+
+<ul>
+  <li>자동 build tool 중에는 Team City 외에도 Jenkins, Travis CI 등등 여러가지가 있지만, Team City를 선택한 이유는, 과거 intern을 했을 때, Unity project를 Team City로 빌드하는 것을 봤기 때문에 이것으로 build 한다.</li>
+</ul>
+
+<h3 id="오늘의-결과물">오늘의 결과물</h3>
+
+<ul>
+  <li>Untiy Project를 Team City로 build 하기 위해서는 Unity를 배제하고, 먼저 Team City를 공식 document를 보고 설치하였다. Document대로 설치하면 문제 없이 server를 돌릴 수 있다.
+    <ul>
+      <li><a href="https://www.jetbrains.com/help/teamcity/2020.1/getting-started-with-teamcity.html?_ga=2.14996278.1834950870.1595387806-309280763.1595387806&amp;q=build&amp;s=quick">TeamCity-Getting Started</a></li>
+    </ul>
+  </li>
+  <li>Unity를 build 하기 위해서는 plug-in을 사용해야한다. 방법은 간단하다. 구동한 TeamCity server에서 plug-in load를 browser로 하여 <code class="language-plaintext highlighter-rouge">Unity Support</code>를 Get하면 된다.
+    <ul>
+      <li>이러면 build step에 대하여 자동으로 구성이 될 수있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>일단 진도는 여기 까지 나갔으며, 이후 더 자세한 내용으로 정리해보겠다. :exclamation:</p>
+</blockquote>
+
+<h3 id="tip">Tip</h3>
+
+<ul>
+  <li>공식 Docs에서는ㄴ <code class="language-plaintext highlighter-rouge">./runAll start</code>와 <code class="language-plaintext highlighter-rouge">./runAll stop</code>으로 server를 구동하고 shutdown하는데, 후자는 먹히지 않을 때 있다. 나는 <code class="language-plaintext highlighter-rouge">./shutdown.sh</code>을 실행하였다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">&lt;Team City&gt;/bin/</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">TeamCity Start Up</code> 에러는 쓰기 권한이 없어서 발생했기에, <code class="language-plaintext highlighter-rouge">chmod</code>를 통해서 권한을 부여하는 방식으로 해결하였다.</li>
+  <li>build 시 permission이 없다고 build가 안될 때 있는데, 이것은 <code class="language-plaintext highlighter-rouge">sudo ./runAll start</code>를 통해서 구동시키면 된다.</li>
+</ul>
+:ET
