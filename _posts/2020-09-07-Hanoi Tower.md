@@ -18,7 +18,7 @@ tags: [Algorithm,Recursive]
 
 ### Idea
 
-<center><img src="../images/post_images/hanoi.png" alt="hanoi" style="zoom:48%;" /></center>
+<center><img src="/images/post_images/hanoi.png" alt="hanoi" style="zoom:48%;" /></center>
 
 > n개의 원반이 존재한다. 
 
@@ -38,7 +38,7 @@ tags: [Algorithm,Recursive]
 > * 왼쪽은 n번째 원반 관점에서의 막대 Role
 > * 오른쪽 그림은 n-1의 관점에서의 막대 Role
 
-<center><img src="../images/post_images/hanoi_recursive.png" alt="hanoi" style="zoom:48%;" /></center>
+<center><img src="/images/post_images/hanoi_recursive.png" alt="hanoi" style="zoom:48%;" /></center>
 
 * 막대의 역할 (n-1번째 관점)
   * Source: n번째 원반이 Dest 막대로 원반이 옮겨지고 난 후, 나머지 원반이 위치한 막대 
