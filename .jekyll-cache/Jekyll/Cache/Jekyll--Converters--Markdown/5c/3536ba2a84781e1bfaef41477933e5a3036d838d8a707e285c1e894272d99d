@@ -1,0 +1,444 @@
+I"42<h1 id="7-basic-algorithm">7 Basic Algorithm</h1>
+
+<blockquote>
+  <ul>
+    <li><a href="#selection-sort">Selection Sort</a></li>
+    <li><a href="##insertion-sort">Insertion Sort</a></li>
+    <li><a href="##Bubble Sort">Bubble Sort</a></li>
+    <li><a href="##Merge Sort">Merge Sort</a></li>
+    <li><a href="##Quick Sort">Quick Sort</a></li>
+    <li><a href="##Heap Sort">Heap Sort</a></li>
+    <li><a href="##Counting Sort">Counting Sort</a></li>
+  </ul>
+</blockquote>
+
+<h1 id="sort">Sort</h1>
+
+<ul>
+  <li>기본적으로 알고 있어야 하는 Sort에 대한 글이다.</li>
+  <li>각 Sort는 Best Case, Average Case 그리고 Worst Case에 대해서</li>
+</ul>
+
+<h2 id="selection-sort">Selection Sort</h2>
+
+<center><img src="/images/post_images/selectionSort.png" alt="selectionSort" style="zoom:48%;" /></center>
+
+<ul>
+  <li>종류: 제자리 정렬</li>
+  <li>개념: 선택된 value를 정렬 되지 않은 value 중 최소값과 swap 한다.</li>
+  <li>순서
+    <ol>
+      <li>주어진 list 중 최소 값을 찾는다</li>
+      <li>그 값을 맨 앞에 위치한 값과 swap</li>
+      <li>맨 처음 위치를 뺀 나머지 리스트를 같은 방법으로 교체한다</li>
+    </ol>
+  </li>
+  <li>Worst Case:</li>
+  <li>Best Case:</li>
+  <li>Average Case:</li>
+</ul>
+
+<h3 id="code">Code</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void selectionSort(int *list, const int n)
+{
+    int indexMin, temp;
+
+    for (int i = 0; i &lt; n - 1; i++)
+    {
+        indexMin = i;
+        for (int j = i + 1; j &lt; n; j++)
+        {
+            if (list[j] &lt; list[indexMin])
+            {
+                indexMin = j;
+            }
+        }
+        temp = list[indexMin];
+        list[indexMin] = list[i];
+        list[i] = temp;
+    }
+}
+</code></pre></div></div>
+
+<h2 id="insertion-sort">Insertion Sort</h2>
+
+<center><img src="/images/post_images/insertionSort.png" alt="insertionSort" style="zoom:48%;" /></center>
+
+<ul>
+  <li>종류: In-place 알고리즘</li>
+  <li>개념: list의 모든 element를 앞에서 부터 <strong>차례대로</strong> 이미 정렬된 list부분과 비교하여, <strong>자신의 위치를 찾아</strong> 삽입함으로써 정렬한다.</li>
+  <li>순서
+    <ol>
+      <li>Insertion Sort는 2번째 index부터 시작이다.</li>
+      <li>temp라는 변수에 현재 index의 값을 <strong>저장</strong>한다.</li>
+      <li>index-1의 값과 temp를 <strong>비교</strong>한다.</li>
+      <li>temp 값이 작으면, index-1값을 index에 저장. temp가 크며, 다음 index로 넘어가며, temp에는 다음 index값이 저장 된다.</li>
+    </ol>
+  </li>
+  <li>Worst Case:</li>
+  <li>Best Case:</li>
+  <li>Average Case:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void insertion_sort ( int *data, int n )
+{
+  int i, j, remember;
+  for ( i = 1; i &lt; n; i++ )
+  {
+    remember = data[(j=i)];
+    while ( --j &gt;= 0 &amp;&amp; remember &lt; data[j] ){
+        data[j+1] = data[j];
+        data[j] = remember;
+    }
+  }
+}
+</code></pre></div></div>
+
+<h2 id="bubble-sort">Bubble Sort</h2>
+
+<center><img src="/images/post_images/bubbleSort.png" alt="bubbleSort" style="zoom:48%;" /></center>
+
+<ul>
+  <li>개념: 두 인접한 원소를 검사하여 정렬하는 알고리즘</li>
+  <li>순서
+    <ol>
+      <li>현재 index와 index+1 값을 비교한다</li>
+      <li>현재 index가 더 크다면, index의 값과 index+1의 값을 swap한다.</li>
+    </ol>
+  </li>
+  <li>Worst Case:</li>
+  <li>Best Case:</li>
+  <li>Average Case:</li>
+</ul>
+
+<h3 id="code-1">Code</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int* bubble_sort(int arr[], int n) {
+    int i, j, temp;
+    for (i=n-1; i&gt;0; i--) {
+        for (j=0; j&lt;i; j++) {
+            if (arr[j] &gt; arr[j+1]) {
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+</code></pre></div></div>
+
+<h2 id="merge-sort">Merge Sort</h2>
+
+<center><img src="/images/post_images/mergeSort.png" alt="mergeSort" style="zoom:48%;" /></center>
+
+<ul>
+  <li>종류: 비교 기반 정렬 알고리즘(Divide and Conquer)</li>
+  <li>개념:
+    <ul>
+      <li>Divide
+        <ul>
+          <li>배열을 길이가 1인 배열로 분할하여 나눈다.</li>
+        </ul>
+      </li>
+      <li>Conquer
+        <ul>
+          <li>각 배열을 recursive 하게 Combine(Merge)하며 정렬을 완성한다</li>
+        </ul>
+      </li>
+      <li>Combine
+        <ul>
+          <li>Merge는 분할된 배열을 하나로 합병하는데, 이때, 정렬하며 점차적으로 배열들을 하나로 합친다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>순서
+    <ol>
+      <li>배열을 반으로 divide한다. 이 때, 분할 배열이 1 이하의 크기로 분할한다.</li>
+      <li>분할된 배열을 2개 단위로 비교한다. 이때 비교를 통해 정렬하면서 하나의 배열로 합병한다. (최소 단위까지 분할한 상태에서 비교하며 합병하면, 합병된 배열은 정렬이 된 상태이다)</li>
+    </ol>
+  </li>
+  <li>Worst Case:</li>
+  <li>Best Case:</li>
+  <li>Average Case:</li>
+</ul>
+
+<h3 id="code-2">Code</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//mergeSort(arr, 0, arr_size - 1);
+void mergeSort(vector&lt;int&gt;&amp; v, int s, int e) 
+{ 
+    if (s&lt;e) { 
+
+        int m = (s+e)/2
+  
+        // Sort first and second halves 
+        mergeSort(v, s, m); 
+        mergeSort(v, m + 1, e); 
+  
+        merge(v, s, e, m); 
+    } 
+} 
+void merge( vector&lt;int&gt;&amp; v, int s, int e, int m) 
+{ 
+   vector&lt;int&gt; ret;
+   int i = s, j = m+1,copy = 0;
+    
+    //compare &amp; set order
+    while(i&lt;=m &amp;&amp; j &lt;= e){
+        if(v[i] &lt; v[j]){
+            ret.push_back(v[i++]);
+        }
+        else if(v[i] &gt; v[j]){
+            ret.push_back(v[j++]);
+        }
+    }
+    
+    //leftover
+    while(i&lt;=m){
+        ret.push_back(v[i++]);
+    }
+    while(j&lt;=e){
+        ret.push_back(v[j++]);
+    }
+    
+    //copy back
+    for(int k = s; k &lt;= e; k++){
+        v[k]=ret[copy++];
+    }
+    
+    
+} 
+
+</code></pre></div></div>
+
+<h2 id="quick-sort"><a href="https://www.geeksforgeeks.org/quick-sort/">Quick Sort</a></h2>
+
+<center><img src="/images/post_images/quickSort.png" alt="mergeSort" style="zoom:48%;" /></center>
+
+<ul>
+  <li>종류: Divide Conquer 알고리즘</li>
+  <li>개념: pivot point를 기준으로 왼쪽에는 작은 값, 오른쪽에는 큰 값을 정렬한다.</li>
+  <li>순서
+    <ol>
+      <li>Pivot Point를 가장 오른쪽으로 정한다. (start는 첫번째 index, end는 마지막  index이다)</li>
+      <li>Left Index를 하나씩 증가하면서 Pivot Point와 비교를 한다. 작은 값을 찾은 순서대로 왼쪽에서 부터 교체한다. (이렇게 하면 2 무리가 나온다, pivot 작은 수의 연속과 pivot 보다 큰 수의 연속)</li>
+      <li>pivot은 이때, 작은 수의 연속과 큰 수의 연속을 가르는 index와 swap을 한다.</li>
+      <li>Divde가 되었기에, 다시 left와 right 그리고 pivot을 재 정의하여 1번을 실행한다.</li>
+    </ol>
+  </li>
+  <li>Time Complexity
+    <ul>
+      <li>Worst Case:</li>
+      <li>Best Case:</li>
+      <li>Average Case:</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="code-3">Code</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void QuickSort(vector&lt;int&gt;&amp; v, int left, int right){
+    int pivot;
+    
+    if(left &lt; right){
+        
+        
+        pivot = Partition(v,left,right);
+        QucikSort(v,left,pivot-1);
+        QucikSort(v,pi+1,right);
+    }
+      
+}
+int Partition (vector&lt;int&gt;&amp; v, int left, int right)
+{
+    //for our convenience, we always set the right index as PIVOT
+    int pivot = v[right];  
+    int i = (left - 1);  // Index of smaller element
+
+    //from left to right
+    for (int j = left; j &lt; right; j++)
+    {
+        // If current element is smaller than the pivot
+        if (v[j] &lt; pivot)
+        {
+           // increment index of smaller element and swap with bigger
+            std::swap(v[++i],v[j]);
+        }
+    }
+    
+    //swap pivot with big number
+    std::swap(v[i + 1],v[right]);
+    return (i + 1);
+}
+</code></pre></div></div>
+
+<h2 id="heap-sort">Heap Sort</h2>
+
+<center><img src="/images/post_images/heapSort.png" alt="heapSort" style="zoom:48%;" /></center>
+
+<ul>
+  <li>
+    <p>개념: heap tree를 사용하여 정렬한다.</p>
+
+    <ul>
+      <li>heap tree
+        <ul>
+          <li>binary tree로 A가 B의 parent node이면 A의 키 값과 B의 키 값 사이에는 대소관계가 성립한다.</li>
+        </ul>
+      </li>
+      <li>Heap sort는 complete binary tree를 구성하면서 sort을 한다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Rule</p>
+
+    <blockquote>
+      <p>최대 힙 혹은 최소 힙으로 구성 할 수 있으며, 다음 설명은 최대 힙에 대한 설명이다.</p>
+    </blockquote>
+
+    <ul>
+      <li>Heapify: Parent Node는 child node 보다 크거나 같은 갖을 수 있다.</li>
+      <li>Complete Binary Tree로 구성되기에, leaf node는 왼쪽 부터 달려 있다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Time Complexity</p>
+
+    <ul>
+      <li>Worst Case:</li>
+      <li>Best Case:</li>
+      <li>Average Case:</li>
+    </ul>
+  </li>
+  <li>
+    <p>Space Complexity</p>
+
+    <ul>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="code-4">Code</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void Heapify(vector&lt;int&gt;&amp; heap,int index, int heapSize)
+{   
+    int largestIndex = index;
+    int leftIndex = 2*index +1;
+    int rightIndex= 2* index +2;
+ 
+    //is left child bigger
+    if(leftIndex &lt; heapSize &amp;&amp; heap[leftIndex] &gt; heap[largestIndex]){
+        largestIndex = leftIndex;
+    }
+ 
+    //is right child bigger
+    if(rightIndex &lt; heapSize &amp;&amp; heap[rightIndex] &gt; heap[largestIndex]){
+        largestIndex = rightIndex;
+    }
+ 
+    //if need to be swap
+    if(largestIndex != index){
+        swap(heap[index],heap[largestIndex]);
+        Heapify(heap,largestIndex,heapSize);
+    }
+ 
+    
+}
+void HeapSort(vector&lt;int&gt;&amp; heap, int heapSize)
+{
+
+    //lets heapify first
+    for(int i = heapSize/2-1;i &gt;=0;i-- ){
+        Heapify(heap,n,i);
+    }
+    
+    //sort
+    for(int i = heapSize-1; i &gt; 0; i--){
+        swap(heap[0],heap[i]);
+        Heapify(heap,0,i);
+    } 
+}
+</code></pre></div></div>
+
+<h2 id="counting-sort">Counting Sort</h2>
+
+<center><img src="/images/post_images/countSort.png" alt="countSort" style="zoom:48%;" /></center>
+
+<ul>
+  <li>분류: Integer Sorting</li>
+  <li>개념: 수의 출현과 출현 값을 누적하여 위치를 선태하여 sort한다.  (단, 수 사이의 거리가 먼 경우, 0,100,99,50, 비효율 적이다)</li>
+  <li>순서
+    <ol>
+      <li>Array를 작성한다
+        <ul>
+          <li>최대 범위의 크기의 array arr를 만든다</li>
+          <li>Input에 대하여 array arr에 각 수의 출현 횟수를 기록한다.</li>
+          <li>Arr로 부터 출현한 횟수와 앞 index의 누적값을 array count에 저장한다.</li>
+        </ul>
+      </li>
+      <li>Sort
+        <ul>
+          <li>Array output을 arr의 크기만큼 선언한다.</li>
+          <li>Arr로 부터 값을 받아오면서 cout의 해당 값을 output의 index로 설정하고 arr의 값을 저장한다.</li>
+          <li>그리고 count의 값을 하나 decrement 한다.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>Time Complexity
+    <ul>
+      <li>Worst Case:</li>
+    </ul>
+  </li>
+  <li>Space Complexity
+    <ul>
+      <li>Worst Case:</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="code-5">Code</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+void CountSort(int arr[], int arrSize,int range)
+{
+    // The output character array 
+    // that will have sorted arr 
+    int * output = new int[arrSize];
+
+    //initialize count array
+    int i;
+    int* count = new int[range];
+    
+    memset(count, 0, range * sizeof(int));
+
+
+    // count each number
+    for (i = 0; i &lt; arrSize; ++i) {
+        count[arr[i]]++;
+    }
+
+    // summation of front
+    for (i = 1; i &lt; range; ++i) {
+        count[i] += count[i - 1];
+    }
+
+
+    // build output array
+    for (i = arrSize - 1; i &gt;= 0; --i)
+    {
+        output[count[arr[i]] - 1] = arr[i];
+        --count[arr[i]];
+    }
+
+    //copy back
+    for (i = 0; i &lt; arrSize; ++i) {
+        arr[i] = output[i];
+    }
+}
+</code></pre></div></div>
+:ET
