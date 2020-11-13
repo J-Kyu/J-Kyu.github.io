@@ -1,4 +1,4 @@
-I"•<h1 id="hanoi-tower">Hanoi Tower</h1>
+I"’<h1 id="hanoi-tower">Hanoi Tower</h1>
 
 <h2 id="problem">Problem</h2>
 
@@ -82,7 +82,7 @@
 
 <h2 id="code">Code</h2>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;cstdio&gt;
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;cstdio&gt;
 #pragma warning(disable:4996)
 </span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>

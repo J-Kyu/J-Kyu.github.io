@@ -1,4 +1,4 @@
-I"ËY<h1 id="7-basic-algorithm">7 Basic Algorithm</h1>
+I"p<h1 id="7-basic-algorithm">7 Basic Algorithm</h1>
 
 <blockquote>
   <ul>
@@ -40,25 +40,25 @@
 
 <h3 id="code">Code</h3>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>void selectionSort(int *list, const int n)
-{
-    int indexMin, temp;
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kt">void</span> <span class="nf">selectionSort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">list</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">indexMin</span><span class="p">,</span> <span class="n">temp</span><span class="p">;</span>
 
-    for (int i = 0; i <span class="nt">&lt;</span> <span class="nt">n</span> <span class="na">-</span> <span class="na">1</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span>
-    <span class="err">{</span>
-        <span class="na">indexMin = </span><span class="s">i;</span>
-        <span class="na">for</span> <span class="err">(</span><span class="na">int</span> <span class="na">j = </span><span class="s">i</span> <span class="err">+</span> <span class="na">1</span><span class="err">;</span> <span class="na">j</span> <span class="err">&lt;</span> <span class="na">n</span><span class="err">;</span> <span class="na">j</span><span class="err">++)</span>
-        <span class="err">{</span>
-            <span class="na">if</span> <span class="err">(</span><span class="na">list</span><span class="err">[</span><span class="na">j</span><span class="err">]</span> <span class="err">&lt;</span> <span class="na">list</span><span class="err">[</span><span class="na">indexMin</span><span class="err">])</span>
-            <span class="err">{</span>
-                <span class="na">indexMin = </span><span class="s">j;</span>
-            <span class="err">}</span>
-        <span class="err">}</span>
-        <span class="na">temp = </span><span class="s">list[indexMin];</span>
-        <span class="na">list[indexMin] = </span><span class="s">list[i];</span>
-        <span class="na">list[i] = </span><span class="s">temp;</span>
-    <span class="err">}</span>
-<span class="err">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">indexMin</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">list</span><span class="p">[</span><span class="n">indexMin</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">indexMin</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">list</span><span class="p">[</span><span class="n">indexMin</span><span class="p">];</span>
+        <span class="n">list</span><span class="p">[</span><span class="n">indexMin</span><span class="p">]</span> <span class="o">=</span> <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <h2 id="insertion-sort">Insertion Sort</h2>
@@ -81,18 +81,18 @@
   <li>Average Case:</li>
 </ul>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>void insertion_sort ( int *data, int n )
-{
-  int i, j, remember;
-  for ( i = 1; i <span class="nt">&lt;</span> <span class="nt">n</span><span class="err">;</span> <span class="na">i</span><span class="err">++</span> <span class="err">)</span>
-  <span class="err">{</span>
-    <span class="na">remember = </span><span class="s">data[(j=i)];</span>
-    <span class="na">while</span> <span class="err">(</span> <span class="na">--j</span> <span class="nt">&gt;</span>= 0 <span class="err">&amp;&amp;</span> remember <span class="nt">&lt;</span> <span class="nt">data</span><span class="err">[</span><span class="na">j</span><span class="err">]</span> <span class="err">){</span>
-        <span class="na">data</span><span class="err">[</span><span class="na">j</span><span class="err">+</span><span class="na">1] = </span><span class="s">data[j];</span>
-        <span class="na">data[j] = </span><span class="s">remember;</span>
-    <span class="err">}</span>
-  <span class="err">}</span>
-<span class="err">}</span>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kt">void</span> <span class="nf">insertion_sort</span> <span class="p">(</span> <span class="kt">int</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">remember</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">remember</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="p">)];</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="o">--</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">remember</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">){</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">remember</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <h2 id="bubble-sort">Bubble Sort</h2>
@@ -114,19 +114,19 @@
 
 <h3 id="code-1">Code</h3>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>int* bubble_sort(int arr[], int n) {
-    int i, j, temp;
-    for (i=n-1; i&gt;0; i--) {
-        for (j=0; j<span class="nt">&lt;i</span><span class="err">;</span> <span class="na">j</span><span class="err">++)</span> <span class="err">{</span>
-            <span class="na">if</span> <span class="err">(</span><span class="na">arr</span><span class="err">[</span><span class="na">j</span><span class="err">]</span> <span class="nt">&gt;</span> arr[j+1]) {
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
-    }
-    return arr;
-}
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kt">int</span><span class="o">*</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">arr</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <h2 id="merge-sort">Merge Sort</h2>
@@ -167,50 +167,50 @@
 
 <h3 id="code-2">Code</h3>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>//mergeSort(arr, 0, arr_size - 1);
-void mergeSort(vector<span class="nt">&lt;int&gt;</span><span class="err">&amp;</span> v, int s, int e) 
-{ 
-    if (s<span class="nt">&lt;e</span><span class="err">)</span> <span class="err">{</span> 
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1">//mergeSort(arr, 0, arr_size - 1);</span>
+<span class="kt">void</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">e</span><span class="p">)</span> 
+<span class="p">{</span> 
+    <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">&lt;</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span> 
 
-        <span class="na">int</span> <span class="na">m = </span><span class="s">(s+e)/2</span>
+        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="n">e</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
   
-        <span class="err">//</span> <span class="na">Sort</span> <span class="na">first</span> <span class="na">and</span> <span class="na">second</span> <span class="na">halves</span> 
-        <span class="na">mergeSort</span><span class="err">(</span><span class="na">v</span><span class="err">,</span> <span class="na">s</span><span class="err">,</span> <span class="na">m</span><span class="err">);</span> 
-        <span class="na">mergeSort</span><span class="err">(</span><span class="na">v</span><span class="err">,</span> <span class="na">m</span> <span class="err">+</span> <span class="na">1</span><span class="err">,</span> <span class="na">e</span><span class="err">);</span> 
+        <span class="c1">// Sort first and second halves </span>
+        <span class="n">mergeSort</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span> 
+        <span class="n">mergeSort</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span> 
   
-        <span class="na">merge</span><span class="err">(</span><span class="na">v</span><span class="err">,</span> <span class="na">s</span><span class="err">,</span> <span class="na">e</span><span class="err">,</span> <span class="na">m</span><span class="err">);</span> 
-    <span class="err">}</span> 
-<span class="err">}</span> 
-<span class="na">void</span> <span class="na">merge</span><span class="err">(</span> <span class="na">vector</span><span class="err">&lt;</span><span class="na">int</span><span class="nt">&gt;</span><span class="err">&amp;</span> v, int s, int e, int m) 
-{ 
-   vector<span class="nt">&lt;int&gt;</span> ret;
-   int i = s, j = m+1,copy = 0;
+        <span class="n">merge</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span> 
+    <span class="p">}</span> 
+<span class="p">}</span> 
+<span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">e</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span> 
+<span class="p">{</span> 
+   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ret</span><span class="p">;</span>
+   <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">s</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">copy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     
-    //compare <span class="err">&amp;</span> set order
-    while(i<span class="nt">&lt;</span><span class="err">=</span><span class="na">m</span> <span class="err">&amp;&amp;</span> <span class="na">j</span> <span class="err">&lt;=</span> <span class="na">e</span><span class="err">){</span>
-        <span class="na">if</span><span class="err">(</span><span class="na">v</span><span class="err">[</span><span class="na">i</span><span class="err">]</span> <span class="err">&lt;</span> <span class="na">v</span><span class="err">[</span><span class="na">j</span><span class="err">]){</span>
-            <span class="na">ret</span><span class="err">.</span><span class="na">push_back</span><span class="err">(</span><span class="na">v</span><span class="err">[</span><span class="na">i</span><span class="err">++]);</span>
-        <span class="err">}</span>
-        <span class="na">else</span> <span class="na">if</span><span class="err">(</span><span class="na">v</span><span class="err">[</span><span class="na">i</span><span class="err">]</span> <span class="nt">&gt;</span> v[j]){
-            ret.push_back(v[j++]);
-        }
-    }
+    <span class="c1">//compare &amp; set order</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">e</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
+            <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
+            <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-    //leftover
-    while(i<span class="nt">&lt;</span><span class="err">=</span><span class="na">m</span><span class="err">){</span>
-        <span class="na">ret</span><span class="err">.</span><span class="na">push_back</span><span class="err">(</span><span class="na">v</span><span class="err">[</span><span class="na">i</span><span class="err">++]);</span>
-    <span class="err">}</span>
-    <span class="na">while</span><span class="err">(</span><span class="na">j</span><span class="err">&lt;=</span><span class="na">e</span><span class="err">){</span>
-        <span class="na">ret</span><span class="err">.</span><span class="na">push_back</span><span class="err">(</span><span class="na">v</span><span class="err">[</span><span class="na">j</span><span class="err">++]);</span>
-    <span class="err">}</span>
+    <span class="c1">//leftover</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">){</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">e</span><span class="p">){</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">]);</span>
+    <span class="p">}</span>
     
-    <span class="err">//</span><span class="na">copy</span> <span class="na">back</span>
-    <span class="na">for</span><span class="err">(</span><span class="na">int</span> <span class="na">k = </span><span class="s">s;</span> <span class="na">k</span> <span class="err">&lt;=</span> <span class="na">e</span><span class="err">;</span> <span class="na">k</span><span class="err">++){</span>
-        <span class="na">v[k]=</span><span class="s">ret[copy++];</span>
-    <span class="err">}</span>
+    <span class="c1">//copy back</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">e</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">v</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">ret</span><span class="p">[</span><span class="n">copy</span><span class="o">++</span><span class="p">];</span>
+    <span class="p">}</span>
     
     
-<span class="err">}</span> 
+<span class="p">}</span> 
 
 </code></pre></div></div>
 

@@ -1,4 +1,4 @@
-I"ËY<h1 id="7-basic-algorithm">7 Basic Algorithm</h1>
+I"^<h1 id="7-basic-algorithm">7 Basic Algorithm</h1>
 
 <blockquote>
   <ul>
@@ -40,25 +40,25 @@
 
 <h3 id="code">Code</h3>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>void selectionSort(int *list, const int n)
-{
-    int indexMin, temp;
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="kt">void</span> <span class="nf">selectionSort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">list</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">indexMin</span><span class="p">,</span> <span class="n">temp</span><span class="p">;</span>
 
-    for (int i = 0; i <span class="nt">&lt;</span> <span class="nt">n</span> <span class="na">-</span> <span class="na">1</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span>
-    <span class="err">{</span>
-        <span class="na">indexMin = </span><span class="s">i;</span>
-        <span class="na">for</span> <span class="err">(</span><span class="na">int</span> <span class="na">j = </span><span class="s">i</span> <span class="err">+</span> <span class="na">1</span><span class="err">;</span> <span class="na">j</span> <span class="err">&lt;</span> <span class="na">n</span><span class="err">;</span> <span class="na">j</span><span class="err">++)</span>
-        <span class="err">{</span>
-            <span class="na">if</span> <span class="err">(</span><span class="na">list</span><span class="err">[</span><span class="na">j</span><span class="err">]</span> <span class="err">&lt;</span> <span class="na">list</span><span class="err">[</span><span class="na">indexMin</span><span class="err">])</span>
-            <span class="err">{</span>
-                <span class="na">indexMin = </span><span class="s">j;</span>
-            <span class="err">}</span>
-        <span class="err">}</span>
-        <span class="na">temp = </span><span class="s">list[indexMin];</span>
-        <span class="na">list[indexMin] = </span><span class="s">list[i];</span>
-        <span class="na">list[i] = </span><span class="s">temp;</span>
-    <span class="err">}</span>
-<span class="err">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">indexMin</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">list</span><span class="p">[</span><span class="n">indexMin</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">indexMin</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">list</span><span class="p">[</span><span class="n">indexMin</span><span class="p">];</span>
+        <span class="n">list</span><span class="p">[</span><span class="n">indexMin</span><span class="p">]</span> <span class="o">=</span> <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <h2 id="insertion-sort">Insertion Sort</h2>

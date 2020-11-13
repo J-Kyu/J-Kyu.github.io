@@ -5,6 +5,12 @@ collections:
     output: true
     
 markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    default_lang: html
+    css_class   : 'syntax'
 github: https://github.com/J-Kyu
  
 logo:             images/logo.png # logo visible in the topbar

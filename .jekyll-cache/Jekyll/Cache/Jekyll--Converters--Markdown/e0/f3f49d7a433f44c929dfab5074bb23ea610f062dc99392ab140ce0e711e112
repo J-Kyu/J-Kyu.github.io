@@ -1,4 +1,4 @@
-I"�]<h1 id="os-instagrapd">OS: Instagrapd</h1>
+I"�]<h1 id="os-instagrapd">OS: Instagrapd</h1>
 
 <blockquote>
   <ul>
@@ -114,14 +114,14 @@ Make 10 sockets in total and send test case and testfile to each connection by p
 
 <p>​	TCP(Transmission Control Protocol) is a protocol where Internet Protocol defines how computer send packet of data to each other.  In TCP, there is no sustaining connection. One send and one receive. Not only submitter also in Instagrapd and worker, all the connection between isolated programs are linked with TCP/IP.</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sock_fd</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span> <span class="cm">/*IPv4*/</span><span class="p">,</span> <span class="n">SOCK_STREAM</span> <span class="cm">/*TCP*/</span><span class="p">,</span> <span class="mi">0</span> <span class="cm">/*IP*/</span><span class="p">)</span> <span class="p">;</span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">sock_fd</span><span class="o">=</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span> <span class="cm">/*IPv4*/</span><span class="p">,</span> <span class="n">SOCK_STREAM</span> <span class="cm">/*TCP*/</span><span class="p">,</span> <span class="mi">0</span> <span class="cm">/*IP*/</span><span class="p">)</span> <span class="p">;</span>
 </code></pre></div></div>
 
 <p>​	When we declare a socket variable, we use socket function to generate new socket. For the  parameter, second parameter, we give “SOCK_STREAM” value in order to set TCP socket. Once we created sock_fd, we are ready to connect with instagrapd.</p>
 
 <p>​	The next step is to call connect function to connect with server socket. Before we call connect function, we have to create certain values for finding server socket.</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">;</span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">;</span>
 <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="sc">'0'</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span> 
 <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span> 
 <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span> 
@@ -129,7 +129,7 @@ Make 10 sockets in total and send test case and testfile to each connection by p
 
 <p>​	In this code, we created serv_add variable where its type is sockaddr_in. We use memset to clear all the existing unnecessary values with 0 from serv_addr, and give certain conditions such as address type and ports number.</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">inet_pton</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//127.0.0.1</span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">if</span> <span class="p">(</span><span class="n">inet_pton</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//127.0.0.1</span>
         <span class="n">perror</span><span class="p">(</span><span class="s">"inet_pton failed : "</span><span class="p">)</span> <span class="p">;</span> 
         <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">)</span> <span class="p">;</span>
     <span class="p">}</span> 
@@ -137,7 +137,7 @@ Make 10 sockets in total and send test case and testfile to each connection by p
 
 <p>​	Then we use inet_pton function to convert  IP address and serv_addr variable which are human-readable text in to binary term.</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connect</span><span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">)</span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">connect</span><span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>​	Finally we call connect function to connect with the server that we added IP number and socket number. At this point, connection is done, now we can send and receive to and from the server socket which is instagrapd.</p>
@@ -184,7 +184,7 @@ Make 10 sockets in total and send test case and testfile to each connection by p
   <li>Fork</li>
 </ul>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t_pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>	<span class="c1">//Forking new process</span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">t_pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>	<span class="c1">//Forking new process</span>
 
 <span class="k">if</span><span class="p">(</span><span class="n">t_pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>    					<span class="n">child_proc</span><span class="p">(</span><span class="n">new_socket</span><span class="p">,</span><span class="n">workerPort</span><span class="p">,</span><span class="n">ip</span><span class="p">,</span><span class="n">regPipes</span><span class="p">[</span><span class="n">userRecord</span><span class="p">],</span><span class="n">worPipes</span><span class="p">[</span><span class="n">userRecord</span><span class="p">]);</span>	<span class="c1">//child process duty</span>
             <span class="n">close</span><span class="p">(</span><span class="n">new_socket</span><span class="p">);</span> <span class="c1">//once chold_proc function is done, close socket and exit the process</span>
@@ -206,7 +206,7 @@ Make 10 sockets in total and send test case and testfile to each connection by p
   <li>Multi-threading and pipe</li>
 </ul>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//this branch bracket is where parent process creates threads </span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1">//this branch bracket is where parent process creates threads </span>
         <span class="k">else</span> <span class="p">{</span>
             <span class="k">if</span><span class="p">(</span><span class="n">thread_reg</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
                 <span class="n">thread_reg</span> <span class="o">=</span> <span class="p">(</span><span class="n">pthread_t</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">pthread_t</span><span class="p">));</span>

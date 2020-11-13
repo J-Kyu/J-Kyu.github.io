@@ -1,4 +1,4 @@
-I"�<h1 id="armstrong-d1">Armstrong D+1</h1>
+I"�<h1 id="armstrong-d1">Armstrong D+1</h1>
 
 <blockquote>
   <ul>
@@ -9,7 +9,7 @@
 <h2 id="move-player"><a href="https://answers.unity.com/questions/1203035/any-way-to-access-the-global-position-and-rotation.html">Move Player</a></h2>
 
 <ul>
-  <li>2-D 게임에서는 Canvas안에서 만들어진 UI로 게임이 만들어지니, inspector의 position 값을 script에서 가져오기 위해서는 parent인 Canvas를 참조해서 가져와야 한다. 고로 <code class="language-plaintext highlighter-rouge">transform.localPosition</code> 을 통해서 비교가 가능하다.</li>
+  <li>2-D 게임에서는 Canvas안에서 만들어진 UI로 게임이 만들어지니, inspector의 position 값을 script에서 가져오기 위해서는 parent인 Canvas를 참조해서 가져와야 한다. 고로 <code class="language-html highlighter-rouge">transform.localPosition</code> 을 통해서 비교가 가능하다.</li>
   <li>player의 위치와 boundary 위치를 비교 하기 위해서는 absolute position(global)이 아닌 relative positio(local)로 비교하는 것이 옳다. B/C 하나의 object 내부에서 world position과 관계 없이 서로를 비교 대상으로 비교하기에, local로 비교한다. <strong>단, 새로운 좌표로 옮길 때는, world position으로 할 것 인지, local position으로 할 것 인지 고민해야한다.</strong></li>
   <li>참고: <a href="https://github.com/J-Kyu/Armstrong/blob/a3efde08dc1460f159496a6c866183bfa2eca0bc/Assets/Scripts/TouchObject.cs#L43">Code</a></li>
 </ul>

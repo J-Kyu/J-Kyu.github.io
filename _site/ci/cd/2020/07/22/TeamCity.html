@@ -45,6 +45,7 @@
 </div>
     <title>Team City</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel = "stylesheet" href = "/assets/css/syntax.css">
   </head>
 
   <div class = "default-body">
@@ -95,7 +96,7 @@
       <li><a href="https://www.jetbrains.com/help/teamcity/2020.1/getting-started-with-teamcity.html?_ga=2.14996278.1834950870.1595387806-309280763.1595387806&amp;q=build&amp;s=quick">TeamCity-Getting Started</a></li>
     </ul>
   </li>
-  <li>Unity를 build 하기 위해서는 plug-in을 사용해야한다. 방법은 간단하다. 구동한 TeamCity server에서 plug-in load를 browser로 하여 <code class="language-plaintext highlighter-rouge">Unity Support</code>를 Get하면 된다.
+  <li>Unity를 build 하기 위해서는 plug-in을 사용해야한다. 방법은 간단하다. 구동한 TeamCity server에서 plug-in load를 browser로 하여 <code class="language-html highlighter-rouge">Unity Support</code>를 Get하면 된다.
     <ul>
       <li>이러면 build step에 대하여 자동으로 구성이 될 수있다.</li>
     </ul>
@@ -109,13 +110,13 @@
 <h3 id="tip">Tip</h3>
 
 <ul>
-  <li>공식 Docs에서는ㄴ <code class="language-plaintext highlighter-rouge">./runAll start</code>와 <code class="language-plaintext highlighter-rouge">./runAll stop</code>으로 server를 구동하고 shutdown하는데, 후자는 먹히지 않을 때 있다. 나는 <code class="language-plaintext highlighter-rouge">./shutdown.sh</code>을 실행하였다.
+  <li>공식 Docs에서는ㄴ <code class="language-html highlighter-rouge">./runAll start</code>와 <code class="language-html highlighter-rouge">./runAll stop</code>으로 server를 구동하고 shutdown하는데, 후자는 먹히지 않을 때 있다. 나는 <code class="language-html highlighter-rouge">./shutdown.sh</code>을 실행하였다.
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">&lt;Team City&gt;/bin/</code></li>
+      <li><code class="language-html highlighter-rouge"><span class="nt">&lt;Team</span> <span class="na">City</span><span class="nt">&gt;</span>/bin/</code></li>
     </ul>
   </li>
-  <li><code class="language-plaintext highlighter-rouge">TeamCity Start Up</code> 에러는 쓰기 권한이 없어서 발생했기에, <code class="language-plaintext highlighter-rouge">chmod</code>를 통해서 권한을 부여하는 방식으로 해결하였다.</li>
-  <li>build 시 permission이 없다고 build가 안될 때 있는데, 이것은 <code class="language-plaintext highlighter-rouge">sudo ./runAll start</code>를 통해서 구동시키면 된다.</li>
+  <li><code class="language-html highlighter-rouge">TeamCity Start Up</code> 에러는 쓰기 권한이 없어서 발생했기에, <code class="language-html highlighter-rouge">chmod</code>를 통해서 권한을 부여하는 방식으로 해결하였다.</li>
+  <li>build 시 permission이 없다고 build가 안될 때 있는데, 이것은 <code class="language-html highlighter-rouge">sudo ./runAll start</code>를 통해서 구동시키면 된다.</li>
 </ul>
 
     </div>
