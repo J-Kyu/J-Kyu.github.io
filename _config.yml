@@ -13,8 +13,8 @@ kramdown:
     css_class   : 'syntax'
 github: https://github.com/J-Kyu
  
-logo:             images/logo.png # logo visible in the topbar
-thumbnail:             images/bg.jpg # logo visible in the topbar
+logo: /images/logo.png # logo visible in the topbar
+thumbnail: /images/bg.jpg # logo visible in the topbar
 url: https://j-kyu.github.io
 defaults:
   - scope:
