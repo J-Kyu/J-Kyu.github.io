@@ -4,9 +4,9 @@
 
 body { background-color: #000000; max-width: 100%; }
 
-.default-body { margin-top: 100px; background-color: #ECE6CC; }
+.default-body { margin-top: 100px; background-color: black; }
 
-.body-container { max-width: 800px; background-color: #ECE6CC; }
+.body-container { max-width: 800px; background-color: black; }
 
 .thumbnail-container { margin: 10px auto; position: relative; }
 
@@ -20,7 +20,7 @@ body { background-color: #000000; max-width: 100%; }
 
 .article-index-container { margin-top: 50px; margin-left: 10px; margin-right: 10px; margin-bottom: 150px; }
 
-.footer { background-color: #CFD8DC; }
+.footer { background-color: #59575D; }
 
 .current { color: green; }
 
@@ -40,7 +40,13 @@ body { background-color: #000000; max-width: 100%; }
 
 .header-menu .title { color: white; font-size: 30px; }
 
-.postBox-item { background-color: seashell; width: 100%; height: 100%; }
+.mainTitle { font-size: 20px; color: #ff6ec7; }
+
+.subTitle { font-size: 16px; color: #ff9937; }
+
+.date { font-size: 12px; color: #39ff17; }
+
+.postBox-item { background-color: black; width: 100%; height: 100%; }
 
 .postBox-item .postBox-item-thumb { background-color: #803232; width: 240px; height: 240px; display: block; margin-left: auto; margin-right: auto; }
 
@@ -62,17 +68,21 @@ body { background-color: #000000; max-width: 100%; }
 
 .project-container .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-.article-title-container { margin-top: 10px; background-color: #005666; padding: 10px; }
+.mainTitle { font-size: 20px; color: #ff6ec7; }
 
-.article-title-container .article-title { font-size: 20px; color: white; }
+.subTitle { font-size: 16px; color: #ff9937; }
 
-.article-title-container .article-title-date { font-size: 12px; }
+.date { font-size: 12px; color: #39ff17; }
 
-.post-title { margin-top: 10px; font-size: 30px; }
+.article-title-container { margin-top: 10px; background-color: #5832fd; padding: 10px; }
+
+.post-title { margin-top: 10px; font-size: 30px; color: #ff6ec7; }
 
 .post-container { margin-top: 50px; margin-left: 10px; margin-right: 10px; margin-bottom: 100px; }
 
-.post-container .post-head-data { font-size: 20px; color: gray; margin-left: 10px; margin-bottom: 100px; }
+.post-container .post-head-data { font-size: 20px; color: #39ff17; margin-left: 10px; margin-bottom: 100px; }
+
+.markdown { color: white; }
 
 .markdown html, .markdown body, .markdown div, .markdown span, .markdown applet, .markdown object, .markdown iframe, .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6, .markdown p, .markdown blockquote, .markdown pre, .markdown a, .markdown abbr, .markdown acronym, .markdown address, .markdown big, .markdown cite, .markdown code, .markdown del, .markdown dfn, .markdown em, .markdown img, .markdown ins, .markdown kbd, .markdown q, .markdown s, .markdown samp, .markdown small, .markdown strike, .markdown strong, .markdown sub, .markdown sup, .markdown tt, .markdown var, .markdown b, .markdown u, .markdown i, .markdown center, .markdown dl, .markdown dt, .markdown dd, .markdown ol, .markdown ul, .markdown li, .markdown fieldset, .markdown form, .markdown label, .markdown legend, .markdown table, .markdown caption, .markdown tbody, .markdown tfoot, .markdown thead, .markdown tr, .markdown th, .markdown td, .markdown article, .markdown aside, .markdown canvas, .markdown details, .markdown embed, .markdown figure, .markdown figcaption, .markdown footer, .markdown header, .markdown hgroup, .markdown menu, .markdown nav, .markdown output, .markdown ruby, .markdown section, .markdown summary, .markdown time, .markdown mark, .markdown audio, .markdown video { margin: 0; padding: 0; border: 0; }
 
@@ -84,15 +94,15 @@ body { background-color: #000000; max-width: 100%; }
 
 .markdown h1 tt, .markdown h1 code, .markdown h2 tt, .markdown h2 code, .markdown h3 tt, .markdown h3 code, .markdown h4 tt, .markdown h4 code, .markdown h5 tt, .markdown h5 code, .markdown h6 tt, .markdown h6 code { font-size: inherit; }
 
-.markdown h1 { font-size: 28px; color: #000; }
+.markdown h1 { font-size: 36px; color: #cc00ff; }
 
-.markdown h2 { font-size: 24px; border-bottom: 1px solid #ccc; color: #000; }
+.markdown h2 { font-size: 30px; border-bottom: 1px solid #ccc; color: #009FFF; }
 
-.markdown h3 { font-size: 18px; }
+.markdown h3 { font-size: 24px; color: #00ffff; }
 
-.markdown h4 { font-size: 16px; }
+.markdown h4 { font-size: 18px; }
 
-.markdown h5 { font-size: 14px; }
+.markdown h5 { font-size: 16px; }
 
 .markdown h6 { color: #777; font-size: 14px; }
 
@@ -124,7 +134,7 @@ body { background-color: #000000; max-width: 100%; }
 
 .markdown dl dd > :last-child { margin-bottom: 0px; }
 
-.markdown pre, .markdown code, .markdown tt { font-size: 12px; font-family: Consolas, "Liberation Mono", Courier, monospace; }
+.markdown pre, .markdown code, .markdown tt { font-size: 16px; font-family: Consolas, "Liberation Mono", Courier, monospace; }
 
 .markdown code, .markdown tt { margin: 0 0px; padding: 0px 0px; white-space: nowrap; border: 1px solid #eaeaea; background-color: #f8f8f8; border-radius: 3px; }
 
@@ -153,5 +163,3 @@ body { background-color: #000000; max-width: 100%; }
 .markdown table tr:nth-child(2n) { background-color: #f8f8f8; }
 
 .markdown img { max-width: 100%; }
-
-/*# sourceMappingURL=styles.css.map */

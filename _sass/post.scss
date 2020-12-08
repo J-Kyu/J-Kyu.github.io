@@ -1,7 +1,9 @@
+@import "colorList";
 
 .post-title{
     margin-top: 10px;
-    font-size: 30px;;
+    font-size: 30px;
+    color: $neonPink;
 }
 
 .post-container{
@@ -12,7 +14,7 @@
     
     .post-head-data{
         font-size: 20px;
-        color: gray;
+        color: $neonGreen;
         margin-left: 10px;
         margin-bottom: 100px;
     }   

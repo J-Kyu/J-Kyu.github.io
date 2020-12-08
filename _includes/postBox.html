@@ -13,15 +13,15 @@
 
 
     <div class="postBox-item-body">
-        <h2 class="postBox-item-title">
+        <h2 class="mainTitle">
             <a  href="{{ site.baseurl }}{{ project.url }}">
                 {{ project.title }}
             </a>
         </h2>
-        <h4 class="card-text">
+        <h4 class="subTitle">
             {{ project.summary  }}
         </h4>
-        <div class="post-date">
+        <div class="date">
             {{ project.date | date_to_string }}
         </div>
     </div>

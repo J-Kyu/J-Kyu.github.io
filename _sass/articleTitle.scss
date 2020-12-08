@@ -1,15 +1,7 @@
-
-
+@import "titleFont";
+@import "colorList";
 .article-title-container{
     margin-top: 10px;
-    background-color: #005666;
+    background-color: $neonBluePurple;
     padding: 10px;
-    .article-title{
-        font-size: 20px;
-        color: white;
-        
-    }
-    .article-title-date{
-        font-size: 12px;
-    }
 }
