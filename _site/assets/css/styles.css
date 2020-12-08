@@ -6,7 +6,7 @@ body { background-color: #000000; max-width: 100%; }
 
 .default-body { margin-top: 100px; background-color: #ECE6CC; }
 
-.body-container { max-width: 1200px; background-color: #ECE6CC; }
+.body-container { max-width: 800px; background-color: #ECE6CC; }
 
 .thumbnail-container { margin: 10px auto; position: relative; }
 
@@ -16,7 +16,7 @@ body { background-color: #000000; max-width: 100%; }
 
 .project-index-container { margin-top: 50px; margin-left: 10px; margin-right: 10px; }
 
-.project-index-container .project-index-item { width: 1200px; margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr; grid-gap: 30px; }
+.project-index-container .project-index-item { width: 800px; margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr; grid-gap: 30px; }
 
 .article-index-container { margin-top: 50px; margin-left: 10px; margin-right: 10px; margin-bottom: 150px; }
 
@@ -52,7 +52,7 @@ body { background-color: #000000; max-width: 100%; }
 
 .postBox-item .postBox-item-body .post-date { text-align: right; }
 
-.footer-container { height: 100px; max-width: 1200px; text-align: center; padding-top: 10px; }
+.footer-container { height: 100px; max-width: 800px; text-align: center; padding-top: 10px; }
 
 .footer-container .github-svg { vertical-align: middle; width: 25px; }
 
@@ -64,9 +64,9 @@ body { background-color: #000000; max-width: 100%; }
 
 .article-title-container { margin-top: 10px; background-color: #005666; padding: 10px; }
 
-.article-title-container .article-title { font-size: 25px; color: white; }
+.article-title-container .article-title { font-size: 20px; color: white; }
 
-.article-title-container .article-title-date { font-size: 15px; }
+.article-title-container .article-title-date { font-size: 12px; }
 
 .post-title { margin-top: 10px; font-size: 30px; }
 
