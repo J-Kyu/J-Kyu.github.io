@@ -1,3 +1,4 @@
+@import "colorList";
 %width_auto{ width: 100%; margin: 0 auto; overflow: hidden;}
 $minHeight: 2000px;
 $footerColor:#59575D ;
@@ -55,6 +56,8 @@ body{
 
 
 .project-index-container{
+  color: $neonLightGreen;
+  @extend %width_auto;
   margin-top: $containerTopMargin;
   margin-left: $containerSideMargin;
   margin-right: $containerSideMargin;
@@ -76,6 +79,7 @@ body{
 
 
 .article-index-container{
+  color: $neonLightGreen;
   margin-top: $containerTopMargin;
   margin-left: $containerSideMargin;
   margin-right: $containerSideMargin;
@@ -96,5 +100,5 @@ body{
 .more{
   float:right;
   font-size: 20px;
-  // margin-right: 20px;
+  color: $neonLightGreen;
 }

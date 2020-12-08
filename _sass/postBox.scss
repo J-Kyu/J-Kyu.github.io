@@ -1,29 +1,36 @@
 @import "titleFont";
+@import "colorList";
 .postBox-item {
-    background-color: black;
+    background-color: $neonBluePurple;
+    border-radius: 15px;
     width: 100%;
     height: 100%;
 
     .postBox-item-thumb{
-        background-color: #803232;
-        width: 240px;
-        height: 240px;
+        background-color: $neonBluePurple;
+        width: 180px;
+        height: 180px;
 
         display: block;
         margin-left: auto;
         margin-right: auto;
 
         .img-thumb {
+            border-radius: 15px;
             object-fit:cover;
-            
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+
             width: 100%;
             height: 100%;
-            object-position:top;
+            object-position:middle;
         }
     }
 
     .postBox-item-body {
         margin-left: 10px;
+        margin-top:5px;
         .postBox-item-title{
         }
 

@@ -1,6 +1,7 @@
 @import "titleFont";
-@import "colorList";
+
 .article-title-container{
+    border-radius: 15px;
     margin-top: 10px;
     background-color: $neonBluePurple;
     padding: 10px;
