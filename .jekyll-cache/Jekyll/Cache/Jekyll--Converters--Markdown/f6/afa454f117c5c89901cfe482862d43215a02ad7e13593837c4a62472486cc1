@@ -1,0 +1,184 @@
+I"\1<h1 id="backtracking-algorithm">Backtracking Algorithm</h1>
+
+<blockquote>
+  <ul>
+    <li><a href="##정의">정의</a></li>
+    <li><a href="##개념">개념</a></li>
+    <li><a href="##예제">예제</a></li>
+  </ul>
+</blockquote>
+
+<h2 id="정의">정의</h2>
+
+<blockquote>
+  <p>Tree에서 상태 공간을 방문하며 expanding하며 Search 할 때(CSP), 조건에 맞지 않은 경우, Backtracking을 통해 Computation 중복 방지하며 searching하는데 도움을 준다.</p>
+
+  <p>CSP(Constraint Satisfactory Problem)에 사용되기 좋다.</p>
+</blockquote>
+
+<ul>
+  <li><code class="language-html highlighter-rouge">모든 경우 수를 전부 고려하는 알고리즘으로, 상태 공간을  트리로 나타낼 수 있는 적합한 방식이다</code>라고 <a href="https://namu.wiki/w/%EB%B0%B1%ED%8A%B8%EB%9E%98%ED%82%B9">나무위키</a>에 나와있다.</li>
+  <li>핵심단어는 다음고 같다.
+    <ul>
+      <li><strong>모든 경우 수</strong></li>
+      <li><strong>트리</strong></li>
+    </ul>
+  </li>
+  <li>위의 두 단어를 통해서 <code class="language-html highlighter-rouge">Backtracking Algorithm</code>은 <strong>모든 경우의 수</strong>를 <strong>트리</strong>로 접근할 수 있다는 것을 알 수있다. (BFS or DFS 처럼 )</li>
+  <li>하지만, BFS와 DFS는 Brute-Force 방식이다.  Tree의 크기가 엄청난 경우,  <strong>모든 경우의 수</strong>에 대하여 조사하는 것은 엄청난 낭비가 될 수 있다.</li>
+  <li><strong>이런 경우 우리는 Backtracking 방법을 통하여 중복되는 계산을 막아 효과적인 방법으로 solution을 찾을 수 있다.</strong>
+    <ul>
+      <li>이러한 문제를 <code class="language-html highlighter-rouge">CSP</code>(Constraint Satisfaction Problem)라고 하며, Backtracking을 통해서 중복을 줄일 수 있다.</li>
+      <li>여기서 말하는 <code class="language-html highlighter-rouge">CSP</code>는  조건이 존재하는 Search 문제라고 생각하자.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="개념">개념</h2>
+
+<h3 id="description">Description</h3>
+
+<ul>
+  <li><code class="language-html highlighter-rouge">CSP</code>는 다음과 같이 표현 될 수 있다.
+    <ul>
+      <li>Variable</li>
+      <li>Domain</li>
+      <li>Constraint</li>
+    </ul>
+  </li>
+  <li>문제로 부터 <strong>Variable\(_{\text{변수}}\)</strong>와 변수가 갖을 수 있는 <strong>Domain\(_{\text{정의역}}\)</strong>을 정의한다. 이때, 변수간의 관계를 <strong>Constraint\(_{\text{존건}}\)</strong>으로 정의 할 수 있다.</li>
+  <li>이렇게 3가지에 대하여 정의가 된 경우, <code class="language-html highlighter-rouge">CSP</code>를 풀기 위한 준비는 완료된다.</li>
+</ul>
+
+<h3 id="flow">Flow</h3>
+
+<center><img src="/images/post_images/csp.png" alt="csp" style="zoom:48%;" /></center>
+
+<h3 id="code">Code</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="nf">ConstraintCheck</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">column</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">){</span>
+	<span class="cm">/*
+	if the variable satisfy Constraints -&gt; return True
+	else return False
+	*/</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">Search</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">variables</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">){</span>
+    <span class="c1">//if all the variables have values, we backtrack to previous variables</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">){</span>
+		<span class="k">return</span> <span class="p">;</span>
+	<span class="p">}</span>
+	<span class="c1">//set Value for variable....lets say 0~N is domain for variable</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">variables</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+		<span class="k">if</span><span class="p">(</span><span class="n">ConstraintCheck</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span><span class="n">index</span><span class="p">)){</span>
+			<span class="c1">//Go to next variable(index+1), if statisfies....</span>
+			<span class="n">result</span> <span class="o">+=</span> <span class="n">SetColumnValue</span><span class="p">(</span><span class="n">column</span><span class="p">,</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+		<span class="p">}</span>
+        <span class="c1">//else..change the value</span>
+	<span class="p">}</span>
+    <span class="c1">//return for backtracking</span>
+	<span class="k">return</span> <span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="o">*</span> <span class="n">variables</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Search</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="예제"><a href="https://www.acmicpc.net/problem/9663">예제</a></h2>
+
+<blockquote>
+  <ul>
+    <li>N-Queen문제</li>
+  </ul>
+</blockquote>
+
+<h3 id="개념-1">개념</h3>
+
+<ul>
+  <li><strong>Variable</strong>
+    <ul>
+      <li>Each Column</li>
+    </ul>
+  </li>
+  <li><strong>Domain</strong>
+    <ul>
+      <li>0~N (Row Position)</li>
+    </ul>
+  </li>
+  <li><strong>Constraint</strong>
+    <ul>
+      <li>Queens cannot attack Each other</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="kt">bool</span> <span class="nf">CheckMakeSense</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">column</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">){</span>
+	
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">index</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="c1">//check constraint</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">column</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">column</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">||</span> <span class="n">abs</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="n">abs</span><span class="p">(</span><span class="n">column</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">column</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>	
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">SetColumnValue</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">column</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">){</span>
+
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>	<span class="c1">//Number of position that queens can locate on chess board</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">){</span>
+		<span class="k">return</span>  <span class="mi">1</span><span class="p">;</span> <span class="c1">// Satisfy</span>
+	<span class="p">}</span>
+
+	<span class="c1">//set Value for each column</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">column</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">CheckMakeSense</span><span class="p">(</span><span class="n">column</span><span class="p">,</span><span class="n">index</span><span class="p">)){</span>
+			<span class="c1">//Go to next column, if statisfies....</span>
+			<span class="n">result</span> <span class="o">+=</span> <span class="n">SetColumnValue</span><span class="p">(</span><span class="n">column</span><span class="p">,</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+
+
+	<span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//Length of chess board and Number of Queens</span>
+	
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="o">*</span> <span class="n">column</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">SetColumnValue</span><span class="p">(</span><span class="n">column</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+:ET

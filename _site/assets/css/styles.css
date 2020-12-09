@@ -136,7 +136,7 @@ body { background-color: #000000; max-width: 100%; }
 
 .markdown pre, .markdown code, .markdown tt { font-size: 16px; font-family: Consolas, "Liberation Mono", Courier, monospace; }
 
-.markdown code, .markdown tt { margin: 0 0px; padding: 0px 0px; white-space: nowrap; border: 1px solid #eaeaea; background-color: #f8f8f8; border-radius: 3px; }
+.markdown code, .markdown tt { margin: 0 0px; padding: 0px 0px; white-space: nowrap; border: 1px solid #39ff17; background-color: #06f984; color: #5832fd; border-radius: 3px; }
 
 .markdown pre > code { margin: 0; padding: 0; white-space: pre; border: none; background: transparent; }
 
