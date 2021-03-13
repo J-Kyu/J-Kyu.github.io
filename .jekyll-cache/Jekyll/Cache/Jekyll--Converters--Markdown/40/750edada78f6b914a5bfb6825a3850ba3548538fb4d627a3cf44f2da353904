@@ -1,0 +1,169 @@
+I"�.<h1 id="dynamic-programming">Dynamic Programming</h1>
+
+<blockquote>
+  <ul>
+    <li><a href="##정의">정의</a></li>
+    <li><a href="##개념">개념</a></li>
+    <li><a href="##예제">예제</a></li>
+  </ul>
+</blockquote>
+
+<h2 id="정의">정의</h2>
+
+<blockquote>
+  <p>Dynamic Programming은 memoization을 통해서 주어진 조건에 따라 optimal value를 구할 때, subproblems(점화식 형태)로 나누어 풀 때 사용된다.</p>
+
+</blockquote>
+
+<ul>
+  <li>
+    <p><code class="language-html highlighter-rouge">복잡한 문제를 간단한 여러 개의 문제로 나누어 푸는 방법을 말한다</code>라고 <a href="https://namu.wiki/w/%EB%B0%B1%ED%8A%B8%EB%9E%98%ED%82%B9">나무위키</a>에 나와있다.</p>
+  </li>
+  <li>
+    <p>핵심단어는 다음과 같다.</p>
+
+    <ul>
+      <li><strong>나누어 푼다</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>주어진 값들에 대하여 각각의 값을 하나의 문제라고 가정하자. 이렇게 나눠진 문제(값)를 풀어나아가며 memoization에 해당 값을 누적시킨다면, optimal 값을 얻을 수 있다.</p>
+
+    <blockquote>
+      <p>:exclamation: Subproblem이라고 해서 recursive하게 들어가야 한다는 생각은 하지 말자:exclamation:</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>결국, DP의 핵심은 subproblem이며 이것은 <strong>점화식(Recurrence Relation)</strong>을 code로 옮기는 것을 의미한다.</p>
+  </li>
+</ul>
+
+<h2 id="개념">개념</h2>
+
+<h3 id="description">Description</h3>
+
+<ul>
+  <li>구성은 다음과 같다
+    <ul>
+      <li>Values</li>
+      <li>Memoization</li>
+      <li>Subproblem</li>
+    </ul>
+  </li>
+  <li>DP의 문제는 보통 주어진 <strong>Values\(_{\text{값들}}\)</strong>들로 부터 조건에 의한 optimal value를 구하는 것이 목적이다. 그렇기 때문에 <strong>조건으로 부터 점화식</strong>을 이끌어 내는 것이 핵심이다.</li>
+</ul>
+
+<h3 id="subproblems">Subproblems</h3>
+
+<blockquote>
+  <p>보통 점화식을 생각하면 recusrive하게 들어간다는 생각을 많이 한다. 하지만, DP문제에서 정의되는 점화식은 tree 형태의 subproblem이 아닌, <strong>이미 누적된 값들과</strong> 비교한다고 관점에 보는 것이 옳다.</p>
+</blockquote>
+
+<ul>
+  <li>여기서 이미 누적된 값들이라는 말은, 이미 subproblem을 통해 optimal value가 memoization에 누적된 값들을 의미한다. 쉽게 말해 현재 subproblem의 값을 지정하기 위해서는 이미 풀은 subproblem들의 값을 참조하여 현재 점화식 값과 비교하여 값을를 선정한다는 것이다.</li>
+  <li>다음은 점화식을 구할 때 도움이될 수 있는 개념이 있다.
+    <ul>
+      <li><strong>Memoization\(_{\text{누적된 optimal Values}}\)</strong> 는 보통 <code class="language-html highlighter-rouge">dp[i]</code> 혹은 <code class="language-html highlighter-rouge">dp[i][j]</code>와 같이 array형식으로 구성된다. 이 때, <code class="language-html highlighter-rouge">dp[i]</code>의 의미는 보통 <strong>i번 째 value에 대한 subproblem을 풀었을 때의 값이 <code class="language-html highlighter-rouge">dp[i]</code> 값이 된다</strong> 이다.</li>
+      <li>이 때, 선정되는 <code class="language-html highlighter-rouge">dp[i]</code>값은 이미 구해진 dp 값을 참조 비교하여 선정된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="code">Code</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">values</span><span class="p">[</span><span class="mi">10001</span><span class="p">];</span> <span class="c1">//Values</span>
+<span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="mi">10001</span><span class="p">];</span> <span class="c1">//Memoization</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="kt">int</span> <span class="n">sizeOfValues</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">sizeOfValues</span> <span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sizeOfValues</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+	<span class="c1">//design enter each value (ready for subproblem)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sizeOfValues</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="c1">//subproblems</span>
+    <span class="p">}</span>
+    
+    <span class="c1">//find optimal Value</span>
+    <span class="kt">int</span> <span class="n">optIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sizeOfValues</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">optIdx</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">optIdx</span><span class="p">]</span> <span class="o">?</span> <span class="n">optIdx</span> <span class="o">:</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">optIdx</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="예제"><a href="https://www.acmicpc.net/problem/9663">예제</a></h2>
+
+<blockquote>
+  <ul>
+    <li>Longest Increasing Sequence문제</li>
+  </ul>
+</blockquote>
+
+<h3 id="개념-1">개념</h3>
+
+<ul>
+  <li><strong>Values</strong>
+    <ul>
+      <li>임의 수로 나열된 값</li>
+    </ul>
+  </li>
+  <li><strong>Memoization</strong>
+    <ul>
+      <li><code class="language-html highlighter-rouge">dp[i]</code>: i번 째 value가 최종 높이 일 때, 계단의 수</li>
+    </ul>
+  </li>
+  <li><strong>Subproblem</strong>
+    <ul>
+      <li>
+\[dp[i] = \max_{\substack{j &lt; i,\\ val[j] &lt; val[i]}} dp[j] + 1\]
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">values</span><span class="p">[</span><span class="mi">10001</span><span class="p">];</span> <span class="c1">//Values</span>
+<span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="mi">10001</span><span class="p">];</span> <span class="c1">//Memoization</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="kt">int</span> <span class="n">sizeOfValues</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">sizeOfValues</span> <span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sizeOfValues</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+
+
+	<span class="c1">//design enter each value (ready for subproblem)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sizeOfValues</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">opt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">values</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
+                <span class="n">opt</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">opt</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>     
+    <span class="p">}</span>
+    
+    <span class="c1">//find optimal Value</span>
+    <span class="kt">int</span> <span class="n">optVal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sizeOfValues</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">optVal</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">optVal</span><span class="p">,</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">optVal</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+:ET
