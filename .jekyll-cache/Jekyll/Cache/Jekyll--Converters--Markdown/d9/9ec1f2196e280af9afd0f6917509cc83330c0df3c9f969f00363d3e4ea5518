@@ -1,0 +1,100 @@
+I"t<h1 id="leetcode-week-1">LeetCode: Week 1</h1>
+
+<h2 id="2-add-two-number"><a href="https://leetcode.com/problems/add-two-numbers/">2. Add Two Number</a></h2>
+
+<h3 id="brute-force">Brute force</h3>
+
+<p>Time Complexity: O(N), where N is longest length of <code class="language-html highlighter-rouge">l1</code> and <code class="language-html highlighter-rouge">l2</code></p>
+
+<p>Space Complexity: O(N)</p>
+
+<p><strong>Key-point</strong>: return Header-&gt;Next</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">addTwoNumbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">):</span>
+        <span class="s">"""
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """</span>
+
+        
+        <span class="n">headNode</span> <span class="o">=</span> <span class="n">curNode</span><span class="o">=</span> <span class="n">ListNode</span><span class="p">()</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">while</span> <span class="n">l1</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">l2</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">carry</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">l1</span><span class="p">:</span>
+                <span class="n">carry</span> <span class="o">+=</span> <span class="n">l1</span><span class="p">.</span><span class="n">val</span>
+                <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="p">.</span><span class="nb">next</span>
+            <span class="k">if</span> <span class="n">l2</span><span class="p">:</span>
+                <span class="n">carry</span> <span class="o">+=</span> <span class="n">l2</span><span class="p">.</span><span class="n">val</span>
+                <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">.</span><span class="nb">next</span>
+                
+            <span class="n">curNode</span><span class="p">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">carry</span><span class="o">%</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">curNode</span> <span class="o">=</span> <span class="n">curNode</span><span class="p">.</span><span class="nb">next</span>
+            <span class="n">carry</span> <span class="o">//=</span> <span class="mi">10</span>
+    
+        <span class="k">return</span> <span class="n">headNode</span><span class="p">.</span><span class="nb">next</span>
+        
+</code></pre></div></div>
+
+<h2 id="3longest-substring-without-repeating-characters"><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">3.Longest Substring Without Repeating Characters</a></h2>
+
+<h3 id="sliding-window">Sliding Window</h3>
+
+<p>Time-Complexity: O(N), where N is length of <code class="language-html highlighter-rouge">s</code></p>
+
+<p>Space-Complexity: O(min(m,n)), where <em>n</em> is upper bound of set, <em>m</em> is length of <code class="language-html highlighter-rouge">s</code></p>
+
+<p><strong>Key-point</strong>: Sliding Window &amp; Set</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code>    <span class="k">def</span> <span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="s">"""
+        :type s: str
+        :rtype: int
+        """</span>
+        
+        <span class="c1"># Sliding Window
+</span>        
+        <span class="s">"""
+        [abcabcbb]
+        a       1
+        ab      2
+        abc     3
+        -abca   
+        bca     3   
+        -bcab   
+        cab     3
+        -cabc   
+        abc     3
+        -abcb   
+        -bcb    
+        cb      2
+        -cbb
+        -bb
+        b       1
+        """</span>
+        <span class="n">maxLen</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">overlap</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">startIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">endIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">while</span> <span class="n">endIndex</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">endIndex</span><span class="p">]</span> <span class="ow">in</span> <span class="n">overlap</span><span class="p">:</span>
+                <span class="n">overlap</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">startIndex</span><span class="p">])</span>
+                <span class="n">startIndex</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">overlap</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">endIndex</span><span class="p">])</span>
+                <span class="n">maxLen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxLen</span><span class="p">,</span><span class="n">endIndex</span> <span class="o">-</span> <span class="n">startIndex</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">endIndex</span> <span class="o">+=</span> <span class="mi">1</span>
+           
+        <span class="k">return</span> <span class="n">maxLen</span>
+</code></pre></div></div>
+
+<h3 id="sliding-window-optimized">Sliding Window Optimized</h3>
+:ET
