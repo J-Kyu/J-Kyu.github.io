@@ -3,7 +3,7 @@ layout: post
 title:  Relativity and Absolute
 tags: [Hobby, TheFabricOfTheCosmos]
 ---
-# Relativity and Absolute
+# 상대성과 절대성
 
 제 3장에서는 그 동안 우리가 알고 지내왔던 시간과 공간에 대한 실체에 대해서 설명한다. 현재 우리는 아인슈타인의 2가지 상대성 이론에 의해서 200년 동안 믿어왔던 뉴턴의 절대적 구조를 완전히 해체하고 시공간$$_\text{space time}$$이라는 개념 속에서 살아가고 있다. 과연 아인슈타인이 말하는 시공간이 무엇인지 알아보자.
 
