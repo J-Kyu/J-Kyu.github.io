@@ -1,0 +1,252 @@
+<!-- main.scss -->
+<!doctype html>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel = "stylesheet" href = "/assets/css/syntax.css">
+
+<html>
+    <head> 
+      <div class = "header">
+        <div class = "header-menu">
+
+    <div class="header-menu-container">
+        <div class="header-item-title">
+            <a href="http://localhost:4000/">
+                
+                    <img class="logo" src="http://localhost:4000//images/logo.png"  alt="Kyu Tech Blog">
+                  
+            </a>
+            <a href="http://localhost:4000/" class="title"> 
+                Kyu Tech Blog
+            </a>
+        </div>
+        
+
+
+        <div class="header-item-menu">
+            
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/about.html" >
+                            About
+                    </a>
+                </ul>
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/articles" >
+                            Article
+                    </a>
+                </ul>
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/projects" >
+                            Project
+                    </a>
+                </ul>
+             
+        
+        </div>
+    </div>
+</div>
+      </div>
+   </head>
+
+  <div class = "default-body">
+    <body>
+      <div class = "body-container">
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class = "post-container"> 
+  
+  <div class = "post-title">
+    <h1>
+      Week 1 LeetCode
+    </h1>
+  </div>
+
+  <div class = "post-head-data">
+    <p>
+      13 Mar 2021
+      
+      
+    </p>
+  </div>
+  
+  <div class = "markdown">
+    <div class = "post-content">
+      <h1 id="leetcode-week-2">LeetCode: Week 2</h1>
+
+<h2 id="11-container-with-most-water-starstar"><a href="https://leetcode.com/problems/container-with-most-water/">11. Container With Most Water</a> :star::star:</h2>
+
+<h3 id="two-pointer">Two Pointer</h3>
+
+<p>Time Complexity: \(O(N)\)</p>
+
+<p>Space Complexity: \(O(1)\)</p>
+
+<p><strong>Key-Point</strong>: Compare bars until currently higher bar becomes smaller one and the new higher bar is smaller than previous width.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">maxArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+        <span class="s">"""
+        :type height: List[int]
+        :rtype: int
+        """</span>
+        <span class="c1"># sliding window
+</span>        
+        <span class="n">startIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">endIndex</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+        
+        <span class="n">curSpace</span>  <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">startIndex</span>  <span class="o">&lt;</span> <span class="n">endIndex</span><span class="p">:</span>
+               
+            <span class="n">w</span> <span class="o">=</span> <span class="n">endIndex</span> <span class="o">-</span> <span class="n">startIndex</span>
+            <span class="k">if</span> <span class="n">height</span><span class="p">[</span><span class="n">startIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">[</span><span class="n">endIndex</span><span class="p">]:</span>
+                <span class="n">h</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">startIndex</span><span class="p">]</span>
+                <span class="n">startIndex</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">h</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">endIndex</span><span class="p">]</span>
+                <span class="n">endIndex</span> <span class="o">-=</span> <span class="mi">1</span>
+            
+            <span class="k">if</span> <span class="n">curSpace</span> <span class="o">&lt;</span> <span class="n">h</span> <span class="o">*</span> <span class="n">w</span><span class="p">:</span>
+                <span class="n">curSpace</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">w</span>
+            
+        <span class="k">return</span> <span class="n">curSpace</span>
+</code></pre></div></div>
+
+<h2 id="12-integer-to-roman-star"><a href="https://leetcode.com/problems/integer-to-roman/solution/">12. Integer to Roman</a> :star:</h2>
+
+<h3 id="use-list">Use List</h3>
+
+<p>Time Complexity: \(O(N)\)</p>
+
+<p>Space Complexity: \(O(1)\)</p>
+
+<p><strong>Key-point:</strong> using list and index.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">intToRoman</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="s">"""
+        :type num: int
+        :rtype: str
+        """</span>
+        
+        <span class="n">symbol</span> <span class="o">=</span> <span class="p">[</span><span class="s">'I'</span><span class="p">,</span><span class="s">'V'</span><span class="p">,</span><span class="s">'X'</span><span class="p">,</span><span class="s">'L'</span><span class="p">,</span><span class="s">'C'</span><span class="p">,</span><span class="s">'D'</span><span class="p">,</span><span class="s">'M'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="s">''</span><span class="p">]</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="n">numStr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        
+        
+        <span class="k">def</span> <span class="nf">GenerateRomanChar</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="n">num</span><span class="p">):</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="s">""</span>
+            
+            
+            <span class="n">strt</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">[</span><span class="n">loc</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">[</span><span class="n">loc</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">[</span><span class="n">loc</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">num</span> <span class="ow">and</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+                    <span class="n">ans</span> <span class="o">+=</span> <span class="n">strt</span>
+            <span class="k">elif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="n">strt</span><span class="o">+</span><span class="n">mid</span> 
+            <span class="k">elif</span> <span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">num</span> <span class="ow">and</span> <span class="n">num</span> <span class="o">&lt;=</span><span class="mi">8</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="o">-</span><span class="mi">5</span><span class="p">):</span>
+                    <span class="n">ans</span> <span class="o">+=</span> <span class="n">strt</span>
+            <span class="k">elif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="n">strt</span><span class="o">+</span><span class="n">end</span>
+            
+            <span class="k">return</span> <span class="n">ans</span>
+
+        
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numStr</span><span class="p">)):</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">GenerateRomanChar</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numStr</span><span class="p">)</span><span class="o">-</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">numStr</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
+            <span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<h3 id="simple-solution">Simple Solution</h3>
+
+<p>Time Complexity: \(O(1)\)</p>
+
+<p>Space Complexity: \(O(1)\)</p>
+
+<p><strong>Key-point:</strong> Some time, cases are less than what you think</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">intToRoman</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="s">"""
+        :type num: int
+        :rtype: str
+        """</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">"M"</span><span class="p">,</span><span class="s">"MM"</span><span class="p">,</span><span class="s">"MMM"</span><span class="p">]</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">"C"</span><span class="p">,</span> <span class="s">"CC"</span><span class="p">,</span> <span class="s">"CCC"</span><span class="p">,</span> <span class="s">"CD"</span><span class="p">,</span> <span class="s">"D"</span><span class="p">,</span> <span class="s">"DC"</span><span class="p">,</span> <span class="s">"DCC"</span><span class="p">,</span> <span class="s">"DCCC"</span><span class="p">,</span> <span class="s">"CM"</span><span class="p">]</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">"X"</span><span class="p">,</span> <span class="s">"XX"</span><span class="p">,</span> <span class="s">"XXX"</span><span class="p">,</span> <span class="s">"XL"</span><span class="p">,</span> <span class="s">"L"</span><span class="p">,</span> <span class="s">"LX"</span><span class="p">,</span> <span class="s">"LXX"</span><span class="p">,</span> <span class="s">"LXXX"</span><span class="p">,</span> <span class="s">"XC"</span><span class="p">]</span>
+        <span class="n">I</span> <span class="o">=</span> <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">"I"</span><span class="p">,</span> <span class="s">"II"</span><span class="p">,</span> <span class="s">"III"</span><span class="p">,</span> <span class="s">"IV"</span><span class="p">,</span> <span class="s">"V"</span><span class="p">,</span> <span class="s">"VI"</span><span class="p">,</span> <span class="s">"VII"</span><span class="p">,</span> <span class="s">"VIII"</span><span class="p">,</span> <span class="s">"IX"</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">M</span><span class="p">[</span><span class="n">num</span><span class="o">/</span><span class="mi">1000</span><span class="p">]</span> <span class="o">+</span> <span class="n">C</span><span class="p">[(</span><span class="n">num</span><span class="o">%</span><span class="mi">1000</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">]</span><span class="o">+</span><span class="n">X</span><span class="p">[((</span><span class="n">num</span><span class="o">%</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)]</span><span class="o">+</span><span class="n">I</span><span class="p">[</span><span class="n">num</span><span class="o">%</span><span class="mi">10</span>
+</code></pre></div></div>
+
+<h2 id="17-letter-combination-of-a-phone-number-star-star"><a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/">17. Letter Combination of a Phone Number</a> :star: :star:</h2>
+
+<h3 id="dfs">DFS</h3>
+
+<p>Time Complexity: \(O(M^N\cdot N)\), where <code class="language-html highlighter-rouge">M</code> is maximum number of letter on single digit, and <code class="language-html highlighter-rouge">N</code> is total length of given digits.</p>
+
+<p>Space Complexity: \(O(N)\), <code class="language-html highlighter-rouge">N</code> is total length of given digits.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">letterCombinations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">digits</span><span class="p">):</span>
+        <span class="s">"""
+        :type digits: str
+        :rtype: List[str]
+        """</span>
+        <span class="n">dial</span> <span class="o">=</span><span class="p">{</span><span class="mi">2</span><span class="p">:[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">],</span><span class="mi">3</span><span class="p">:[</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">,</span><span class="s">'f'</span><span class="p">],</span><span class="mi">4</span><span class="p">:{</span><span class="s">'g'</span><span class="p">,</span><span class="s">'h'</span><span class="p">,</span><span class="s">'i'</span><span class="p">},</span><span class="mi">5</span><span class="p">:{</span><span class="s">'j'</span><span class="p">,</span><span class="s">'k'</span><span class="p">,</span><span class="s">'l'</span><span class="p">},</span><span class="mi">6</span><span class="p">:{</span><span class="s">'m'</span><span class="p">,</span><span class="s">'n'</span><span class="p">,</span><span class="s">'o'</span><span class="p">},</span><span class="mi">7</span><span class="p">:{</span><span class="s">'p'</span><span class="p">,</span><span class="s">'q'</span><span class="p">,</span><span class="s">'r'</span><span class="p">,</span><span class="s">'s'</span><span class="p">},</span><span class="mi">8</span><span class="p">:{</span><span class="s">'t'</span><span class="p">,</span><span class="s">'u'</span><span class="p">,</span><span class="s">'v'</span><span class="p">},</span><span class="mi">9</span><span class="p">:{</span><span class="s">'w'</span><span class="p">,</span><span class="s">'x'</span><span class="p">,</span><span class="s">'y'</span><span class="p">,</span><span class="s">'z'</span><span class="p">}}</span>
+        
+        <span class="n">ans</span>  <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># dfs
+</span>        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">curIndex</span><span class="p">,</span><span class="n">tmp</span><span class="p">):</span>
+            
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">):</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+                <span class="k">return</span>
+            
+            
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dial</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">digits</span><span class="p">[</span><span class="n">curIndex</span><span class="p">])]:</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">curIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tmp</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>  <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s">""</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+
+    </div>
+  </div>
+
+
+</div>
+      </div>
+    </body>
+  </div>
+
+  <div class = "footer">
+    <div class = "footer-container">
+
+    <a href = https://github.com/J-Kyu>
+        <svg class="github-svg" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+        </svg>
+        Github
+    </a>
+
+    <p>
+        J-Kyu
+    </p>
+</div>
+  </div>
+
+</html>
