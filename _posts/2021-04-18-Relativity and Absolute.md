@@ -79,7 +79,7 @@ tags: [Hobby, TheFabricOfTheCosmos]
 
 Daniel은 철수가 mm를 사용하지 모르고 과제에 감점을 하였다. 이것을 보고 화가 잔뜩이 난 철수는 한국의 뜨거운 맛을 보여주겠다며 Daniel에게 결투를 신청하였다. 
 
-<img src="C:\Users\전상규\Documents\J-KyuTechBlog\images\post_images/diagram_1.png" style="zoom:48%;" align="center">
+<img src="..\images\post_images/diagram_1.png" style="zoom:48%;" align="center">
 
 달리는 기차 위에서 철수와 Dainel은 영희가 붙인 폭죽이 터지는 순간 먼저 총을 쏘기로 약속을 하였다. 공평한 시합을 위해서 푹죽은 정확히 서울역을 지날 때 터지게끔 영희가 불을 붙일 것이며 서울역에서는 순이가 폭죽이 터지기 전에 먼저 쏘는 사람을 잡아내기로 하였다. 
 
