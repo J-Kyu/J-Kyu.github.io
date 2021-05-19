@@ -53,20 +53,20 @@
 
   <div class = "default-body">
     <body>
-      <div class = "body-container">
+      <div class="body-container">
           <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
-<div class = "post-container"> 
+<div class="post-container"> 
   
-  <div class = "post-title">
+  <div class="post-title">
     <h1>
       Week 5 LeetCode
     </h1>
   </div>
 
-  <div class = "post-head-data">
+  <div class="post-head-data">
     <p>
       01 May 2021
       
@@ -74,31 +74,51 @@
     </p>
   </div>
   
-  <div class = "markdown">
-    <div class = "post-content">
+  <div class="markdown">
+    <div class="post-content">
       <h1 id="leetcode-week-5">LeetCode: Week 5</h1>
 
-<h2 id="91-decode-ways-starstar"><a href="https://leetcode.com/problems/decode-ways/">91. Decode Ways</a> :star::star:</h2>
+<blockquote>
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Hard Coding or Easy</p>
 
-<p>###</p>
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Basic Question</p>
+
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Twisted but worthy</p>
+
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">: Discerning</p>
+</blockquote>
+
+<h2 id="91-decode-ways-starstar">
+<a href="https://leetcode.com/problems/decode-ways/">91. Decode Ways</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+
+<h3 id="dynamic-programming">Dynamic Programming</h3>
 
 <p>Time Complexity: \(O()\)</p>
 
 <p>Space Complexity: \(O()\)</p>
 
-<p><strong>Key-Point</strong>: When single digit is valid, we add from <code class="language-html highlighter-rouge">dp[i-1]</code>. When double digit is valide we add <code class="language-html highlighter-rouge">dp[i-1]</code> with <code class="language-html highlighter-rouge">dp[i-2]</code>.
-Single Digit dp[i] += dp[i-1]
-Double Digit dp[i] += dp[i-2]   (dp[i] = dp[i-1] + dp[i-2])
-To be more specific, when given number is “216”, the <code class="language-html highlighter-rouge">dp</code> will be formed as following.</p>
+<p><strong>Key-Point</strong>: When single digit is valid, we add from <code class="language-html highlighter-rouge">dp[i-1]</code>. When double digit is valid we add <code class="language-html highlighter-rouge">dp[i-1]</code> with <code class="language-html highlighter-rouge">dp[i-2]</code>.</p>
 
-<p>Index] 0 | 1 | 2 | 3 |
-        —————— 
-value]    | 2 | 1 | 6 |
+<ul>
+  <li>Single Digit dp[i] += dp[i-1]</li>
+  <li>Double Digit dp[i] += dp[i-2]   (dp[i] = dp[i-1] + dp[i-2])</li>
+  <li>To be more specific, when given number is “216”, the <code class="language-html highlighter-rouge">dp</code> will be formed as following.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>Index]   0 | 1 | 2 | 3 |
+        ------------------ 
+value]     | 2 | 1 | 6 |
         ==================
-dp]     1 | 1 | 2 | 3 |</p>
+dp]      1 | 1 | 2 | 3 |
+</code></pre></div></div>
 
-<p><code class="language-html highlighter-rouge">dp[2]</code> is equal to 2 because both value <code class="language-html highlighter-rouge">2</code> and <code class="language-html highlighter-rouge">23</code> is valid. 
-<code class="language-html highlighter-rouge">dp[3]'' is equal to 3 because</code>16<code class="language-html highlighter-rouge">and</code>6<code class="language-html highlighter-rouge">is valid. Also previous value</code>2<code class="language-html highlighter-rouge">and</code>23<code class="language-html highlighter-rouge">is valid. Thus adding</code>dp[i-1]<code class="language-html highlighter-rouge">and</code>dp[i-2]<code class="language-html highlighter-rouge">is valid way to decode</code>216``.</p>
+<ul>
+  <li>
+<code class="language-html highlighter-rouge">dp[2]</code> is equal to 2 because both value <code class="language-html highlighter-rouge">2</code> and <code class="language-html highlighter-rouge">23</code> is valid.</li>
+  <li>
+<code class="language-html highlighter-rouge">dp[3]</code> is equal to 3 because <code class="language-html highlighter-rouge">16</code> and <code class="language-html highlighter-rouge">6</code> is valid. Also previous value<code class="language-html highlighter-rouge">2</code> and <code class="language-html highlighter-rouge">23</code> is valid. Thus adding <code class="language-html highlighter-rouge">dp[i-1]</code> and <code class="language-html highlighter-rouge">dp[i-2]</code> is valid way to decode <code class="language-html highlighter-rouge">216</code>.</li>
+</ul>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">numDecodings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
@@ -135,7 +155,9 @@ dp]     1 | 1 | 2 | 3 |</p>
         <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
 </code></pre></div></div>
 
-<h2 id="92-reverse-linked-list-ii-starstarstar"><a href="https://leetcode.com/problems/reverse-linked-list-ii/">92. Reverse Linked List II</a> :star::star::star:</h2>
+<h2 id="92-reverse-linked-list-ii-starstarstar">
+<a href="https://leetcode.com/problems/reverse-linked-list-ii/">92. Reverse Linked List II</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
 
 <h3 id="iterative-link-reversal">Iterative Link Reversal.</h3>
 
@@ -145,8 +167,8 @@ dp]     1 | 1 | 2 | 3 |</p>
 
 <p><strong>Key-point:</strong></p>
 <ol>
-  <li>Connect seconde node from left node with left node.</li>
-  <li>Insert next node of leftNode on the next of base Node(preNode).</li>
+  <li>Connect second node from left node with left node.</li>
+  <li>Insert next node of <code class="language-html highlighter-rouge">leftNode</code> on the next of base Node(<code class="language-html highlighter-rouge">preNode</code>).</li>
 </ol>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># Definition for singly-linked list.
@@ -186,7 +208,9 @@ dp]     1 | 1 | 2 | 3 |</p>
         <span class="k">return</span> <span class="n">newHead</span><span class="p">.</span><span class="nb">next</span>
 </code></pre></div></div>
 
-<h2 id="93-restore-ip-addresses-starstar"><a href="https://leetcode.com/problems/restore-ip-addresses/">93. Restore IP Addresses</a> :star::star:</h2>
+<h2 id="93-restore-ip-addresses-starstar">
+<a href="https://leetcode.com/problems/restore-ip-addresses/">93. Restore IP Addresses</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
 
 <h3 id="backtracking">Backtracking</h3>
 
@@ -228,9 +252,11 @@ dp]     1 | 1 | 2 | 3 |</p>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">out</span>
 </code></pre></div></div>
 
-<h2 id="94-binary-tree-inorder-traversal-starstar"><a href="https://leetcode.com/problems/binary-tree-inorder-traversal/">94. Binary Tree Inorder Traversal</a> :star::star:</h2>
+<h2 id="94-binary-tree-inorder-traversal-starstar">
+<a href="https://leetcode.com/problems/binary-tree-inorder-traversal/">94. Binary Tree Inorder Traversal</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
 
-<h3 id="recusrive">Recusrive</h3>
+<h3 id="recursive">Recursive</h3>
 
 <p>Time Complexity: \(O(N)\)</p>
 
@@ -300,26 +326,32 @@ dp]     1 | 1 | 2 | 3 |</p>
         <span class="k">return</span> <span class="n">res</span>
 </code></pre></div></div>
 
-<h2 id="95-unique-binary-search-trees-ii-starstar"><a href="https://leetcode.com/problems/unique-binary-search-trees-ii/">95. Unique Binary Search Trees II</a> :star::star:</h2>
+<h2 id="95-unique-binary-search-trees-ii-starstar">
+<a href="https://leetcode.com/problems/unique-binary-search-trees-ii/">95. Unique Binary Search Trees II</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
 
-<h3 id="dp-star-star-star">DP :star: :star: :star:</h3>
+<h3 id="dp-star-star-star">DP <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h3>
 
 <p>Time Complexity: \(O()\)</p>
 
 <p>Space Complexity: \(O()\)</p>
 
-<p><strong>Key-point:</strong> 
-F(a,b): return target nodes within given range <code class="language-html highlighter-rouge">a,b</code></p>
+<p><strong>Key-point:</strong></p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>    F(i)
-    /  \   F(1~i-1)  F(i+1~n)
+<ul>
+  <li>F(a,b): return target nodes within given range <code class="language-html highlighter-rouge">a,b</code>.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>        F(i)
+        /  \
+  F(1~i-1)  F(i+1~n)
 </code></pre></div></div>
-
 <ol>
   <li>Set Base Node value</li>
   <li>From base value, separate into two section.</li>
   <li>Find target nodes for left and right. (From given section)</li>
-  <li>Connect to root and save into memo. (return the memo)</li>
+  <li>Connect to root and save into memo. (return the <code class="language-html highlighter-rouge">memo</code>)</li>
 </ol>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># Definition for a binary tree node.
