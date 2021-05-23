@@ -31,3 +31,6 @@ defaults:
       type: "projects"
     values:
       layout: "project"
+
+plugins:
+    - jemoji
