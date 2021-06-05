@@ -1,0 +1,341 @@
+<!-- main.scss -->
+<!doctype html>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel = "stylesheet" href = "/assets/css/syntax.css">
+
+<html>
+    <head> 
+      <div class = "header">
+        <div class = "header-menu">
+
+    <div class="header-menu-container">
+        <div class="header-item-title">
+            <a href="http://localhost:4000/">
+                
+                    <img class="logo" src="http://localhost:4000//images/logo.png"  alt="Kyu Tech Blog">
+                  
+            </a>
+            <a href="http://localhost:4000/" class="title"> 
+                Kyu Tech Blog
+            </a>
+        </div>
+        
+
+
+        <div class="header-item-menu">
+            
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/about.html" >
+                            About
+                    </a>
+                </ul>
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/articles" >
+                            Article
+                    </a>
+                </ul>
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/projects" >
+                            Project
+                    </a>
+                </ul>
+             
+        
+        </div>
+    </div>
+</div>
+      </div>
+   </head>
+
+  <div class = "default-body">
+    <body>
+      <div class="body-container">
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="post-container"> 
+  
+  <div class="post-title">
+    <h1>
+      Week 6 LeetCode
+    </h1>
+  </div>
+
+  <div class="post-head-data">
+    <p>
+      09 May 2021
+      
+      
+    </p>
+  </div>
+  
+  <div class="markdown">
+    <div class="post-content">
+      <h1 id="leetcode-week-6">LeetCode: Week 6</h1>
+<blockquote>
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Hard Coding or Easy</p>
+
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Basic Question</p>
+
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Twisted but worthy</p>
+
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">: Discerning</p>
+  <h2 id="96-unique-binary-search-trees-starstarstar">
+<a href="https://leetcode.com/problems/unique-binary-search-trees/">96. Unique Binary Search Trees</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+</blockquote>
+
+<h3 id="dp-recurrence-relation">DP Recurrence Relation</h3>
+
+<p>Time Complexity: \(O()\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: Analyze few cases and generalize recurrence relation.</p>
+<ul>
+  <li>f(i): number of possible graph when there are number of i nodes.
+```
+f(0) = [None] = 1 
+f(1) = [1] = 1</li>
+</ul>
+
+<p>f(2)= f(0)<em>f(1) + f(1)</em>f(0) = 2
+       [1]    |    [2]
+          \   |    /
+          [2] |  [1]
+     Left: 0  |   Left: 1
+     Right: 1 |   Right: 0
+f(0)<em>f(1) = 1 |  f(1)</em>f(0) = 1</p>
+
+<p>f(3) = f(0)f(2) + f(1)f(1) + f(2)(0) = 5
+  [1]     [1]     |    [2]    |      [3]       [3]
+    \       \     |    / \    |      /         /
+    [3]     [2]   |  [1] [3]  |    [2]       [1]
+    /        \    |           |   /           <br>
+  [2]         [3] |           | [1]           [2]
+   Left: 0        |  Left: 1  |        Left:2
+   RIght: 2       |  Right: 1 |       Right: 0
+   f(0)<em>f(2) = 2  |f(1)</em>f(1)=1|   f(2)*f(0) = 2</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="syntax"><code>$$
+\therefore f(n) = \Sigma_{i=0}^{n-1}{f(i)f(n-1-i)}
+$$
+
+
+```python
+class Solution(object):
+    def numTrees(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        
+        arr = [ 0 for _ in range(n+1)]
+        arr[0] = 1
+        
+        for i in range(1,n+1):
+            for j  in range(1,i+1):
+                arr[i] += arr[j-1]*arr[i-j]
+                
+        return arr[-1]
+</code></pre></div></div>
+
+<h2 id="97-interleaving-string-starstarstar">
+<a href="https://leetcode.com/problems/interleaving-string/">97. Interleaving String</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+
+<h3 id="2-d-dp">2-D DP</h3>
+
+<p>Time Complexity: \(O(m\times n)\)</p>
+
+<p>Space Complexity: \(O(m \times n)\)</p>
+
+<p><strong>Key-Point</strong>: DP represent wheter i + j th index of s3 is either equal to s1[i] or s2[j]. Once it is identical, do not forget to check the previous alphabet of selected string is successive identical one.</p>
+
+<p>if j is identical, check j-1 index. If i is identical check i-1 index.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">isInterleave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">):</span>
+        <span class="s">"""
+        :type s1: str
+        :type s2: str
+        :type s3: str
+        :rtype: bool
+        """</span>
+        
+        <span class="c1"># dp
+</span>        <span class="n">s1</span> <span class="o">=</span> <span class="s">" "</span><span class="o">+</span><span class="n">s1</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="s">" "</span><span class="o">+</span><span class="n">s2</span>
+        <span class="n">s3</span> <span class="o">=</span> <span class="s">" "</span><span class="o">+</span><span class="n">s3</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">False</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">))]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">))]</span>
+        
+       
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    
+                    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="k">continue</span>
+            
+            
+                <span class="k">if</span> <span class="n">s1</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">s3</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> 
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">elif</span> <span class="n">s2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">s3</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+<h3 id="stack">Stack</h3>
+
+<p>Time Complexity: \(O(m\times n)\)</p>
+
+<p>Space Complexity: \(O(m\times n)\)</p>
+
+<p><strong>Key-Point</strong>:  Using stack. Append attempting i and j index of s1 and s2 into stack.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">isInterleave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">):</span>
+       <span class="c1"># DFS
+</span>    
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="n">possiblePosStack</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
+        <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        
+        
+        <span class="k">while</span> <span class="n">possiblePosStack</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span><span class="n">y</span>  <span class="o">=</span> <span class="n">possiblePosStack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+           
+            <span class="k">if</span> <span class="n">y</span><span class="o">+</span><span class="n">x</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            
+            <span class="k">if</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s1</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">s3</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">possiblePosStack</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>        
+                <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+            
+            <span class="k">if</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s2</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="n">s3</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">possiblePosStack</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+                
+        <span class="k">return</span> <span class="bp">False</span>    
+
+</code></pre></div></div>
+
+<h3 id="queue">Queue</h3>
+
+<p>Time Complexity: \(O(m\times n)\)</p>
+
+<p>Space Complexity: \(O(n)\)</p>
+
+<p><strong>Key-Point</strong>: Using Q. Append attempting i and j index of s1 and s2 into Q.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">isInterleave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">):</span>
+       <span class="c1"># DFS
+</span>    
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="n">possiblePosQ</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
+        <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        
+        
+        <span class="k">while</span> <span class="n">possiblePosQ</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span><span class="n">y</span>  <span class="o">=</span> <span class="n">possiblePosQ</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+           
+            <span class="k">if</span> <span class="n">y</span><span class="o">+</span><span class="n">x</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            
+            <span class="k">if</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s1</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">s3</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">possiblePosQ</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>        
+                <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+            
+            <span class="k">if</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s2</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="n">s3</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">possiblePosQ</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+                
+        <span class="k">return</span> <span class="bp">False</span>  
+
+</code></pre></div></div>
+
+<h2 id="98-validate-binary-search-tree-starstarstar">
+<a href="https://leetcode.com/problems/validate-binary-search-tree/">98. Validate Binary Search Tree</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+
+<h3 id="binary-tree">Binary Tree</h3>
+
+<p>Time Complexity: \(O(n)\)</p>
+
+<p>Space Complexity: \(O(n)\)</p>
+
+<p><strong>Key-Point</strong>: Keep  max and min value of node range</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">isValidBST</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="s">"""
+        :type root: TreeNode
+        :rtype: bool
+        """</span>
+        
+        <span class="n">minVal</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'-inf'</span><span class="p">)</span>
+        <span class="n">maxVal</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span><span class="p">;</span>
+        
+        <span class="c1"># DFS
+</span>        <span class="k">def</span> <span class="nf">DFS</span><span class="p">(</span><span class="n">minVal</span><span class="p">,</span> <span class="n">maxVal</span><span class="p">,</span> <span class="n">leaf</span><span class="p">):</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">leaf</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            
+            <span class="k">if</span> <span class="n">leaf</span><span class="p">.</span><span class="n">val</span> <span class="o">&lt;=</span> <span class="n">minVal</span>  <span class="ow">or</span> <span class="n">leaf</span><span class="p">.</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="n">maxVal</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+             
+                
+            <span class="k">return</span> <span class="n">DFS</span><span class="p">(</span><span class="n">minVal</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="n">maxVal</span><span class="p">,</span><span class="n">leaf</span><span class="p">.</span><span class="n">val</span><span class="p">),</span><span class="n">leaf</span><span class="p">.</span><span class="n">left</span><span class="p">)</span> <span class="ow">and</span> <span class="n">DFS</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">minVal</span><span class="p">,</span><span class="n">leaf</span><span class="p">.</span><span class="n">val</span><span class="p">),</span><span class="n">maxVal</span><span class="p">,</span> <span class="n">leaf</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+           
+        <span class="k">return</span> <span class="n">DFS</span><span class="p">(</span><span class="n">minVal</span><span class="p">,</span> <span class="n">maxVal</span><span class="p">,</span><span class="n">root</span><span class="p">)</span>
+</code></pre></div></div>
+
+    </div>
+  </div>
+
+
+</div>
+      </div>
+    </body>
+  </div>
+
+  <div class = "footer">
+    <div class = "footer-container">
+
+    <a href = https://github.com/J-Kyu>
+        <svg class="github-svg" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+        </svg>
+        Github
+    </a>
+
+    <p>
+        J-Kyu
+    </p>
+</div>
+  </div>
+
+</html>
