@@ -1,0 +1,467 @@
+<!-- main.scss -->
+<!doctype html>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel = "stylesheet" href = "/assets/css/syntax.css">
+
+<html>
+    <head> 
+      <div class = "header">
+        <div class = "header-menu">
+
+    <div class="header-menu-container">
+        <div class="header-item-title">
+            <a href="http://localhost:4000/">
+                
+                    <img class="logo" src="http://localhost:4000//images/logo.png"  alt="Kyu Tech Blog">
+                  
+            </a>
+            <a href="http://localhost:4000/" class="title"> 
+                Kyu Tech Blog
+            </a>
+        </div>
+        
+
+
+        <div class="header-item-menu">
+            
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/about.html" >
+                            About
+                    </a>
+                </ul>
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/articles" >
+                            Article
+                    </a>
+                </ul>
+            
+                <ul class="header-item"></ul>
+                    <a class = "title" href="/projects" >
+                            Project
+                    </a>
+                </ul>
+             
+        
+        </div>
+    </div>
+</div>
+      </div>
+   </head>
+
+  <div class = "default-body">
+    <body>
+      <div class="body-container">
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="post-container"> 
+  
+  <div class="post-title">
+    <h1>
+      Week 8 LeetCode
+    </h1>
+  </div>
+
+  <div class="post-head-data">
+    <p>
+      23 May 2021
+      
+      
+    </p>
+  </div>
+  
+  <div class="markdown">
+    <div class="post-content">
+      <h1 id="leetcode-week-8">LeetCode: Week 8</h1>
+<blockquote>
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Hard Coding or Easy</p>
+
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Basic Question</p>
+
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> : Twisted but worthy</p>
+
+  <p><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">: Discerning</p>
+  <h2 id="114-flatten-binary-tree-to-linked-list-starstar">
+<a href="https://leetcode.com/problems/flatten-binary-tree-to-linked-list/">114. Flatten Binary Tree To Linked List</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+</blockquote>
+
+<h3 id="recursive">Recursive</h3>
+
+<p>Time Complexity: \(O()\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: Attach left node to right node, and connect previous right node to the deepest right node from newly attached node</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="s">"""
+        :type root: TreeNode
+        :rtype: None Do not return anything, modify root in-place instead.
+        """</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+            <span class="k">return</span>
+        
+        <span class="k">if</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">tempNode</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="n">right</span>
+            <span class="n">curNode</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span>
+            <span class="c1"># find deepest right node
+</span>            <span class="k">while</span> <span class="n">curNode</span><span class="p">.</span><span class="n">right</span><span class="p">:</span>
+                <span class="n">curNode</span> <span class="o">=</span> <span class="n">curNode</span><span class="p">.</span><span class="n">right</span>
+                
+            <span class="n">curNode</span><span class="p">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">tempNode</span>
+            <span class="n">root</span><span class="p">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span>
+            <span class="n">root</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">None</span>
+            
+        <span class="bp">self</span><span class="p">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h3 id="flatten-from-bottom-starstarstar">Flatten From bottom <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h3>
+<p>Time Complexity: \(O()\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: Go down to the deepest right node. As we go up, we set previous node as right node.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+
+        <span class="n">root</span><span class="p">.</span><span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">prev</span>
+        <span class="n">root</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">root</span>
+</code></pre></div></div>
+<h2 id="116-populating-next-right-pointers-in-each-node-starstar">
+<a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/">116. Populating Next Right Pointers in Each Node</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+
+<h3 id="bfs">BFS</h3>
+
+<p>Time Complexity: \(O()\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: Save same level nodes</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="s">"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="s">"""
+        :type root: Node
+        :rtype: Node
+        """</span>
+        
+        <span class="c1"># BFS
+</span>        
+        <span class="k">def</span> <span class="nf">BFS</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+            
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">level</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">level</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">return</span>
+            
+            <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">level</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">left</span><span class="p">,</span><span class="n">level</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">right</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">level</span><span class="p">)):</span>
+                <span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nb">next</span> <span class="o">=</span> <span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                
+                <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">left</span><span class="p">)</span>
+                <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">right</span><span class="p">)</span>
+            
+            <span class="n">BFS</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+            
+        <span class="n">BFS</span><span class="p">([</span><span class="n">root</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">root</span> 
+</code></pre></div></div>
+<h2 id="117-populating-next-right-pointers-in-each-node-ii-starstar">
+<a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/">117. Populating Next Right Pointers in Each Node II</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+
+<h3 id="bfs-1">BFS</h3>
+
+<p>Time Complexity: \(O()\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: Differentiate by same level node</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="s">"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        
+        <span class="c1"># BFS
+</span>        
+        <span class="k">def</span> <span class="nf">BFS</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+            
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">level</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> 
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">level</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">return</span>
+            
+            <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+            
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">level</span><span class="p">)):</span>
+                <span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nb">next</span> <span class="o">=</span> <span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">left</span><span class="p">:</span>
+                    <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">left</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span><span class="p">:</span>
+                    <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">level</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">left</span><span class="p">:</span>
+                <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">left</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">level</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span><span class="p">:</span>
+                <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span><span class="p">)</span>
+            
+            <span class="n">BFS</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+            
+            
+        <span class="n">BFS</span><span class="p">([</span><span class="n">node</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">node</span>
+
+</code></pre></div></div>
+
+<h2 id="120-triangle-starstar">
+<a href="https://leetcode.com/problems/triangle/">120. Triangle</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+
+<h3 id="dp">DP</h3>
+
+<p>Time Complexity: \(O()\)</p>
+
+<p>Space Complexity: \(O(1)\)</p>
+
+<p><strong>Key-Point</strong>: Use given triangle as memoization.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">minimumTotal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">triangle</span><span class="p">):</span>
+        <span class="s">"""
+        :type triangle: List[List[int]]
+        :rtype: int
+        """</span>
+        <span class="c1"># DP
+</span>        
+        <span class="n">levelHeight</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">levelHeight</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
+                <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">triangle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+</code></pre></div></div>
+
+<h3 id="bottom-to-top">Bottom to Top</h3>
+
+<p>Time Complexity: \(O()\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: The prespective of upper row is much concise then lower row.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">minimumTotal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">triangle</span><span class="p">):</span>
+        <span class="s">"""
+        :type triangle: List[List[int]]
+        :rtype: int
+        """</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">triangle</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
+                <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+</code></pre></div></div>
+
+<h2 id="128-longest-consecutive-sequence-starstarstar">
+<a href="https://leetcode.com/problems/longest-consecutive-sequence/">128. Longest Consecutive Sequence</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+
+<h3 id="using-set">Using Set</h3>
+
+<p>Time Complexity: \(O(n)\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: Alway start from the smallest one</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="s">"""
+        :type nums: List[int]
+        :rtype: int
+        https://discuss.leetcode.com/topic/15383/simple-o-n-with-explanation-just-walk-each-streak/2
+        """</span>
+        <span class="k">def</span> <span class="nf">longestConsecutive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+            <span class="n">nums</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+                <span class="c1"># select very start point 
+</span>                <span class="k">if</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+                    <span class="c1"># next target
+</span>                    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="c1"># find until it does not exist
+</span>                    <span class="k">while</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+                        <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>
+                        
+                    <span class="c1"># now compare previouse best with current best (start - end)
+</span>                    <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">best</span> 
+
+</code></pre></div></div>
+
+<h2 id="129-sum-root-to-leaf-numbers-starstar">
+<a href="https://leetcode.com/problems/sum-root-to-leaf-numbers/">129. Sum Root to Leaf Numbers</a> <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h2>
+
+<h3 id="dfs">DFS</h3>
+
+<p>Time Complexity: \(O(n)\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: Use Stack</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sumNumbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="s">"""
+        :type root: TreeNode
+        :rtype: int
+        """</span>
+
+        <span class="c1"># DFS
+</span>        <span class="k">def</span> <span class="nf">DFS</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">num</span><span class="p">):</span>
+            
+            <span class="n">sm</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">:</span>
+                <span class="n">sm</span> <span class="o">+=</span> <span class="n">DFS</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">num</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">val</span><span class="p">))</span>
+                
+            <span class="k">if</span>  <span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">:</span>
+                <span class="n">sm</span> <span class="o">+=</span> <span class="n">DFS</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">,</span> <span class="n">num</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">val</span><span class="p">))</span>
+          
+            <span class="k">if</span> <span class="n">root</span><span class="p">.</span><span class="n">left</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">root</span><span class="p">.</span><span class="n">right</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">sm</span>
+        
+        <span class="k">return</span> <span class="n">DFS</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="s">""</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">))</span>
+</code></pre></div></div>
+<h3 id="while-starstarstar">While <img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"><img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20">
+</h3>
+
+<p>Time Complexity: \(O()\)</p>
+
+<p>Space Complexity: \(O()\)</p>
+
+<p><strong>Key-Point</strong>: Use Stack</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sumNumbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="s">"""
+        :type root: TreeNode
+        :rtype: int
+        """</span>
+        <span class="n">currNum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">root</span><span class="p">,</span><span class="n">currNum</span><span class="p">)]</span>
+        <span class="n">summation</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">node</span><span class="p">,</span><span class="n">currNum</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">currNum</span> <span class="o">=</span> <span class="n">currNum</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">node</span><span class="p">.</span><span class="n">val</span>
+            <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">left</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">node</span><span class="p">.</span><span class="n">right</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">summation</span> <span class="o">+=</span> <span class="n">currNum</span>
+            <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">left</span><span class="p">:</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="p">.</span><span class="n">left</span><span class="p">,</span><span class="n">currNum</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">right</span><span class="p">:</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="p">.</span><span class="n">right</span><span class="p">,</span><span class="n">currNum</span><span class="p">))</span>
+            
+        <span class="k">return</span> <span class="n">summation</span>
+</code></pre></div></div>
+
+
+    </div>
+  </div>
+
+
+</div>
+      </div>
+    </body>
+  </div>
+
+  <div class = "footer">
+    <div class = "footer-container">
+
+    <a href = https://github.com/J-Kyu>
+        <svg class="github-svg" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+        </svg>
+        Github
+    </a>
+
+    <p>
+        J-Kyu
+    </p>
+</div>
+  </div>
+
+</html>
